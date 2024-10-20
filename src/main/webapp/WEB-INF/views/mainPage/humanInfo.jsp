@@ -88,8 +88,8 @@
     <h3>9. 연락처</h3><br>
     개인정보 보호 관련 문의는 아래의 연락처로 해주시기 바랍니다:<br><br><br>
 
-    이메일: aaaa#ptu.ac.kr
-    전화: 010 - 1234 - 5678<br><br></br>
+    <strong>이메일: abc@ptu.ac.kr<br></strong>
+    <strong>전화: 010 - 1234 - 5678</strong><br><br>
   </fieldset>
 </body>
 </html>
