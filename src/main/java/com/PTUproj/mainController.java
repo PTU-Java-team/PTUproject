@@ -75,6 +75,17 @@ public class mainController {
         }
     }
 
+    @GetMapping("/admin/dashboard")
+    public String adminDashboard(HttpSession session) {
+        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+
+        if (Boolean.TRUE.equals(isAdmin)) {
+            return "/list"; // 관리자 대시보드로 이동
+        } else {
+            return "redirect:/"; // 권한이 없으면 메인 페이지로 리다이렉트
+        }
+    }
+
     //로그인과 회원가입 간의 연결 통로
     @GetMapping("/login-tunnel")    //화원가입 성공하면 성공했다고 알려주고
     public String loginTunnel() {       //로그인 페이지로 돌아가게 해주는 터널 역할
@@ -152,12 +163,21 @@ public class mainController {
         boolean result = memberService.update(memberDTO);
 
         if (result) {
-            return "redirect:/list?id=" + memberDTO.getId();
+            return "redirect:/good?id=" + memberDTO.getId();
         } else {
             return "main";
         }
 
     }
+
+    @GetMapping("/good")
+    public String getGoodPage(@RequestParam Long id, Model model) {
+        // ID에 대한 회원 정보를 가져와서 모델에 추가
+        MemberDTO member = memberService.findById(id);
+        model.addAttribute("member", member);
+        return "login/good"; // good.jsp 페이지로 이동
+    }
+
 
     //이메일 중복 체크
     @PostMapping("/email-check")

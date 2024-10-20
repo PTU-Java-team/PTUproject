@@ -1,38 +1,93 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Anemo
-  Date: 24. 10. 17.
-  Time: 오후 11:31
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>update</title>
+    <title>고객 정보 수정</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #f7a4a4, #f5d19c);
+        }
+        .container {
+            margin-top: 50px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .confirmation-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
+
+<div class="container">
+    <h2>고객 정보 수정</h2>
     <form action="/update" method="post" name="updateForm">
 
-        id: <input type="text" name="id" value="${member.id}"readonly>
-        email: <input type="text" name="memberEmail" value="${member.memberEmail}"readonly>
-        password: <input type="text" name="memberPassword" id="memberPassword">
-        name: <input type="text" name="memberName" value="${member.memberName}" readonly>
-        age: <input type="text" name="memberAge" value="${member.memberAge}">
-        mobile: <input type="text" name="memberMobile" value="${member.memberMobile}">
+        <div class="mb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="text" class="form-control" id="id" name="id" value="${member.id}" readonly>
+        </div>
 
-        <input type="button" value="수정" onclick="update()">
+        <div class="mb-3">
+            <label for="memberEmail" class="form-label">이메일</label>
+            <input type="text" class="form-control" id="memberEmail" name="memberEmail" value="${member.memberEmail}" readonly>
+        </div>
 
+        <div class="mb-3">
+            <label for="memberPassword" class="form-label">비밀번호</label>
+            <input type="password" class="form-control" id="memberPassword" name="memberPassword">
+        </div>
+
+        <div class="mb-3">
+            <label for="memberName" class="form-label">이름</label>
+            <input type="text" class="form-control" id="memberName" name="memberName" value="${member.memberName}" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="memberAge" class="form-label">나이</label>
+            <input type="text" class="form-control" id="memberAge" name="memberAge" value="${member.memberAge}">
+        </div>
+
+        <div class="mb-3">
+            <label for="memberMobile" class="form-label">전화번호</label>
+            <input type="text" class="form-control" id="memberMobile" name="memberMobile" value="${member.memberMobile}">
+        </div>
+
+        <div class="confirmation-box">
+            <p>비밀번호는 확인용입니다.</p>
+        </div><br>&nbsp;
+
+        <div class="text-center">
+            <button type="button" class="btn btn-primary" onclick="update()">수정</button>
+        </div>
     </form>
-</body>
+</div>
+
 <script>
     const update = () => {
         const passwordDB = '${member.memberPassword}';
         const password = document.getElementById("memberPassword").value;
-        if (passwordDB == password) {
+        if (passwordDB === password) {
             document.updateForm.submit();
         } else {
             alert("비밀번호가 일치하지 않습니다!");
         }
     }
+    const redirectToPreviousPage = () => {
+        location.href = '/list'; // 수정 후 돌아갈 페이지 URL
+    }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

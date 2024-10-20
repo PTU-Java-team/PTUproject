@@ -1,62 +1,77 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Anemo
-  Date: 24. 10. 17.
-  Time: 오후 9:52
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>list</title>
+  <title>고객 리스트</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #f7a4a4, #f5d19c);
+    }
+    .container {
+      margin-top: 50px;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-  <table>
+
+<div class="container">
+  <h2>고객 리스트</h2>
+  <table class="table table-bordered">
+    <thead class="thead-light">
     <tr>
-      <th>id</th>
-      <th>email</th>
-      <th>password</th>
-      <th>name</th>
-      <th>age</th>
-      <th>mobile</th>
+      <th>아이디</th>
+      <th>이메일</th>
+      <th>비밀번호</th>
+      <th>이름</th>
+      <th>나이</th>
+      <th>전화번호</th>
       <th>조회</th>
       <th>삭제</th>
     </tr>
-
-    <c:forEach items="${memberList}" var="member">  <!--memberList는 컨트롤러에서 실어온 데이터 즉 반복 대상이고 , member는 반복 변수임 -->
-
+    </thead>
+    <tbody>
+    <c:forEach items="${memberList}" var="member">
       <tr>
         <td>${member.id}</td>
-        <td>
-
-          <a href="/member?id=${member.id}">${member.memberEmail}</a>   <!-- . 뒤에 있는 것은 dto에 있는 필드 이름과 일치하면 된다.-->
-          <!--이거 주소 체계가 구동했을 때 신기하다....-->
-        </td>
-
+        <td><a href="/member?id=${member.id}">${member.memberEmail}</a></td>
         <td>${member.memberPassword}</td>
         <td>${member.memberName}</td>
         <td>${member.memberAge}</td>
         <td>${member.memberMobile}</td>
-
-        <td>
-          <a href="/member?id=${member.id}">조회</a>
-        </td>
-
-        <td>
-        <button onclick="deleteMember('${member.id}')">삭제</button>
-        </td>
-
+        <td><a href="/member?id=${member.id}" class="btn btn-info btn-sm">조회</a></td>
+        <td><button class="btn btn-danger btn-sm" onclick="deleteMember('${member.id}')">삭제</button></td>
       </tr>
-
     </c:forEach>
-
+    </tbody>
   </table>
-</body>
+
+  <div class="text-center mt-3">
+    <button class="btn btn-secondary" onclick="goBack()">이전으로 돌아가기</button>
+  </div>
+
+</div>
+
 <script>
   const deleteMember = (id) => {
-    console.log(id);
-    location.href = "/member/delete?id="+id;
+    if (confirm("정말 삭제하시겠습니까?")) {
+      location.href = "/member/delete?id=" + id;
+    }
+  }
+
+  const goBack = () => {
+    window.history.back(); // 이전 페이지로 돌아가기
   }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

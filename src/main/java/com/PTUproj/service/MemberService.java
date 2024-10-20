@@ -25,6 +25,7 @@ public class MemberService {
 
         if (loginMember != null) {
             session.setAttribute("loginEmail", loginMember.getMemberEmail()); // 이메일 저장
+            session.setAttribute("isAdmin", loginMember.getIsAdmin()); // 1이면 true, 0이면 false
             return true;
         } else {
             return false;

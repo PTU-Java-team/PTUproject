@@ -14,4 +14,5 @@ public class MemberDTO {
     private String memberName;
     private int memberAge;      // 숫자로 입력하지 않을 경우 400오류 발생
     private String memberMobile;
+    private int isAdmin; // 관리자 여부
 }
