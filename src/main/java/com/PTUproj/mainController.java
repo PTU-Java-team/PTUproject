@@ -26,7 +26,7 @@ public class mainController {
     }
 
     //밑에 3개가 상단 메뉴
-    @GetMapping("smallGroup")   //소모임
+    @GetMapping("/smallGroup")   //소모임
     public String smellGroup() {
         return "smallGroup";
     }
@@ -58,12 +58,12 @@ public class mainController {
     }
 
     //로그인 관련 컨트롤러
-    @GetMapping("/login")   //로그인 페이지
+    @GetMapping("/logins")   //로그인 페이지
     public String login() {
-        return "login/login";
+        return "login/logins";
     }
 
-    @PostMapping("/login")   //로그인 처리 ...  세션도 사용함
+    @PostMapping("/logins")   //로그인 처리 ...  세션도 사용함
     public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
         boolean loginResult = memberService.login(memberDTO, session);
 
@@ -71,7 +71,7 @@ public class mainController {
             session.getAttribute("loginEmail");
             return "login/good";  //로그인 성공하면 good.jsp 로 이동   참고로 good.jsp는 급조한 것이다.
         } else {
-            return "login/login"; //실패하면 login.jsp 에 있도록 함
+            return "login/logins"; //실패하면 login.jsp 에 있도록 함
         }
     }
 
@@ -81,6 +81,11 @@ public class mainController {
         return "login/login-tunnel";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // 세션 무효화
+        return "redirect:/"; // 메인 페이지로 리다이렉트
+    }
 
     //회원가입 컨트롤러
     @GetMapping("/save")
@@ -138,7 +143,7 @@ public class mainController {
         MemberDTO memberDTO = memberService.findByMemberEmail(loginEmail);
             //회원의 이메일을 이용해 DB에서 조회를 해서 dto로 가져와서 회원의 전체 정보를 가져옴
         model.addAttribute("member", memberDTO);
-        return "update";
+        return "login/update";
     }
 
     //수정 처리

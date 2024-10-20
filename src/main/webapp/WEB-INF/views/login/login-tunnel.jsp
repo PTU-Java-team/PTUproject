@@ -37,7 +37,7 @@
 <fieldset>
   <h1 class="titl">회원가입 완료</h1>
     <br>
-  <a href="/login" style="text-align: center; text-decoration: none">로그인 하러 가기</a>
+  <a href="/logins" style="text-align: center; text-decoration: none">로그인 하러 가기</a>
 </fieldset>
 </body>
 </html>

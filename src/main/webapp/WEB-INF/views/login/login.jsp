@@ -71,54 +71,21 @@
     <div align="center">
       <input type="submit" value="로그인">&nbsp;&nbsp;
       <input type="reset" value="다시작성">
+      <input type="submit" value="회원가입" onclick="location.href='/save'">
     </div>
-    <br><br>
-<!--
-    <div align="center">
-      <input type="submit" value="회원가입">
-    </div>
--->
-    <br><br><br>
-    <!--여기 아래는 구글 로그인-->
-<!--
-    <div id="googleLoginBtn" style="cursor: pointer">
-      <img id="googleLoginImg" src="./images/google_login.png">
-    </div>
+    <br><br><br><br><br>
 
-    <div>
-      <button value="구글"><a href="/index"></a></button>
-    </div>
-    -->
   </fieldset>
 </form>
-
-<br>
 <!--
-  <div align="center">
-    <a href="/save" class="signup-button" style="color: black; text-decoration: none">회원가입하러가기 ~~</a>
-  </div>
--->
+<br>
 <div align="center">
   <button onclick="location.href='/save'" class="signup-button" style="color: black; background-color: lightgray; border: none; padding: 10px 20px; cursor: pointer;">
     회원가입하러가기 ~~
   </button>
-</div>
+</div>-->
 
 <br><br><br><br>&nbsp;&nbsp;
 
 </body>
-
-<script>
-  //구글 로그인 관련 스크립트
-  const onClickGoogleLogin = (e) => {
-    // 구글 인증 서버로 인증코드 발급 요청
-    window.location.replace("https://accounts.google.com/o/oauth2/v2/auth?client_id=yourClientID&redirect_uri=http://localhost:8080/login/google/auth&response_type=code&scope=email%20profile%20openid&access_type=offline");
-  }
-
-  const googleLoginBtn = document.getElementById("googleLoginBtn");
-  if (googleLoginBtn) {
-    googleLoginBtn.addEventListener("click", onClickGoogleLogin);
-  }
-</script>
-
 </html>
