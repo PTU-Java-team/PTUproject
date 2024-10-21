@@ -13,6 +13,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 
     <style>
@@ -191,6 +193,26 @@
 
     </style>
     <!--hmm-->
+<!--    <style type="text/css">
+        #favWrap {background:url('/images/img_2.png') center center fixed no-repeat #45434c; background-size: auto 87%; padding:0; position:relative; background-position: bottom;}
+        .fav_img {top: 90px; right: -210px; width: 953px; height: 651px; background-image: url('/images/img_4.png');}
+
+
+        @media screen and (max-width:1400px) {
+            .fav_img {top: 50%; transform:translateY(-50%); right: 60px; width: 720px; height: 475px;}
+        }
+
+        @media screen and (max-width:1100px) {
+            .fav_img {top: 50%; transform:translateY(-50%); right: 160px; width: 570px; height: 380px;}
+        }
+/*
+        @media screen and (max-width:960px) {
+            #favWrap {background: url('https://image.istarbucks.co.kr/upload/common/img/main/2024/2024_october_pick_bg_mo.jpg') center -6px no-repeat; background-size: 100% auto; height: 233.75vw; padding: 0; position: relative; width: 100%;}
+            .fav_img {position: static; top: auto; right: auto; width: 100vw; height: 30%; margin: 155px auto 0; transform: translateY(0);}
+            .wrap_inner .fav_prod_txt02 {top: 73% !important; left:50%; width:82.5vw; height: 100%; background-image: url('https://image.istarbucks.co.kr/upload/common/img/main/2024/2024_october_pick_txt02_mo.png'); transform: translateX(-50%); margin-left:0}
+        }
+*/
+    </style>  -->
 </head>
 <body>
 
@@ -215,9 +237,30 @@
     <br><br><br>
     <input class="search" type="text" placeholder="검색어를 입력하세요..." style="width: 90%; padding: 10px; font-size: 16px;">
 </div>-->
-
+<!--<style>
+    @media screen and (max-width: 768px) {
+        .nevbar {
+            flex-direction: column;
+        }
+        .nevmenu {
+            display: none;
+            flax-direction: column;
+            align-content: center;
+            width: 100%;
+        }
+        .navbar-togglebtn {
+            display: block;
+        }
+    }
+    .navbar-togglebtn{
+        position: absolute;
+        right: 30px;
+        font-size: 25px;
+        display: none;
+    }
+</style>-->  <!--반응형 웹 디자인 적용하려던 흔적-->
 <div class="container-fluid">
-    <h1 class="mx-auto display-1 text-center" style="font-weight: bold">제목</h1> <!-- 제목 크기 키우기 -->
+    <h1 class="mx-auto display-1 text-center" style="font-weight: bold">Lo-Neon</h1> <!-- 제목 크기 키우기 -->
 </div>
 <br>
 <nav class="navbar navbar-expand-lg bg-white"> <!-- 배경색을 흰색으로 변경 -->
@@ -228,6 +271,7 @@
             <a class="nav-link btn btn-lg mx-4" href="/website" style="padding: 15px 50px;">웹사이트</a> <!-- 버튼 크기 키우기 -->
             <a class="nav-link btn btn-lg mx-4" href="/sell" style="padding: 15px 50px;" aria-disabled="true">판매</a> <!-- 버튼 크기 키우기 -->
         </div>
+        <!--<a class="navbar-togglebtn"><i class="fa-solid fa-burger"></i> </a>-->
     </div>
 </nav>
 
@@ -302,11 +346,40 @@
             <% } else { %>
             <li><a href="/logout" class="btn btn-primary btn-lg">Logout</a></li>
             <% } %>
-            <li><a href="#" class="btn btn-secondary btn-lg">Learn More</a></li>
+            <li><a href="#modal0" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#modal0">Learn More</a></li>
         </ul>
     </footer>
+    <div class="modal fade" id="modal0" tabindex="-1" aria-labelledby="ModalLabel0" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel0">우리에 대해서</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="mt-3" style="border-radius: 15px; background-color: #e9ecef; padding: 20px;">
+                    <h5><strong>운영방식</strong></h5>
+                    <p style="bold">더이상 힘들게 웹 페이지를 찾아보지 마세요<br>카페부터 웹 사이트까지 다양한 디자인과 기능으로<br>쉽고 빠르게 구매하세요.<br></p>
+                    <p>우리는 카페를 판매하고 싶어하는 운영자와 기존의 카페를 받아서 사용하고 싶어하는 구매자를 연결해줍니다.<br></p>
+                    <p>더이상 사기는 없습니다.</p>
+                    <img src="<c:url value='/images/rul.png' />" style="width: 570px; height: 330px"> <br>
+                    <p>상호간의 구매 및 판매 의사가 결정되면 돈은 저희에게 지불하고 거래가 확인되면 판매하는 페이지나 카페를 저희가 제공합니다.<br>이후 돈은 저희가 판매자께 드리는 구조입니다.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary">할게 있나?</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>
+
+<section id="favWrap" class="winter_fav_bg">
+    <div class="wrap_inner">
+        <div class="fav_img"></div>
+    </div>
+</section>
+<!-- e: Pick Your Favorite(240919) -->
 
 
 <div class="box">
@@ -579,7 +652,6 @@
     <br><br>
     <a href="/ECRole" style="margin-right: 20px; color: black; text-decoration: none">이용 약관</a>  <!--글자색은 검정, 그 뒤는 밑줄 제거-->
     <a href="/humanInfo" style="margin-right: 20px; color: black; text-decoration: none">개인정보 처리방침</a>
-    <a href="/comInfo" style="margin-right: 20px; color: black; text-decoration: none">회사 소개</a>
     <a href="#" style="color: black; text-decoration: none">고객 센터</a>
     <br><br>
     <h3>team3 / Team Project</h3>

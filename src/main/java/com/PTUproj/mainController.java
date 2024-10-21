@@ -52,11 +52,6 @@ public class mainController {
         return "mainPage/humanInfo";
     }
 
-    @GetMapping("/comInfo") //회사소개
-    public String comInfo() {
-        return "mainPage/comInfo";
-    }
-
     //로그인 관련 컨트롤러
     @GetMapping("/logins")   //로그인 페이지
     public String login() {
