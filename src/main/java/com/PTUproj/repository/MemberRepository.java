@@ -34,12 +34,12 @@ public class MemberRepository {
         return sql.selectList("Member.findAll");    //회원정보 출력
     }
 
-    public MemberDTO findById(Long id) {
-        return sql.selectOne("Member.findById", id);
+    public MemberDTO findById(Long member_id) {
+        return sql.selectOne("Member.findById", member_id);
     }
 
-    public void delete(Long id) {
-        sql.delete("Member.delete", id);
+    public void delete(Long member_id) {
+        sql.delete("Member.delete", member_id);
     }
 
 

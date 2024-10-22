@@ -29,27 +29,27 @@
     <tbody>
     <tr>
       <th>아이디</th>
-      <td>${member.id}</td>
+      <td>${member.member_id}</td>
     </tr>
     <tr>
       <th>이메일</th>
-      <td>${member.memberEmail}</td>
+      <td>${member.member_Email}</td>
     </tr>
     <tr>
       <th>비밀번호</th>
-      <td>${member.memberPassword}</td>
+      <td>${member.member_Password}</td>
     </tr>
     <tr>
       <th>이름</th>
-      <td>${member.memberName}</td>
+      <td>${member.member_Name}</td>
     </tr>
     <tr>
       <th>나이</th>
-      <td>${member.memberAge}</td>
+      <td>${member.member_Age}</td>
     </tr>
     <tr>
       <th>전화번호</th>
-      <td>${member.memberMobile}</td>
+      <td>${member.member_Mobile}</td>
     </tr>
     </tbody>
   </table>

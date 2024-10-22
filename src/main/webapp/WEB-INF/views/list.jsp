@@ -41,14 +41,14 @@
     <tbody>
     <c:forEach items="${memberList}" var="member">
       <tr>
-        <td>${member.id}</td>
-        <td><a href="/member?id=${member.id}">${member.memberEmail}</a></td>
-        <td>${member.memberPassword}</td>
-        <td>${member.memberName}</td>
-        <td>${member.memberAge}</td>
-        <td>${member.memberMobile}</td>
-        <td><a href="/member?id=${member.id}" class="btn btn-info btn-sm">조회</a></td>
-        <td><button class="btn btn-danger btn-sm" onclick="deleteMember('${member.id}')">삭제</button></td>
+        <td>${member.member_id}</td>
+        <td><a href="/member?id=${member.member_id}">${member.member_Email}</a></td>
+        <td>${member.member_Password}</td>
+        <td>${member.member_Name}</td>
+        <td>${member.member_Age}</td>
+        <td>${member.member_Mobile}</td>
+        <td><a href="/member?id=${member.member_id}" class="btn btn-info btn-sm">조회</a></td>
+        <td><button class="btn btn-danger btn-sm" onclick="deleteMember('${member.member_id}')">삭제</button></td>
       </tr>
     </c:forEach>
     </tbody>

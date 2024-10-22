@@ -62,10 +62,10 @@
     <legend>로그인</legend>
 
     이메일: <br>
-    <input type="text" name="memberEmail"><br><br>
+    <input type="text" name="member_Email"><br><br>
 
     비밀번호 : <br>
-    <input type="password" name="memberPassword"><br><br>
+    <input type="password" name="member_Password"><br><br>
 
 
     <div align="center">

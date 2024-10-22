@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>sell</title>
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 </head>
 <body>
 판매

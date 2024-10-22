@@ -35,32 +35,32 @@
 
         <div class="mb-3">
             <label for="id" class="form-label">ID</label>
-            <input type="text" class="form-control" id="id" name="id" value="${member.id}" readonly>
+            <input type="text" class="form-control" id="id" name="id" value="${member.member_id}" readonly>
         </div>
 
         <div class="mb-3">
-            <label for="memberEmail" class="form-label">이메일</label>
-            <input type="text" class="form-control" id="memberEmail" name="memberEmail" value="${member.memberEmail}" readonly>
+            <label for="member_Email" class="form-label">이메일</label>
+            <input type="text" class="form-control" id="member_Email" name="member_Email" value="${member.member_Email}" readonly>
         </div>
 
         <div class="mb-3">
-            <label for="memberPassword" class="form-label">비밀번호</label>
-            <input type="password" class="form-control" id="memberPassword" name="memberPassword">
+            <label for="member_Password" class="form-label">비밀번호</label>
+            <input type="password" class="form-control" id="member_Password" name="member_Password">
         </div>
 
         <div class="mb-3">
             <label for="memberName" class="form-label">이름</label>
-            <input type="text" class="form-control" id="memberName" name="memberName" value="${member.memberName}" readonly>
+            <input type="text" class="form-control" id="memberName" name="member_Name" value="${member.member_Name}" readonly>
         </div>
 
         <div class="mb-3">
             <label for="memberAge" class="form-label">나이</label>
-            <input type="text" class="form-control" id="memberAge" name="memberAge" value="${member.memberAge}">
+            <input type="text" class="form-control" id="memberAge" name="memberAge" value="${member.member_Age}">
         </div>
 
         <div class="mb-3">
             <label for="memberMobile" class="form-label">전화번호</label>
-            <input type="text" class="form-control" id="memberMobile" name="memberMobile" value="${member.memberMobile}">
+            <input type="text" class="form-control" id="memberMobile" name="memberMobile" value="${member.member_Mobile}">
         </div>
 
         <div class="confirmation-box">
@@ -75,8 +75,8 @@
 
 <script>
     const update = () => {
-        const passwordDB = '${member.memberPassword}';
-        const password = document.getElementById("memberPassword").value;
+        const passwordDB = '${member.member_Password}';
+        const password = document.getElementById("member_Password").value;
         if (passwordDB === password) {
             document.updateForm.submit();
         } else {

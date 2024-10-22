@@ -56,7 +56,7 @@
     <legend>회원가입</legend>
 
     이메일 : <br>
-    <input type="text" name="memberEmail" placeholder="이메일" id="memberEmail" onblur="emailCheck()">
+    <input type="text" name="member_Email" placeholder="이메일" id="member_Email" onblur="emailCheck()">
     <p id="check-result"></p>
     <c:if test="${not empty error}">
       <p style="color:red;">${error}</p>
@@ -64,16 +64,16 @@
     <br>
 
     비밀번호 : <br>
-    <input type="text" name="memberPassword" placeholder="비밀번호"><br><br>    <!--이거 타입을 password로 해야하는데 영상에서 이러니 참고바람/나중에 수정해볼 예정 일단 홀드-->
+    <input type="text" name="member_Password" placeholder="비밀번호"><br><br>    <!--이거 타입을 password로 해야하는데 영상에서 이러니 참고바람/나중에 수정해볼 예정 일단 홀드-->
 
     이름 : <br>
-    <input type="text" name="memberName" placeholder="이름"><br><br>
+    <input type="text" name="member_Name" placeholder="이름"><br><br>
 
     나이 : <br>
-    <input type="text" name="memberAge" placeholder="나이"><br><br>
+    <input type="text" name="member_Age" placeholder="나이"><br><br>
 
     전화번호 : <br>
-    <input type="text" name="memberMobile" placeholder="전화번호"><br><br>
+    <input type="text" name="member_Mobile" placeholder="전화번호"><br><br>
 
 
     <div align="center">
@@ -97,7 +97,7 @@
   // 이러한 것을 비동기 통신이라고 함
 
   const emailCheck = () => {
-    const email = document.getElementById("memberEmail").value;   //이곳에 입력값을 가져옴
+    const email = document.getElementById("member_Email").value;   //이곳에 입력값을 가져옴
     const checkResult = document.getElementById("check-result");  //출력을 위한 요소를 가져옴, 위에 p태그에 관련
     console.log("입력한 이메일", email);  //그냥 확인용 콘솔임...
     $.ajax({
@@ -105,7 +105,7 @@
       type: "post",
       url: "/email-check",
       data: {
-        "memberEmail": email
+        "member_Email": email
       },
       success: function(res) {
         console.log("요청성공", res);

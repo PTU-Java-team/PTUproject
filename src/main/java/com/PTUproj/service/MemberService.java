@@ -24,7 +24,7 @@ public class MemberService {
         MemberDTO loginMember = memberRepository.login(memberDTO);
 
         if (loginMember != null) {
-            session.setAttribute("loginEmail", loginMember.getMemberEmail()); // 이메일 저장
+            session.setAttribute("loginEmail", loginMember.getMember_Email()); // 이메일 저장
             session.setAttribute("isAdmin", loginMember.getIsAdmin()); // 1이면 true, 0이면 false
             return true;
         } else {
@@ -42,12 +42,12 @@ public class MemberService {
     }
 
     //회원 목록에서 정보 상세보기
-    public MemberDTO findById(Long id) {
-        return memberRepository.findById(id);
+    public MemberDTO findById(Long member_id) {
+        return memberRepository.findById(member_id);
     }
 
-    public void delete(Long id) {
-        memberRepository.delete(id);
+    public void delete(Long member_id) {
+        memberRepository.delete(member_id);
     }
 
     public MemberDTO findByMemberEmail(String loginEmail) {
@@ -64,8 +64,8 @@ public class MemberService {
         }
     }
 
-    public String emailCheak(String memberEmail) {
-        MemberDTO memberDTO = memberRepository.findByMemberEmail(memberEmail);
+    public String emailCheak(String member_Email) {
+        MemberDTO memberDTO = memberRepository.findByMemberEmail(member_Email);
 
         if (memberDTO == null) {
             return "ok";
@@ -75,13 +75,13 @@ public class MemberService {
     }
 
     //이건 중복되면 가입 못하게 막음
-    public boolean isEmailTaken(String memberEmail) {
-        return memberRepository.findByMemberEmail(memberEmail) != null;
+    public boolean isEmailTaken(String member_Email) {
+        return memberRepository.findByMemberEmail(member_Email) != null;
     }
 
     public int save(MemberDTO memberDTO, Model model) {
         // 이메일 중복 체크
-        if (isEmailTaken(memberDTO.getMemberEmail())) {
+        if (isEmailTaken(memberDTO.getMember_Email())) {
             return 0; // 이메일이 중복인 경우
         }
         // 중복이 아닐 경우 회원 정보 저장

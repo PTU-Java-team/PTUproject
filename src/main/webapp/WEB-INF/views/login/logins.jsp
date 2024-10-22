@@ -126,10 +126,10 @@
       <div class="login-form">
         <h3>Enter the awesomeness!</h3>
         <div>
-          <input type="text" placeholder="Email" name="memberEmail">
+          <input type="text" placeholder="Email" name="member_Email">
         </div>
         <div>
-          <input type="password" placeholder="Password" name="memberPassword">
+          <input type="password" placeholder="Password" name="member_Password">
         </div>
         <div align="center">
           <input type="submit" value="로그인">&nbsp;&nbsp;

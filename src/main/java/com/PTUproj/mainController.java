@@ -103,7 +103,7 @@ public class mainController {
     @PostMapping("/save")
     public String save(@ModelAttribute MemberDTO memberDTO, Model model) {
         // 이메일 중복 체크
-        if (memberService.isEmailTaken(memberDTO.getMemberEmail())) {
+        if (memberService.isEmailTaken(memberDTO.getMember_Email())) {
             model.addAttribute("error", "이미 사용중인 이메일입니다.");
             return "login/save";  // 에러가 발생하면 회원가입 폼으로 돌아감
         }
@@ -127,16 +127,16 @@ public class mainController {
 
     //회원 삭제
     @GetMapping("/member")
-    public String findById(@RequestParam("id") Long id, Model model) {
-        MemberDTO memberDTO = memberService.findById(id);
+    public String findById(@RequestParam("member_id") Long member_id, Model model) {
+        MemberDTO memberDTO = memberService.findById(member_id);
         model.addAttribute("member", memberDTO);
         return "detail";
     }
 
     //회원 삭제 후 갱신된 페이지
     @GetMapping("/member/delete")
-    public String delete(@RequestParam("id") Long id) {
-        memberService.delete(id);
+    public String delete(@RequestParam("member_id") Long member_id) {
+        memberService.delete(member_id);
         return "redirect:/list"; //리스트를 재요청(리다이렉트)... 여기 주소에 주의 할 것
     }
 
@@ -158,7 +158,7 @@ public class mainController {
         boolean result = memberService.update(memberDTO);
 
         if (result) {
-            return "redirect:/good?id=" + memberDTO.getId();
+            return "redirect:/good?id=" + memberDTO.getMember_id();
         } else {
             return "main";
         }
@@ -166,9 +166,9 @@ public class mainController {
     }
 
     @GetMapping("/good")
-    public String getGoodPage(@RequestParam Long id, Model model) {
+    public String getGoodPage(@RequestParam Long member_id, Model model) {
         // ID에 대한 회원 정보를 가져와서 모델에 추가
-        MemberDTO member = memberService.findById(id);
+        MemberDTO member = memberService.findById(member_id);
         model.addAttribute("member", member);
         return "login/good"; // good.jsp 페이지로 이동
     }
@@ -176,9 +176,9 @@ public class mainController {
 
     //이메일 중복 체크
     @PostMapping("/email-check")
-    public @ResponseBody String emailCheck(@RequestParam("memberEmail") String memberEmail) {
-        System.out.println("memberEmail = " + memberEmail);
-        String checkResult = memberService.emailCheak(memberEmail);
+    public @ResponseBody String emailCheck(@RequestParam("member_Email") String member_Email) {
+        System.out.println("memberEmail = " + member_Email);
+        String checkResult = memberService.emailCheak(member_Email);
         return checkResult;     // 이 return 값은 ajax의 login.jsp의 res 로 값이 넘어감
     }
 }
