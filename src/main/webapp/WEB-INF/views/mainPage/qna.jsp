@@ -172,6 +172,47 @@
       <i class="fas fa-times"></i>
     </button>
   </div>
+  <div class="faq">
+    <h3 class="faq-title">주말에도 하나요?</h3>
+
+    <p class="faq-text">네, 저희는 24시간 운영하고 있습니다.</p>
+
+  <button class="faq-toggle">
+    <i class="fas fa-chevron-down"></i>
+    <i class="fas fa-times"></i>
+  </button>
+  </div>
+  <div class="faq">
+    <h3 class="faq-title">회원가입은 누구나 할 수 있나요?</h3>
+
+    <p class="faq-text">연령 상관 없이 누구나 가입 후 이용할 수 있습니다.</p>
+
+  <button class="faq-toggle">
+    <i class="fas fa-chevron-down"></i>
+    <i class="fas fa-times"></i>
+  </button>
+  </div>
+  <div class="faq">
+    <h3 class="faq-title">제품 구매 후 기존의 체계는 어떻게 하나요?</h3>
+
+    <p class="faq-text">상품을 구매할 때 판매자와 협의 후 구매하시는 것을 권합니다.<br>여러가지의 방법이 있으며 모두 선택사항입니다.</p>
+
+    <button class="faq-toggle">
+      <i class="fas fa-chevron-down"></i>
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <div class="faq">
+    <h3 class="faq-title">판매 할 때 다른 걸 팔아도 되나요?</h3>
+
+    <p class="faq-text">저희 홈페이지는 홈페이지 및 카페 등과 같은 제품을 제외하고 판매를 일체 금하고 있습니다. 만약 이 이외의 상품을 게시하여 판매할 경우 게시글이 삭제될 수 있으며 또한 계정을 정지할 수도 있습니다.</p>
+
+    <button class="faq-toggle">
+      <i class="fas fa-chevron-down"></i>
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
 </div>
 
 <script>
