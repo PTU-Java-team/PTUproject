@@ -52,6 +52,11 @@ public class mainController {
         return "mainPage/humanInfo";
     }
 
+    @GetMapping("/qna")
+    public String qna() {
+        return "mainPage/qna";
+    }
+
     //로그인 관련 컨트롤러
     @GetMapping("/logins")   //로그인 페이지
     public String login() {
@@ -181,4 +186,8 @@ public class mainController {
         String checkResult = memberService.emailCheak(member_Email);
         return checkResult;     // 이 return 값은 ajax의 login.jsp의 res 로 값이 넘어감
     }
+
+
+
 }
+
