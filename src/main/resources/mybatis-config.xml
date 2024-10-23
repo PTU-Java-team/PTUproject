@@ -3,6 +3,7 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.PTUproj.dto.MemberDTO" alias="member"></typeAlias> <!--Alias가 별칭을 지정해서 코드 작성을 간소화 해준다고 생각하면 될 듯..? -->
+        <typeAlias type="com.PTUproj.dto.ItemDTO" alias="item"></typeAlias>
     </typeAliases>
 
 </configuration>

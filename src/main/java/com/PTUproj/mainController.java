@@ -1,29 +1,52 @@
 package com.PTUproj;
 
+import com.PTUproj.dto.ItemDTO;
 import com.PTUproj.dto.MemberDTO;
 import com.PTUproj.repository.MemberRepository;
+import com.PTUproj.service.ItemService;
 import com.PTUproj.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
+import lombok.extern.flogger.Flogger;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.taglibs.standard.lang.jstl.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.lang.reflect.Member;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class mainController {
 
     private final MemberService memberService;  //의존성을 주입함
+    private final ItemService itemService;    // 의존성 주입
 
-
+    //시작 화면(메인 페이지)
     @GetMapping("/")
-    public String main() {      //시작 화면
+    public String main(Model model) {
+        // 서비스 계층에서 상품 목록 가져오기
+        List<ItemDTO> productList = itemService.getAllItems();
+
+        System.out.println("productList : " + productList); // 로그로 productList를 출력
+
+        // 가져온 상품 목록을 모델에 추가한 후 main.jsp로 보냄
+        model.addAttribute("productList", productList);
+        // 상품 정보를 모델에 추가
+//        model.addAttribute("product", product);
         return "main";
     }
+
 
     //밑에 3개가 상단 메뉴
     @GetMapping("/smallGroup")   //소모임
@@ -36,10 +59,78 @@ public class mainController {
         return "website";
     }
 
-    @GetMapping("/sell")    //판매
-    public String sell() {
-        return "sell";
+
+    // 판매 등록 처리부분
+
+    @GetMapping("/sell")
+    public String itemForm(HttpSession session) {
+        if(session.getAttribute("loginEmail") == null) {
+            return "redirect:/logins"; // 로그인 하지 않은 경우 로그인 페이지로 redirect
+        };
+        return "sell"; // jsp 파일이름
     }
+
+    @PostMapping("/itemRegister")
+    public String itemRegister(@RequestParam("name") String name,
+                               @RequestParam("categoryId") int categoryId,
+                               @RequestParam("price") double price,
+                               @RequestParam("detail") String detail,
+                               @RequestParam(value = "img1", defaultValue="", required = false) MultipartFile img1,
+                               @RequestParam("img2") MultipartFile img2,
+//                               @RequestParam("img3") MultipartFile img3,
+                               HttpSession session) throws IOException {
+        if(session.getAttribute("loginEmail") == null) {
+            return "redirect:/logins"; // 로그인 하지 않은 경우 로그인 페이지로 redirect
+        }
+
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setName(name);
+        itemDTO.setCategoryId(categoryId);
+        itemDTO.setPrice(price);
+        itemDTO.setDetail(detail);
+
+        //이미지 파일 처리
+        itemDTO.setImg1(img1.getOriginalFilename());
+        itemDTO.setImg2(img2.getOriginalFilename());
+//        itemDTO.setImg3(img3.getOriginalFilename());
+
+
+        // 상품 등록 서비스 호출
+        itemService.registerItem(itemDTO);
+
+        return "redirect:/"; // 틍록 후 메인 화면으로 리턴
+    }
+
+    // 모달 창에 나오는 상품 상세 정보 처리
+    @GetMapping("/productInfo")
+    public String getItemDetail(@RequestParam("productId") int productId,HttpSession session, Model model) {
+        // 상품 상세 정보 가져오기
+        ItemDTO product = itemService.getItemDetail(productId);
+
+        // 세션에서 로그인된 사용자의 이메일 정보를 가져와서 모델 객체에 추가
+        model.addAttribute("sellerEmail", session.getAttribute("loginEmail"));
+
+//        // 상품 정보를 HTML 형태로 반환
+//        StringBuilder detailHtml = new StringBuilder();
+//        detailHtml.append("<h2>상품명: ").append(product.getName()).append("</h2>");
+//        detailHtml.append("<p>가격: ₩").append(product.getPrice()).append(" 원</p>");
+//        detailHtml.append("<p>설명: ").append(product.getDetail()).append("</p>");
+//        detailHtml.append("<img src='/images/").append(product.getImg1()).append("' width='300px'>");
+//
+//        return detailHtml.toString();
+
+        // 상품이 없을 경우 처리하기
+        if (product == null) {
+            return "redirect:/"; // 상품이 없다면 메인 페이지로 리다이렉션
+        }
+
+        // 상품 정보를 모델에 추가
+        model.addAttribute("product", product);
+
+
+        return "productInfo";
+    }
+
 
     //하단 메뉴 컨트롤러
     @GetMapping("/ECRole")  //이용약관
@@ -126,6 +217,7 @@ public class mainController {
     @GetMapping("/list")
     public String findAll(Model model) {
         List<MemberDTO> memberDTOList = memberService.findAll();
+        System.out.println("memberList : " + memberDTOList);  //로그 ��어서 확인
         model.addAttribute("memberList", memberDTOList);
         return "list";
     }
