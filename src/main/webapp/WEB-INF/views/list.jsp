@@ -47,7 +47,7 @@
         <td>${member.member_Name}</td>
         <td>${member.member_Age}</td>
         <td>${member.member_Mobile}</td>
-        <td><a href="/member?id=${member.member_id}" class="btn btn-info btn-sm">조회</a></td>
+        <td><a href="/member?member_id=${member.member_id}" class="btn btn-info btn-sm">조회</a></td>
         <td><button class="btn btn-danger btn-sm" onclick="deleteMember('${member.member_id}')">삭제</button></td>
       </tr>
     </c:forEach>
@@ -61,9 +61,9 @@
 </div>
 
 <script>
-  const deleteMember = (id) => {
+  const deleteMember = (member_id) => {
     if (confirm("정말 삭제하시겠습니까?")) {
-      location.href = "/member/delete?id=" + id;
+      location.href = "/member/delete?member_id=" + member_id;
     }
   }
 

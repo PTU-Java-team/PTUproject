@@ -163,7 +163,7 @@ public class mainController {
         boolean result = memberService.update(memberDTO);
 
         if (result) {
-            return "redirect:/good?id=" + memberDTO.getMember_id();
+            return "redirect:/good?member_id=" + memberDTO.getMember_id();
         } else {
             return "main";
         }

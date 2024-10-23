@@ -34,8 +34,8 @@
     <form action="/update" method="post" name="updateForm">
 
         <div class="mb-3">
-            <label for="id" class="form-label">ID</label>
-            <input type="text" class="form-control" id="id" name="id" value="${member.member_id}" readonly>
+            <label for="member_id" class="form-label">ID</label>
+            <input type="text" class="form-control" id="member_id" name="member_id" value="${member.member_id}" readonly>
         </div>
 
         <div class="mb-3">
@@ -49,18 +49,18 @@
         </div>
 
         <div class="mb-3">
-            <label for="memberName" class="form-label">이름</label>
-            <input type="text" class="form-control" id="memberName" name="member_Name" value="${member.member_Name}" readonly>
+            <label for="member_Name" class="form-label">이름</label>
+            <input type="text" class="form-control" id="member_Name" name="member_Name" value="${member.member_Name}" readonly>
         </div>
 
         <div class="mb-3">
-            <label for="memberAge" class="form-label">나이</label>
-            <input type="text" class="form-control" id="memberAge" name="memberAge" value="${member.member_Age}">
+            <label for="member_Age" class="form-label">나이</label>
+            <input type="text" class="form-control" id="member_Age" name="member_Age" value="${member.member_Age}">
         </div>
 
         <div class="mb-3">
-            <label for="memberMobile" class="form-label">전화번호</label>
-            <input type="text" class="form-control" id="memberMobile" name="memberMobile" value="${member.member_Mobile}">
+            <label for="member_Mobile" class="form-label">전화번호</label>
+            <input type="text" class="form-control" id="member_Mobile" name="member_Mobile" value="${member.member_Mobile}">
         </div>
 
         <div class="confirmation-box">

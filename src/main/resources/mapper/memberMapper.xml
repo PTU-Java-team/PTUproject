@@ -25,11 +25,11 @@
 
     <!--회원 삭제 기능-->
     <delete id="delete" parameterType="Long">
-        delete from member_table where id=#{member_id}
+        delete from member_table where member_id=#{member_id}
     </delete>
 
     <select id="findByMemberEmail" parameterType="String" resultType="member">
-        select * from member_table where member_Email=#{login_Email}
+        select * from member_table where member_Email=#{loginEmail}
     </select>
 
     <update id="update" parameterType="member">
