@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "ItemMapper">
-    <insert id="insertItem" parameterType="item">
+    <insert id="insertItem" parameterType="com.PTUproj.dto.ItemDTO">
         insert into product_table (product_name, product_img1, product_img2, product_description, product_price, category_ID)
-        values (#{name}, #{img1}, #{img2}, #{detail}, #{price}, #{categoryId})
+        values (#{productName}, #{productImg1}, #{productImg2}, #{productDescription}, #{productPrice}, #{categoryId})
     </insert>
     
-<!--    <resultMap id="ItemResultMap" type="item">-->
+<!--    <resultMap id="ItemResultMap" type="com.PTUproj.dto.ItemDTO">-->
 <!--        <result column = "product_id" property = "productId" />-->
 <!--        <result column = "product_name" property = "name" />-->
 <!--        <result column = "product_img1" property = "img1" />-->
@@ -17,11 +17,11 @@
 <!--        <result column = "category_id" property = "categoryId" />-->
 <!--    </resultMap>-->
 
-    <select id="selectAllItems" resultType="item">
-        select * from product_table
+    <select id="selectAllItems" resultType="com.PTUproj.dto.ItemDTO">
+        select product_id, product_name, product_img1, product_img2, product_description,product_price, product_date, category_id from product_table;
     </select>
 
-    <select id="getItemDetail" parameterType="int" resultType="item">
-        select * from product_table where product_id = #{productId}
+    <select id="getItemDetail" parameterType="int" resultType="com.PTUproj.dto.ItemDTO">
+        select product_id, product_name, product_img1, product_img2, product_description,product_price, product_date, category_id from product_table where product_id = #{productId}
     </select>
 </mapper>

@@ -42,8 +42,7 @@ public class mainController {
 
         // 가져온 상품 목록을 모델에 추가한 후 main.jsp로 보냄
         model.addAttribute("productList", productList);
-        // 상품 정보를 모델에 추가
-//        model.addAttribute("product", product);
+
         return "main";
     }
 
@@ -71,27 +70,26 @@ public class mainController {
     }
 
     @PostMapping("/itemRegister")
-    public String itemRegister(@RequestParam("name") String name,
+    public String itemRegister(@RequestParam("productName") String productName,
                                @RequestParam("categoryId") int categoryId,
-                               @RequestParam("price") double price,
-                               @RequestParam("detail") String detail,
-                               @RequestParam(value = "img1", defaultValue="", required = false) MultipartFile img1,
-                               @RequestParam("img2") MultipartFile img2,
-//                               @RequestParam("img3") MultipartFile img3,
+                               @RequestParam("productPrice") double prductPrice,
+                               @RequestParam("productDescription") String detail,
+                               @RequestParam("productImg1") MultipartFile img1,
+                               @RequestParam("productImg2") MultipartFile img2,
                                HttpSession session) throws IOException {
         if(session.getAttribute("loginEmail") == null) {
             return "redirect:/logins"; // 로그인 하지 않은 경우 로그인 페이지로 redirect
         }
 
         ItemDTO itemDTO = new ItemDTO();
-        itemDTO.setName(name);
+        itemDTO.setProductName(productName);
         itemDTO.setCategoryId(categoryId);
-        itemDTO.setPrice(price);
-        itemDTO.setDetail(detail);
+        itemDTO.setProductPrice(prductPrice);
+        itemDTO.setProductDescription(detail);
 
         //이미지 파일 처리
-        itemDTO.setImg1(img1.getOriginalFilename());
-        itemDTO.setImg2(img2.getOriginalFilename());
+        itemDTO.setProductImg1(img1.getOriginalFilename());
+        itemDTO.setProductImg2(img2.getOriginalFilename());
 //        itemDTO.setImg3(img3.getOriginalFilename());
 
 
@@ -101,14 +99,14 @@ public class mainController {
         return "redirect:/"; // 틍록 후 메인 화면으로 리턴
     }
 
-    // 모달 창에 나오는 상품 상세 정보 처리
-    @GetMapping("/productInfo")
-    public String getItemDetail(@RequestParam("productId") int productId,HttpSession session, Model model) {
-        // 상품 상세 정보 가져오기
-        ItemDTO product = itemService.getItemDetail(productId);
-
-        // 세션에서 로그인된 사용자의 이메일 정보를 가져와서 모델 객체에 추가
-        model.addAttribute("sellerEmail", session.getAttribute("loginEmail"));
+//    // 모달 창에 나오는 상품 상세 정보 처리
+//    @GetMapping("/productInfo")
+//    public String getItemDetail(@RequestParam("productId") int productId,HttpSession session, Model model) {
+//        // 상품 상세 정보 가져오기
+//        ItemDTO product = itemService.getItemDetail(productId);
+//
+//        // 세션에서 로그인된 사용자의 이메일 정보를 가져와서 모델 객체에 추가
+//        model.addAttribute("sellerEmail", session.getAttribute("loginEmail"));
 
 //        // 상품 정보를 HTML 형태로 반환
 //        StringBuilder detailHtml = new StringBuilder();
@@ -119,17 +117,17 @@ public class mainController {
 //
 //        return detailHtml.toString();
 
-        // 상품이 없을 경우 처리하기
-        if (product == null) {
-            return "redirect:/"; // 상품이 없다면 메인 페이지로 리다이렉션
-        }
-
-        // 상품 정보를 모델에 추가
-        model.addAttribute("product", product);
-
-
-        return "productInfo";
-    }
+//        // 상품이 없을 경우 처리하기
+//        if (product == null) {
+//            return "redirect:/"; // 상품이 없다면 메인 페이지로 리다이렉션
+//        }
+//
+//        // 상품 정보를 모델에 추가
+//        model.addAttribute("product", product);
+//
+//
+//        return "productInfo";
+//    }
 
 
     //하단 메뉴 컨트롤러

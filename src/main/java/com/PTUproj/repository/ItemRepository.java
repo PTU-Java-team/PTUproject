@@ -6,15 +6,16 @@ import oracle.ucp.common.FailoverStats;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-@RequiredArgsConstructor
+@Component
 public class ItemRepository {
 
-    private final SqlSessionTemplate sql;
+    @Autowired
+    SqlSessionTemplate sql; // SqlSessionTemplate bean 등록
 
 //    private final String namespace = "ItemMapper.";
     // mapper.xml namespace 속성 값

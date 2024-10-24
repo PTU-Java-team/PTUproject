@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <typeAliases>
-        <typeAlias type="com.PTUproj.dto.MemberDTO" alias="member"></typeAlias> <!--Alias가 별칭을 지정해서 코드 작성을 간소화 해준다고 생각하면 될 듯..? -->
-        <typeAlias type="com.PTUproj.dto.ItemDTO" alias="item"></typeAlias>
-    </typeAliases>
-
+<!--    <typeAliases>-->
+<!--        <typeAlias type="com.PTUproj.dto.MemberDTO" alias="member"></typeAlias> &lt;!&ndash;Alias가 별칭을 지정해서 코드 작성을 간소화 해준다고 생각하면 될 듯..? &ndash;&gt;-->
+<!--        <typeAlias type="com.PTUproj.dto.ItemDTO" alias="item"></typeAlias>-->
+<!--    </typeAliases>-->
 </configuration>

@@ -14,12 +14,12 @@
     </select>
 
     <!--이건 회원 목록 보는 것-->
-    <select id="findAll" resultType="member">
+    <select id="findAll" resultType="com.PTUproj.dto.MemberDTO">
         select * from member_table
     </select>
 
     <!--이건 회원 목록 상세 보기-->
-    <select id="findById" parameterType="Long" resultType="member">    <!--참고로 여기 member는 별칭이다..-->
+    <select id="findById" parameterType="Long" resultType="com.PTUproj.dto.MemberDTO">    <!--참고로 여기 member는 별칭이다..-->
         select * from member_table where member_id=#{member_id}
     </select>       <!--해당하는 id에 맞는 정보 가지고 옴-->
 
@@ -28,11 +28,11 @@
         delete from member_table where member_id=#{member_id}
     </delete>
 
-    <select id="findByMemberEmail" parameterType="String" resultType="member">
+    <select id="findByMemberEmail" parameterType="String" resultType="com.PTUproj.dto.MemberDTO">
         select * from member_table where member_Email=#{login_Email}
     </select>
 
-    <update id="update" parameterType="member">
+    <update id="update" parameterType="com.PTUproj.dto.MemberDTO">
         update member_table set member_Age=#{member_Age}, member_Mobile=#{member_Mobile} where member_id=#{member_id}
     </update>
 </mapper>

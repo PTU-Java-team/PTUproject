@@ -68,7 +68,7 @@
         <div class="form-group">
             <label for="price" class="control-label col-xs-2">가격:</label>
             <div class="col-xs-10">
-                <input type="number" class="form-control area" id="price" name="price">
+                <input type="number" step="100" class="form-control area" id="price" name="price">
             </div>
         </div><br>
 

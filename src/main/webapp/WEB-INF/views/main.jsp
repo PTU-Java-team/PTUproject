@@ -5,7 +5,7 @@
   Time: 오후 6:59
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -13,9 +13,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Chart.js 3D 플러그인 -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-3d/dist/chartjs-plugin-3d.min.js"></script>
 
 
     <style>
@@ -194,26 +200,26 @@
 
     </style>
     <!--hmm-->
-<!--    <style type="text/css">
-        #favWrap {background:url('/images/img_2.png') center center fixed no-repeat #45434c; background-size: auto 87%; padding:0; position:relative; background-position: bottom;}
-        .fav_img {top: 90px; right: -210px; width: 953px; height: 651px; background-image: url('/images/img_4.png');}
+    <!--    <style type="text/css">
+            #favWrap {background:url('/images/img_2.png') center center fixed no-repeat #45434c; background-size: auto 87%; padding:0; position:relative; background-position: bottom;}
+            .fav_img {top: 90px; right: -210px; width: 953px; height: 651px; background-image: url('/images/img_4.png');}
 
 
-        @media screen and (max-width:1400px) {
-            .fav_img {top: 50%; transform:translateY(-50%); right: 60px; width: 720px; height: 475px;}
-        }
+            @media screen and (max-width:1400px) {
+                .fav_img {top: 50%; transform:translateY(-50%); right: 60px; width: 720px; height: 475px;}
+            }
 
-        @media screen and (max-width:1100px) {
-            .fav_img {top: 50%; transform:translateY(-50%); right: 160px; width: 570px; height: 380px;}
-        }
-/*
-        @media screen and (max-width:960px) {
-            #favWrap {background: url('https://image.istarbucks.co.kr/upload/common/img/main/2024/2024_october_pick_bg_mo.jpg') center -6px no-repeat; background-size: 100% auto; height: 233.75vw; padding: 0; position: relative; width: 100%;}
-            .fav_img {position: static; top: auto; right: auto; width: 100vw; height: 30%; margin: 155px auto 0; transform: translateY(0);}
-            .wrap_inner .fav_prod_txt02 {top: 73% !important; left:50%; width:82.5vw; height: 100%; background-image: url('https://image.istarbucks.co.kr/upload/common/img/main/2024/2024_october_pick_txt02_mo.png'); transform: translateX(-50%); margin-left:0}
-        }
-*/
-    </style>  -->
+            @media screen and (max-width:1100px) {
+                .fav_img {top: 50%; transform:translateY(-50%); right: 160px; width: 570px; height: 380px;}
+            }
+    /*
+            @media screen and (max-width:960px) {
+                #favWrap {background: url('https://image.istarbucks.co.kr/upload/common/img/main/2024/2024_october_pick_bg_mo.jpg') center -6px no-repeat; background-size: 100% auto; height: 233.75vw; padding: 0; position: relative; width: 100%;}
+                .fav_img {position: static; top: auto; right: auto; width: 100vw; height: 30%; margin: 155px auto 0; transform: translateY(0);}
+                .wrap_inner .fav_prod_txt02 {top: 73% !important; left:50%; width:82.5vw; height: 100%; background-image: url('https://image.istarbucks.co.kr/upload/common/img/main/2024/2024_october_pick_txt02_mo.png'); transform: translateX(-50%); margin-left:0}
+            }
+    */
+        </style>  -->
 </head>
 <body>
 <hr>
@@ -250,14 +256,14 @@
     <h1 class="mx-auto display-1 text-center" style="font-weight: bold">Lo-Neon</h1> <!-- 제목 크기 키우기 -->
 </div>
 <br>
-<nav class="navbar navbar-expand-lg bg-white fixed-top"> <!-- 배경색을 흰색으로 변경 -->
+<nav class="navbar navbar-expand-lg bg-white"> <!-- 배경색을 흰색으로 변경 -->
     <div class="container">
         <div class="collapse navbar-collapse" id="navbarNav"> <!-- 메뉴 항목 -->
             <div class="navbar-nav mx-auto"> <!-- 중앙 배치 -->
                 <a class="nav-link active btn btn-danger btn-lg mx-4" aria-current="page" href="#" style="padding: 15px 27px; color: white;">Home</a>
-                <a class="nav-link btn btn-lg mx-4" href="/smallGroup" style="padding: 15px 50px;">소모임</a>
-                <a class="nav-link btn btn-lg mx-4" href="/website" style="padding: 15px 50px;">웹사이트</a>
-                <a class="nav-link btn btn-lg mx-4" href="/sell" style="padding: 15px 50px;" aria-disabled="true">판매</a>
+                <a class="nav-link btn btn-lg mx-4" href="/smallGroup" style="padding: 15px 50px;">online community</a>
+                <a class="nav-link btn btn-lg mx-4" href="/website" style="padding: 15px 50px;">website</a>
+                <a class="nav-link btn btn-lg mx-4" href="/sell" style="padding: 15px 50px;" aria-disabled="true">product sell</a>
             </div>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: auto; display: flex">
@@ -296,8 +302,8 @@
 <!-- Banner -->
 <section id="banner">
     <header>
-        <h2>뭐라고 적어야 할 지 모르겠다.</h2>
-        <p>HTML5 UP이랑 부트스트랩으로 작성</p>
+        <h2>The new generation of commerce</h2>
+        <p>Now you can trade anytime, comfortably and securely.</p>
     </header>
 </section>
 
@@ -311,9 +317,9 @@
                     <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v2H1V3a1 1 0 0 1 1-1zM1 13V6h4v8H2a1 1 0 0 1-1-1m5 1V6h9v7a1 1 0 0 1-1 1z"/>
                 </svg><br><br><br>
                 <header>
-                    <h2>뛰어난 퀄리티</h2>
+                    <h2>User Experience (UX)</h2>
                 </header>
-                <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+                <p>A seamless, intuitive interface enhances customer satisfaction and encourages repeat visits.</p>
             </section>
         </div>
         <div class="col-4 col-12-medium">
@@ -322,9 +328,9 @@
                     <path d="M2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1v2H2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1V7h1a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm.5 3a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m-2 7a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1M12 7v2H4V7z"/>
                 </svg><br><br><br>
                 <header>
-                    <h2>뭘 작성해야 하지...</h2>
+                    <h2>Trustworthiness</h2>
                 </header>
-                <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+                <p> It's all about safeguarding customer data and ensuring secure transactions.</p>
             </section>
         </div>
         <div class="col-4 col-12-medium">
@@ -333,9 +339,9 @@
                     <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855q-.215.403-.395.872c.705.157 1.472.257 2.282.287zM4.249 3.539q.214-.577.481-1.078a7 7 0 0 1 .597-.933A7 7 0 0 0 3.051 3.05q.544.277 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9 9 0 0 1-1.565-.667A6.96 6.96 0 0 0 1.018 7.5zm1.4-2.741a12.3 12.3 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332M8.5 5.09V7.5h2.99a12.3 12.3 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.6 13.6 0 0 1 7.5 10.91V8.5zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741zm-3.282 3.696q.18.469.395.872c.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a7 7 0 0 1-.598-.933 9 9 0 0 1-.481-1.079 8.4 8.4 0 0 0-1.198.49 7 7 0 0 0 2.276 1.522zm-1.383-2.964A13.4 13.4 0 0 1 3.508 8.5h-2.49a6.96 6.96 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667m6.728 2.964a7 7 0 0 0 2.275-1.521 8.4 8.4 0 0 0-1.197-.49 9 9 0 0 1-.481 1.078 7 7 0 0 1-.597.933M8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855q.216-.403.395-.872A12.6 12.6 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.96 6.96 0 0 0 14.982 8.5h-2.49a13.4 13.4 0 0 1-.437 3.008M14.982 7.5a6.96 6.96 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008zM11.27 2.461q.266.502.482 1.078a8.4 8.4 0 0 0 1.196-.49 7 7 0 0 0-2.275-1.52c.218.283.418.597.597.932m-.488 1.343a8 8 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"/>
                 </svg><br><br><br>
                 <header>
-                    <h2>바로적용가능</h2>
+                    <h2>Sustainability</h2>
                 </header>
-                <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+                <p>Adopting sustainable business practices <br>and eco-friendly policies plays a crucial role in <br>long-term success.</p>
             </section>
         </div>
     </div><div><p><br><br></p></div>
@@ -352,26 +358,130 @@
     <div class="modal fade" id="modal0" tabindex="-1" aria-labelledby="ModalLabel0" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalLabel0">우리에 대해서</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="mt-3" style="border-radius: 15px; background-color: #e9ecef; padding: 20px;">
-                    <h5><strong>운영방식</strong></h5>
-                    <p>더이상 힘들게 웹 페이지를 찾아보지 마세요<br>카페부터 웹 사이트까지 다양한 디자인과 기능으로<br>쉽고 빠르게 구매하세요.<br></p>
-                    <p>우리는 카페를 판매하고 싶어하는 운영자와 기존의 카페를 받아서 사용하고 싶어하는 구매자를 연결해줍니다.<br></p>
-                    <p>더이상 사기는 없습니다.</p>
-                    <img src="<c:url value='/images/rul.png' />" style="width: 570px; height: 330px"> <br>
-                    <p>상호간의 구매 및 판매 의사가 결정되면 돈은 저희에게 지불하고 거래가 확인되면 판매하는 페이지나 카페를 저희가 제공합니다.<br>이후 돈은 저희가 판매자께 드리는 구조입니다.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">할게 있나?</button>
+                <style>
+                    .feature-icons {
+                        list-style: none;
+                        padding-left: 0;
+                    }
+
+                    .feature-icons li {
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        margin: 1em 0;
+                        padding-left: 3em;
+                    }
+
+                    .feature-icons li .icon {
+                        background: #4acaa8;
+                        border-radius: 50%;
+                        color: #ffffff;
+                        height: 2.5em;
+                        width: 2.5em;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-right: 0.5em;
+                    }
+                </style>
+                <section id="two" class="container my-5">
+                    <h1><strong>Thank you for visiting us.</strong></h1><br>
+                    <p>We started with the aim of drastically bridging the gap between consumers and sellers. <br>Our service saves you time and guarantees financial transactions for your purchases, thereby preventing fraud.</p>
+                    <br>
+                    <ul class="feature-icons row">
+                        <li class="col-6">
+                            <div class="icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            Prewritten and verified code
+                        </li>
+                        <li class="col-6">
+                            <div class="icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            Stack your skil box easily
+                        </li>
+                        <li class="col-6">
+                            <div class="icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            Provide a guide and stuff
+                        </li>
+                        <li class="col-6">
+                            <div class="icon">
+                                <i class="fas fa-coffee"></i>
+                            </div>
+                            Transaction completed while you enjoy coffee.
+                        </li>
+                        <li class="col-6">
+                            <div class="icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            Quickly and without fraud.
+                        </li>
+                        <li class="col-6">
+                            <div class="icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            Effortless meeting.
+                        </li>
+                    </ul>
+                </section>
+                <style>
+                    .chart-container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh; /* 필요에 따라 조정 */
+                    }
+
+                    #line-chart {
+                        width: 900px !important; /* 너비 조정 */
+                        height: 580px !important; /* 높이 조정 */
+                    }
+                </style>
+                <section id="twos" class="container my-5 chart-container">
+                    <canvas id="line-chart" width="600" height="500"></canvas>
+
+                    <script>
+                        $(document).ready(function() {
+                            var data = {
+                                labels: ["First quarter", "Second quarter", "Third quarter", "Fourth quarter"],
+                                datasets: [{
+                                    label: " (Sales: won)",
+                                    borderColor: "#3e95cd",
+                                    data: [1200, 1900, 3000, 2500],
+                                    fill: false, // 채우지 않음
+                                    borderWidth: 2, // 선 두께
+                                    tension: 0.1 // 곡선 정도 (0이면 직선)
+                                }]
+                            };
+
+                            var options = {
+                                responsive: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            };
+
+                            var ctx = document.getElementById("line-chart").getContext("2d");
+                            var myLineChart = new Chart(ctx, {
+                                type: 'line',
+                                data: data,
+                                options: options
+                            });
+                        });
+                    </script>
+                </section>
+                <div style="text-align: center; font-size: 18px">
+                    <strong>We are continuously growing and recording high sales.</strong>
+                    <br><br><br><br><br><br><br><br>
                 </div>
             </div>
         </div>
     </div>
-
 </section>
 
 <section id="favWrap" class="winter_fav_bg">
@@ -387,35 +497,40 @@
         <!-- 카드 1 -->
         <c:forEach var="product" items="${productList}" >
             <div class="col-md-4 mb-4">
-<%--                <c:out value="${product.img1 }" class="card-img-top" alt="..." />&nbsp;--%>
+                <img src="<c:url value='/images/Doors.png' />" class="card-img-top" alt="...">&nbsp;
                 <div class="card-body">
-<%--                    <h5 class="card-title"><c:out value="${product[1]}" /></h5>--%>
-                    <p class="card-text">price : ₩<c:out value="${product.product_price}" /></p>
-                    <!-- 모달을 트리거하는 버튼 -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#itemDetailModal" onclick="openItemDetail()">상세 정보</button>
+                    <h5 class="card-title"><c:out value="${product.productName}" /></h5>
+                    <p class="card-text">price : ₩<c:out value="${product.productPrice}" /></p>
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1">상세정보</a>
                 </div>
             </div>
         </c:forEach>
-    </div>
-</div>
-
-<!-- 모달1 -->
-<div class="modal fade" id="itemDetailModal" tabindex="-1" aria-labelledby="itemDetailModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <%-- 외부 jsp 파일 들어오는 부분--%>
-        </div>
-    </div>
-</div>
-
-<%--<!-- jQuery 및 Ajax 사용 -->--%>
-<%--<script>--%>
-<%--    // 외부 페이지 mainPage/productInfo.jsp를 불러오기 위한 함수 작성--%>
-<%--    function openItemDetail() {--%>
-<%--            $("#itemDetail .modal-content").load("//productInfo");--%>
-<%--            // class가 modal-content인 div 영역 안에 productInfo.jsp의 내용을 모달로 불러오기--%>
-<%--    }--%>
-<%--</script>--%>
+            <!-- 모달1 -->
+            <div class="modal fade" id="Modal1" tabindex="-1" aria-labelledby="ModalLabel1" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLabel1">Doors 상세 정보</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex align-items-start">
+                            <img src="<c:url value='/images/Doors.png' />" class="img-fluid" alt="..." style="border-radius: 10px; max-width: 700px; height: auto;">
+                            <div class="ms-4" style="border-radius: 10px; background-color: #f8f9fa; padding: 20px; width: 300px; height: 400px;">
+                                <h6><strong>정보 박스</strong></h6>
+                                <p><br>판매자 : 등록 처리 시에 판매자 이메일?로 join 해서 만들었어야 하나 <br><br>가격 : ₩${product.productPrice}<br><br>제작 난이도 : ❤️❤️🖤🖤🖤</p>
+                            </div>
+                        </div>
+                        <div class="mt-3" style="border-radius: 15px; background-color: #e9ecef; padding: 20px;">
+                            <h5><strong>설명문</strong></h5>
+                            <p></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                            <button type="button" class="btn btn-primary">할게 있나?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -640,9 +755,9 @@
 <%--                </div>--%>
 <%--            </div>--%>
 <%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
-<%--<!--<img src="<c:url value='/images/spring.jpg' />" alt="스프링" />-->--%>
+    </div>
+</div>
+<!--<img src="<c:url value='/images/spring.jpg' />" alt="스프링" />-->
 
 <!-- 푸터 영역 -->
 <!--footer는 페이지 하단 부분을 의미한다. -->
@@ -656,7 +771,7 @@
     <br>
 </footer>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
