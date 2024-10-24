@@ -1,12 +1,9 @@
 package com.PTUproj.dto;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1b;
 
-import java.sql.Blob;
 import java.sql.Timestamp;
 
 @Getter
