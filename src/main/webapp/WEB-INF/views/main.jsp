@@ -264,6 +264,7 @@
                 <a class="nav-link btn btn-lg mx-4" href="/smallGroup" style="padding: 15px 50px;">online community</a>
                 <a class="nav-link btn btn-lg mx-4" href="/website" style="padding: 15px 50px;">website</a>
                 <a class="nav-link btn btn-lg mx-4" href="/sell" style="padding: 15px 50px;" aria-disabled="true">product sell</a>
+                <a class="nav-link btn btn-lg mx-4" href="/index" style="padding: 15px 50px;" aria-disabled="true">게시물</a>
             </div>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: auto; display: flex">
@@ -355,6 +356,7 @@
             <li><a href="#modal0" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#modal0">Learn More</a></li>
         </ul>
     </footer>
+
     <div class="modal fade" id="modal0" tabindex="-1" aria-labelledby="ModalLabel0" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -482,7 +484,6 @@
         </div>
     </div>
 
-</section>
 
 <section id="favWrap" class="winter_fav_bg">
     <div class="wrap_inner">
@@ -782,6 +783,7 @@
 <!--<img src="<c:url value='/images/spring.jpg' />" alt="스프링" />-->
 <div>
     <a href="/aa">test</a>
+
 </div>
 
 <!-- 푸터 영역 -->

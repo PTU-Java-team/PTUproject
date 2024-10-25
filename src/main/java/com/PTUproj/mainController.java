@@ -1,6 +1,10 @@
 package com.PTUproj;
 
+import com.PTUproj.dto.BoardDTO;
+import com.PTUproj.dto.CommentDTO;
 import com.PTUproj.dto.MemberDTO;
+import com.PTUproj.service.BoardService;
+import com.PTUproj.service.CommentService;
 import com.PTUproj.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +26,11 @@ public class mainController {
     @GetMapping("/")
     public String main() {      //시작 화면
         return "main";
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        return "index";
     }
 
     //밑에 3개가 상단 메뉴
@@ -146,12 +155,12 @@ public class mainController {
 
     //수정화면 요청   세션 사용함
     @GetMapping("/update")
-    public String updateForm(HttpSession session,Model model) {
+    public String updateForm(HttpSession session, Model model) {
         //세션에 저장된 나의 이메일 가져옴
         String loginEmail = (String) session.getAttribute("loginEmail");
-            //우측에 String으로 감싼 이유는 Object 라서 String 보다 더 상위이기 때문에 강제 형변환함
+        //우측에 String으로 감싼 이유는 Object 라서 String 보다 더 상위이기 때문에 강제 형변환함
         MemberDTO memberDTO = memberService.findByMemberEmail(loginEmail);
-            //회원의 이메일을 이용해 DB에서 조회를 해서 dto로 가져와서 회원의 전체 정보를 가져옴
+        //회원의 이메일을 이용해 DB에서 조회를 해서 dto로 가져와서 회원의 전체 정보를 가져옴
         model.addAttribute("member", memberDTO);
         return "login/update";
     }
@@ -187,8 +196,6 @@ public class mainController {
     }
 
 
-
-
     // 장바구니 페이지로 이동
     @GetMapping("/cart")
     public String viewCart(Model model, HttpSession session) {
@@ -211,7 +218,108 @@ public class mainController {
         session.setAttribute("cart", cart);
         return "redirect:/cart"; // 장바구니 페이지로 이동
     }
+
+
+    //
+
+    //
+
+
+    //
+    //게시판 컨트롤러
+    private final BoardService boardService;
+    // private final CommentService commentService;
+
+    @GetMapping("/b_save")
+    public String saveFormb() {
+        return "board/b_save";
+    }
+
+    @PostMapping("/b_save")
+    public String saveb(@ModelAttribute BoardDTO boardDTO) {
+        int saveResult = boardService.save(boardDTO);
+        if (saveResult > 0) {
+            return "board/b_paging";
+        } else {
+            return "board/b_save";
+        }
+    }
+
+    @GetMapping("/b_list")
+    public String findAllb(Model model) {
+        List<BoardDTO> boardDTOList = boardService.findAll();
+        model.addAttribute("boardList", boardDTOList);
+        return "board/b_list";
+    }
+
+    @GetMapping
+    public String findByIdb(@RequestParam("id") Long id,
+                            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                            Model model) {
+        boardService.updateHits(id);
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        model.addAttribute("page", page);
+        // List<CommentDTO> commentDTOList = commentService.findAll(id);
+        //   model.addAttribute("commentList", commentDTOList);
+        return "board/b_detail";
+    }
+
+    @GetMapping("/b_delete")
+    public String deleteb(@RequestParam("id") Long id) {
+        boardService.delete(id);
+        return "redirect:/board/";
+    }
+
+    @GetMapping("/b_update")
+    public String updateFormb(@RequestParam("id") Long id, Model model) {
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        return "board/b_update";
+    }
+
+    @PostMapping("/b_update")
+    public String updateb(@ModelAttribute BoardDTO boardDTO, Model model) {
+        boardService.update(boardDTO);
+        BoardDTO dto = boardService.findById(boardDTO.getId());
+        model.addAttribute("board", dto);
+        return "board/b_detail";
+//        return "redirect:/board?id="+boardDTO.getId();
+    }
+
+    // /board/paging?page=2
+    // 처음 페이지 요청은 1페이지를 보여줌
+    @GetMapping("/b_paging")
+    public String pagingb(Model model,
+                          @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+        System.out.println("page = " + page);
+        // 해당 페이지에서 보여줄 글 목록
+        List<BoardDTO> pagingList = boardService.pagingList(page);
+        System.out.println("pagingList = " + pagingList);
+        //PageDTO pageDTO = boardService.pagingParam(page);
+        model.addAttribute("boardList", pagingList);
+        // model.addAttribute("paging", pageDTO);
+        return "board/b_paging";
+    }
 }
+
+
+//    //comment
+//    private final CommentService commentService;
+//
+//    @PostMapping("/save")
+//    public @ResponseBody List<CommentDTO> savec(@ModelAttribute CommentDTO commentDTO) {
+//        System.out.println("commentDTO = " + commentDTO);
+//        commentService.save(commentDTO);
+//        // 해당 게시글에 작성된 댓글 리스트를 가져옴
+//        List<CommentDTO> commentDTOList = commentService.findAll(commentDTO.getBoardId());
+//        return commentDTOList;
+//    }
+//}
+//
+
+
+
 
 
 
