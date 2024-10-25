@@ -501,6 +501,22 @@
                 <h5 class="card-title">Doors</h5>
                 <p class="card-text">여러 다른 색들이 문의 세계로 오신 것을 환영합니다.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1">상세정보</a>
+                <a href="#" onclick="addToCart('doors', 1)" class="btn btn-secondary">아이콘</a>
+
+                <script>
+                    function addToCart(productId, quantity) {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open("POST", "/addToCart");
+                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                // 성공적으로 추가된 후 장바구니 페이지로 리다이렉트
+                                window.location.href = "/cart"; // 장바구니 페이지로 이동
+                            }
+                        };
+                        xhr.send("productId=" + encodeURIComponent(productId) + "&quantity=" + encodeURIComponent(quantity));
+                    }
+                </script>
             </div>
         </div>
         <!-- 모달1 -->
@@ -755,6 +771,9 @@
     </div>
 </div>
 <!--<img src="<c:url value='/images/spring.jpg' />" alt="스프링" />-->
+<div>
+    <a href="/aa">test</a>
+</div>
 
 <!-- 푸터 영역 -->
 <!--footer는 페이지 하단 부분을 의미한다. -->

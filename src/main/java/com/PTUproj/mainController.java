@@ -1,17 +1,16 @@
 package com.PTUproj;
 
 import com.PTUproj.dto.MemberDTO;
-import com.PTUproj.repository.MemberRepository;
 import com.PTUproj.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -189,5 +188,30 @@ public class mainController {
 
 
 
+
+    // 장바구니 페이지로 이동
+    @GetMapping("/cart")
+    public String viewCart(Model model, HttpSession session) {
+        Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new HashMap<>(); // 장바구니가 비어있다면 새로 생성
+        }
+        model.addAttribute("cart", cart); // 모델에 장바구니 정보 추가
+        return "cart"; // cart.jsp 페이지로 이동
+    }
+
+    // 장바구니에 상품 추가
+    @PostMapping("/addToCart")
+    public String addToCart(@RequestParam String productId, @RequestParam int quantity, HttpSession session) {
+        Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new HashMap<>();
+        }
+        cart.put(productId, cart.getOrDefault(productId, 0) + quantity);
+        session.setAttribute("cart", cart);
+        return "redirect:/cart"; // 장바구니 페이지로 이동
+    }
 }
+
+
 

@@ -35,4 +35,8 @@
     <update id="update" parameterType="member">
         update member_table set member_Age=#{member_Age}, member_Mobile=#{member_Mobile} where member_id=#{member_id}
     </update>
+
+
+
+
 </mapper>
