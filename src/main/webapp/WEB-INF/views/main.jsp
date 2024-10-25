@@ -501,7 +501,7 @@
                 <h5 class="card-title">Doors</h5>
                 <p class="card-text">여러 다른 색들이 문의 세계로 오신 것을 환영합니다.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1">상세정보</a>
-                <a href="#" onclick="addToCart('doors', 1)" class="btn btn-secondary">아이콘</a>
+                <a href="#" onclick="addToCart('doors', 1)" class="btn btn-secondary">담기</a>
 
                 <script>
                     function addToCart(productId, quantity) {
@@ -554,6 +554,8 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal2">Go somewhere</a>
+                <!-- 장바구니 추가 버튼 -->
+                <a href="#" onclick="addToCart('test1', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달2 -->
@@ -582,6 +584,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal3">Go somewhere</a>
+                <a href="#" onclick="addToCart('test2', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달3 -->
@@ -610,6 +613,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal4">Go somewhere</a>
+                <a href="#" onclick="addToCart('test3', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달4 -->
@@ -638,6 +642,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal5">Go somewhere</a>
+                <a href="#" onclick="addToCart('test4', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달5 -->
@@ -666,6 +671,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal6">Go somewhere</a>
+                <a href="#" onclick="addToCart('test5', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달6 -->
@@ -694,6 +700,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal7">Go somewhere</a>
+                <a href="#" onclick="addToCart('test6', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달7 -->
@@ -721,6 +728,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal8">Go somewhere</a>
+                <a href="#" onclick="addToCart('test7', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달8 -->
@@ -748,6 +756,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal9">Go somewhere</a>
+                <a href="#" onclick="addToCart('test8', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달9 -->
