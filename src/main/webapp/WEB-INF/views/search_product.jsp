@@ -44,7 +44,7 @@
 <%--                            <a href="${detail_url}">${item.productName}</a>--%>
 <%--                        </td>--%>
                         <td>${item.productName}</td>
-                        <td>${item.categoryId}</td>
+                        <td>${item.categoryName}</td>
                         <td>${item.productPrice}</td>
                         <td>${item.memberEmail}</td>
                         <td><fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd- HH:mm:ss" /></td>
@@ -52,7 +52,6 @@
                 </c:forEach>
 
                 </tbody>
-                <a href="/">돌아가기</a>
 
             </table>
 

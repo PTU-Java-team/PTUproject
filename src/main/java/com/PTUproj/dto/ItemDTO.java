@@ -22,5 +22,6 @@ public class ItemDTO { // 판매자 관련 DTO입니다.
     private int categoryId; // 상품카테고리명
     private int memberId; // 판매자 회원 ID
     private String memberEmail; // 판매자 회원 이메일
+    private String categoryName; // 카테고리명
 
 }

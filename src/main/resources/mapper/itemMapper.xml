@@ -16,10 +16,10 @@
                p.product_date AS productDate,
                p.category_id AS categoryId,
                m.member_id AS memberId,
-               m.member_email AS memberEmail
-        FROM product_table p
-                 JOIN member_table m ON p.member_id = m.member_id
-        WHERE p.product_name LIKE '%' || #{productName} || '%'
+               m.member_email AS memberEmail,
+               c.CATEGORY_NAME AS categoryName
+        FROM product_table p, member_table m , category_table c
+        WHERE p.member_id = m.member_id and p.category_id = c.category_id and p.product_name LIKE '%' || #{productName} || '%'
         ORDER BY p.product_id DESC
     </select>
 
