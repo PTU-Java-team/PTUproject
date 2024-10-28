@@ -34,15 +34,9 @@
                 </thead>
 
                 <tbody>
-
+                <%--상품 검색 정보 ItemController의 productDetail id를 item 변수에 저장해서 사용--%>
                 <c:forEach var="item" items="${productDetail}">
                     <tr>
-<%--                        <td>--%>
-<%--                            <c:url value='/' var='detail_url'>--%>
-<%--                                <c:param name='productId' value='${item.productId}'/>--%>
-<%--                            </c:url>--%>
-<%--                            <a href="${detail_url}">${item.productName}</a>--%>
-<%--                        </td>--%>
                         <td>${item.productName}</td>
                         <td>${item.categoryName}</td>
                         <td>${item.productPrice}</td>
@@ -62,22 +56,4 @@
 
 </section>
 
-
-<%--<div>--%>
-<%--    <h2>검색 결과</h2>--%>
-<%--    <c:if test="${not empty productDetail}">--%>
-<%--        <ul>--%>
-<%--            <c:forEach var="item" items="${productDetail}">--%>
-<%--                <li>--%>
-<%--                    <strong>이름:</strong> ${item.productId} <br/>--%>
-<%--                    <strong>설명:</strong> ${item.description} <br/>--%>
-<%--                    <strong>가격:</strong> ${item.price}--%>
-<%--                </li>--%>
-<%--            </c:forEach>--%>
-<%--        </ul>--%>
-<%--    </c:if>--%>
-<%--    <c:if test="${empty searchResults}">--%>
-<%--        <p>검색 결과가 없습니다.</p>--%>
-<%--    </c:if>--%>
-<%--</div>--%>
 

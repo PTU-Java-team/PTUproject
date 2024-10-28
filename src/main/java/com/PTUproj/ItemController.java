@@ -72,14 +72,17 @@ public class ItemController {
         return "redirect:/";
     }
 
+    // 상품 검색 정보 확인
     @GetMapping("/searchProductConfirm")
     public String searchProductConfirm(ItemDTO itemDTO, Model model) {
 
         System.out.println("sellController searchProductConfirm() called");
 
+        // 클라이언트가 요청한 productName으로 검색된 상품을 DB에서 불러와 itemDTOS에 저장
         List<ItemDTO> itemDTOS = itemService.searchProductConfirm(itemDTO);
         System.out.println("productList : " + itemDTOS);
 
+        // model 객체 변수에 itemDTOS의 productDetail이라는 id 값으로 저장
         model.addAttribute("productDetail", itemDTOS);
 
         return "main";

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <link href="<c:url value='/resources/css/search_book.css' />" rel="stylesheet" type="text/css">
+    <link href="<c:url value='/resources/css/search_product.css' />" rel="stylesheet" type="text/css">
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- jQuery CDN -->
@@ -40,11 +40,6 @@
             margin-bottom: 20px; /* 카드 간의 간격 */
         }
 
-        .outer-div {
-            width : 300px;
-            height : 300px;
-            position: relative;
-        }
 
         .inner-div {
             width : 100px;
@@ -314,7 +309,7 @@
     }
 </style>
 
-<!-- product search -->
+<!-- product search 상품검색 창-->
 <br><br><br>
 <div class="search inner-div">
     <form action="<c:url value='/searchProductConfirm' />" name="search_product_form" method="get">
@@ -323,6 +318,7 @@
     </form>
 </div><br><br>
 
+<%--상품 검색 결과 form include--%>
 <div>
     <jsp:include page="./search_product.jsp" />
 </div><br><br>
