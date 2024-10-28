@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
+    <link href="<c:url value='/resources/css/search_book.css' />" rel="stylesheet" type="text/css">
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- jQuery CDN -->
@@ -40,6 +40,20 @@
             margin-bottom: 20px; /* 카드 간의 간격 */
         }
 
+        .outer-div {
+            width : 300px;
+            height : 300px;
+            position: relative;
+        }
+
+        .inner-div {
+            width : 100px;
+            height : 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+        }
 
         .rectangle {
             width: 30%; /* 직사각형 너비를 조정하여 3개씩 나열 */
@@ -272,6 +286,8 @@
     </div>
 </nav>
 
+
+
 <!-- Bootstrap JS 포함 (jQuery 포함) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -298,6 +314,39 @@
     }
 </style>
 
+<!-- product search -->
+<br><br><br>
+<div class="search inner-div">
+    <form action="<c:url value='/searchProductConfirm' />" name="search_product_form" method="get">
+        <input type="text" name="productName" placeholder="Search for products">
+        <input type="button" value="search" onclick="searchProductForm();">
+    </form>
+</div><br><br>
+
+<div>
+    <jsp:include page="./search_product.jsp" />
+</div><br><br>
+
+
+<script type="text/javascript">
+
+    function searchProductForm() {
+        console.log('searchBookForm() CALLED!!');
+
+        let form = document.search_product_form;
+
+        if (form.productName.value == '') {
+            alert('Enter the name of the book you are looking for.');
+            form.productName.focus();
+
+        } else {
+            form.submit();
+
+        }
+
+    }
+
+</script>
 
 <!-- Banner -->
 <section id="banner">
@@ -495,266 +544,266 @@
 <div class="box">
     <div class="row">
         <!-- 카드 1 -->
-        <c:forEach var="product" items="${productList}" >
-            <div class="col-md-4 mb-4">
-                <img src="<c:url value='/images/Doors.png' />" class="card-img-top" alt="...">&nbsp;
-                <div class="card-body">
-                    <h5 class="card-title"><c:out value="${product.productName}" /></h5>
-                    <p class="card-text">price : ₩<c:out value="${product.productPrice}" /></p>
-                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1">상세정보</a>
-                </div>
+<%--        <c:forEach var="product" items="${productList}" >--%>
+<%--            <div class="col-md-4 mb-4">--%>
+<%--                <img src="<c:url value='/images/Doors.png' />" class="card-img-top" alt="...">&nbsp;--%>
+<%--                <div class="card-body">--%>
+<%--                    <h5 class="card-title"><c:out value="${product.productName}" /></h5>--%>
+<%--                    <p class="card-text">price : ₩<c:out value="${product.productPrice}" /></p>--%>
+<%--                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1">상세정보</a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </c:forEach>--%>
+<%--            <!-- 모달1 -->--%>
+<%--            <div class="modal fade" id="Modal1" tabindex="-1" aria-labelledby="ModalLabel1" aria-hidden="true">--%>
+<%--                <div class="modal-dialog modal-xl">--%>
+<%--                    <div class="modal-content">--%>
+<%--                        <div class="modal-header">--%>
+<%--                            <h5 class="modal-title" id="ModalLabel1">Doors 상세 정보</h5>--%>
+<%--                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--                        </div>--%>
+<%--                        <div class="modal-body d-flex align-items-start">--%>
+<%--                            <img src="<c:url value='/images/Doors.png' />" class="img-fluid" alt="..." style="border-radius: 10px; max-width: 700px; height: auto;">--%>
+<%--                            <div class="ms-4" style="border-radius: 10px; background-color: #f8f9fa; padding: 20px; width: 300px; height: 400px;">--%>
+<%--                                <h6><strong>정보 박스</strong></h6>--%>
+<%--                                <p><br>판매자 : 등록 처리 시에 판매자 이메일?로 join 해서 만들었어야 하나 <br><br>가격 : ₩${product.productPrice}<br><br>제작 난이도 : ❤️❤️🖤🖤🖤</p>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="mt-3" style="border-radius: 15px; background-color: #e9ecef; padding: 20px;">--%>
+<%--                            <h5><strong>설명문</strong></h5>--%>
+<%--                            <p></p>--%>
+<%--                        </div>--%>
+<%--                        <div class="modal-footer">--%>
+<%--                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
+<%--                            <button type="button" class="btn btn-primary">할게 있나?</button>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+
+
+
+        <!-- 카드 2 -->
+        <div class="col-md-4 mb-4">
+            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal2">Go somewhere</a>
             </div>
-        </c:forEach>
-            <!-- 모달1 -->
-            <div class="modal fade" id="Modal1" tabindex="-1" aria-labelledby="ModalLabel1" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel1">Doors 상세 정보</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body d-flex align-items-start">
-                            <img src="<c:url value='/images/Doors.png' />" class="img-fluid" alt="..." style="border-radius: 10px; max-width: 700px; height: auto;">
-                            <div class="ms-4" style="border-radius: 10px; background-color: #f8f9fa; padding: 20px; width: 300px; height: 400px;">
-                                <h6><strong>정보 박스</strong></h6>
-                                <p><br>판매자 : 등록 처리 시에 판매자 이메일?로 join 해서 만들었어야 하나 <br><br>가격 : ₩${product.productPrice}<br><br>제작 난이도 : ❤️❤️🖤🖤🖤</p>
-                            </div>
-                        </div>
-                        <div class="mt-3" style="border-radius: 15px; background-color: #e9ecef; padding: 20px;">
-                            <h5><strong>설명문</strong></h5>
-                            <p></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                            <button type="button" class="btn btn-primary">할게 있나?</button>
-                        </div>
+        </div>
+        <!-- 모달2 -->
+        <div class="modal fade" id="Modal2" tabindex="-1" aria-labelledby="ModalLabel2" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel2">모달 제목</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        모달 내용이 여기에 들어갑니다.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary">2저장 변경사항</button>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- 카드 3 -->
+        <div class="col-md-4 mb-4">
+            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal3">Go somewhere</a>
+            </div>
+        </div>
+        <!-- 모달3 -->
+        <div class="modal fade" id="Modal3" tabindex="-1" aria-labelledby="ModalLabel3" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel3">모달 제목</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        모달 내용이 여기에 들어갑니다.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary">3저장 변경사항</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 추가 카드들 1-->
+        <div class="col-md-4 mb-4">
+            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal4">Go somewhere</a>
+            </div>
+        </div>
+        <!-- 모달4 -->
+        <div class="modal fade" id="Modal4" tabindex="-1" aria-labelledby="ModalLabel4" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel4">모달 제목</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        모달 내용이 여기에 들어갑니다.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary">4저장 변경사항</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-
-<%--        <!-- 카드 2 -->--%>
-<%--        <div class="col-md-4 mb-4">--%>
-<%--            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">--%>
-<%--            <div class="card-body">--%>
-<%--                <h5 class="card-title">Card title</h5>--%>
-<%--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--%>
-<%--                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal2">Go somewhere</a>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <!-- 모달2 -->--%>
-<%--        <div class="modal fade" id="Modal2" tabindex="-1" aria-labelledby="ModalLabel2" aria-hidden="true">--%>
-<%--            <div class="modal-dialog">--%>
-<%--                <div class="modal-content">--%>
-<%--                    <div class="modal-header">--%>
-<%--                        <h5 class="modal-title" id="ModalLabel2">모달 제목</h5>--%>
-<%--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-body">--%>
-<%--                        모달 내용이 여기에 들어갑니다.--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-footer">--%>
-<%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
-<%--                        <button type="button" class="btn btn-primary">2저장 변경사항</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--        <!-- 카드 3 -->--%>
-<%--        <div class="col-md-4 mb-4">--%>
-<%--            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">--%>
-<%--            <div class="card-body">--%>
-<%--                <h5 class="card-title">Card title</h5>--%>
-<%--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--%>
-<%--                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal3">Go somewhere</a>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <!-- 모달3 -->--%>
-<%--        <div class="modal fade" id="Modal3" tabindex="-1" aria-labelledby="ModalLabel3" aria-hidden="true">--%>
-<%--            <div class="modal-dialog">--%>
-<%--                <div class="modal-content">--%>
-<%--                    <div class="modal-header">--%>
-<%--                        <h5 class="modal-title" id="ModalLabel3">모달 제목</h5>--%>
-<%--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-body">--%>
-<%--                        모달 내용이 여기에 들어갑니다.--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-footer">--%>
-<%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
-<%--                        <button type="button" class="btn btn-primary">3저장 변경사항</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--        <!-- 추가 카드들 1-->--%>
-<%--        <div class="col-md-4 mb-4">--%>
-<%--            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">--%>
-<%--            <div class="card-body">--%>
-<%--                <h5 class="card-title">Card title</h5>--%>
-<%--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--%>
-<%--                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal4">Go somewhere</a>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <!-- 모달4 -->--%>
-<%--        <div class="modal fade" id="Modal4" tabindex="-1" aria-labelledby="ModalLabel4" aria-hidden="true">--%>
-<%--            <div class="modal-dialog">--%>
-<%--                <div class="modal-content">--%>
-<%--                    <div class="modal-header">--%>
-<%--                        <h5 class="modal-title" id="ModalLabel4">모달 제목</h5>--%>
-<%--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-body">--%>
-<%--                        모달 내용이 여기에 들어갑니다.--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-footer">--%>
-<%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
-<%--                        <button type="button" class="btn btn-primary">4저장 변경사항</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
+        <div class="col-md-4 mb-4">
+            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal5">Go somewhere</a>
+            </div>
+        </div>
+        <!-- 모달5 -->
+        <div class="modal fade" id="Modal5" tabindex="-1" aria-labelledby="ModalLabel5" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel5">모달 제목</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        모달 내용이 여기에 들어갑니다.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary">5저장 변경사항</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-<%--        <div class="col-md-4 mb-4">--%>
-<%--            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">--%>
-<%--            <div class="card-body">--%>
-<%--                <h5 class="card-title">Card title</h5>--%>
-<%--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--%>
-<%--                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal5">Go somewhere</a>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <!-- 모달5 -->--%>
-<%--        <div class="modal fade" id="Modal5" tabindex="-1" aria-labelledby="ModalLabel5" aria-hidden="true">--%>
-<%--            <div class="modal-dialog">--%>
-<%--                <div class="modal-content">--%>
-<%--                    <div class="modal-header">--%>
-<%--                        <h5 class="modal-title" id="ModalLabel5">모달 제목</h5>--%>
-<%--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-body">--%>
-<%--                        모달 내용이 여기에 들어갑니다.--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-footer">--%>
-<%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
-<%--                        <button type="button" class="btn btn-primary">5저장 변경사항</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
+        <div class="col-md-4 mb-4">
+            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal6">Go somewhere</a>
+            </div>
+        </div>
+        <!-- 모달6 -->
+        <div class="modal fade" id="Modal6" tabindex="-1" aria-labelledby="ModalLabel6" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel6">모달 제목</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        모달 내용이 여기에 들어갑니다.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary">6저장 변경사항</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- 추가 카드들 2-->
+        <div class="col-md-4 mb-4">
+            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal7">Go somewhere</a>
+            </div>
+        </div>
+        <!-- 모달7 -->
+        <div class="modal fade" id="Modal7" tabindex="-1" aria-labelledby="ModalLabel7" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel7">모달 제목</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        모달 내용이 여기에 들어갑니다.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary">7저장 변경사항</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<%--        <div class="col-md-4 mb-4">--%>
-<%--            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">--%>
-<%--            <div class="card-body">--%>
-<%--                <h5 class="card-title">Card title</h5>--%>
-<%--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--%>
-<%--                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal6">Go somewhere</a>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <!-- 모달6 -->--%>
-<%--        <div class="modal fade" id="Modal6" tabindex="-1" aria-labelledby="ModalLabel6" aria-hidden="true">--%>
-<%--            <div class="modal-dialog">--%>
-<%--                <div class="modal-content">--%>
-<%--                    <div class="modal-header">--%>
-<%--                        <h5 class="modal-title" id="ModalLabel6">모달 제목</h5>--%>
-<%--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-body">--%>
-<%--                        모달 내용이 여기에 들어갑니다.--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-footer">--%>
-<%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
-<%--                        <button type="button" class="btn btn-primary">6저장 변경사항</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
+        <div class="col-md-4 mb-4">
+            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal8">Go somewhere</a>
+            </div>
+        </div>
+        <!-- 모달8 -->
+        <div class="modal fade" id="Modal8" tabindex="-1" aria-labelledby="ModalLabel8" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel8">모달 제목</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        모달 내용이 여기에 들어갑니다.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary">8저장 변경사항</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<%--        <!-- 추가 카드들 2-->--%>
-<%--        <div class="col-md-4 mb-4">--%>
-<%--            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">--%>
-<%--            <div class="card-body">--%>
-<%--                <h5 class="card-title">Card title</h5>--%>
-<%--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--%>
-<%--                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal7">Go somewhere</a>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <!-- 모달7 -->--%>
-<%--        <div class="modal fade" id="Modal7" tabindex="-1" aria-labelledby="ModalLabel7" aria-hidden="true">--%>
-<%--            <div class="modal-dialog">--%>
-<%--                <div class="modal-content">--%>
-<%--                    <div class="modal-header">--%>
-<%--                        <h5 class="modal-title" id="ModalLabel7">모달 제목</h5>--%>
-<%--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-body">--%>
-<%--                        모달 내용이 여기에 들어갑니다.--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-footer">--%>
-<%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
-<%--                        <button type="button" class="btn btn-primary">7저장 변경사항</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--        <div class="col-md-4 mb-4">--%>
-<%--            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">--%>
-<%--            <div class="card-body">--%>
-<%--                <h5 class="card-title">Card title</h5>--%>
-<%--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--%>
-<%--                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal8">Go somewhere</a>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <!-- 모달8 -->--%>
-<%--        <div class="modal fade" id="Modal8" tabindex="-1" aria-labelledby="ModalLabel8" aria-hidden="true">--%>
-<%--            <div class="modal-dialog">--%>
-<%--                <div class="modal-content">--%>
-<%--                    <div class="modal-header">--%>
-<%--                        <h5 class="modal-title" id="ModalLabel8">모달 제목</h5>--%>
-<%--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-body">--%>
-<%--                        모달 내용이 여기에 들어갑니다.--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-footer">--%>
-<%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
-<%--                        <button type="button" class="btn btn-primary">8저장 변경사항</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
-<%--        <div class="col-md-4 mb-4">--%>
-<%--            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">--%>
-<%--            <div class="card-body">--%>
-<%--                <h5 class="card-title">Card title</h5>--%>
-<%--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>--%>
-<%--                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal9">Go somewhere</a>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <!-- 모달9 -->--%>
-<%--        <div class="modal fade" id="Modal9" tabindex="-1" aria-labelledby="ModalLabel9" aria-hidden="true">--%>
-<%--            <div class="modal-dialog">--%>
-<%--                <div class="modal-content">--%>
-<%--                    <div class="modal-header">--%>
-<%--                        <h5 class="modal-title" id="exampleModalLabel">모달 제목</h5>--%>
-<%--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-body">--%>
-<%--                        모달 내용이 여기에 들어갑니다.--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-footer">--%>
-<%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
-<%--                        <button type="button" class="btn btn-primary">9저장 변경사항</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
+        <div class="col-md-4 mb-4">
+            <img src="<c:url value='/images/spring.jpg' />" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal9">Go somewhere</a>
+            </div>
+        </div>
+        <!-- 모달9 -->
+        <div class="modal fade" id="Modal9" tabindex="-1" aria-labelledby="ModalLabel9" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">모달 제목</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        모달 내용이 여기에 들어갑니다.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary">9저장 변경사항</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!--<img src="<c:url value='/images/spring.jpg' />" alt="스프링" />-->

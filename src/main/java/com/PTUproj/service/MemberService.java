@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -20,7 +21,7 @@ public class MemberService {
         return memberRepository.save(memberDTO);
     }
 
-    public boolean login(MemberDTO memberDTO, HttpSession session) {
+    public boolean login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
         MemberDTO loginMember = memberRepository.login(memberDTO);
 
         if (loginMember != null) {

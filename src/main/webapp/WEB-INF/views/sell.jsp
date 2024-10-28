@@ -47,11 +47,11 @@
 </head>
 <body>
 <div class="bs-example">
-    <form class="form-horizontal" action="/itemRegister" method="post" enctype="multipart/form-data">
+    <form class="form-horizontal" action="<c:url value='/registerProductConfirm' />" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="productName" class="control-label col-xs-2">상품명:</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control area" id="productName" name="productName" required>
+                <input type="text" class="form-control area" id="productName" name="productName" required />
             </div>
         </div><br>
 
@@ -68,7 +68,7 @@
         <div class="form-group">
             <label for="productPrice" class="control-label col-xs-2">가격:</label>
             <div class="col-xs-10">
-                <input type="number" step="100" class="form-control area" id="productPrice" name="productPrice">
+                <input type="number" step="100" class="form-control area" id="productPrice" name="productPrice" />
             </div>
         </div><br>
 
@@ -84,7 +84,7 @@
                 <img src="<c:url value='/images/camera.png' />" class="cover" alt="이미지 업로드" />
             </label>
             <div class="col-xs-10">
-                <input type="file" class="form-control area form-control-user" id="productImg1" name="productImg1" onchange="setThumbnail(event);" style="display: none;">
+                <input type="file" class="form-control area form-control-user" id="productImg1" name="productImg1" style="display: none;">
             </div>
         </div>
 
@@ -93,24 +93,13 @@
                 <img src="<c:url value='/images/camera.png' />" class="cover" alt="이미지 업로드" />
             </label>
             <div class="col-xs-10">
-                <input type="file" class="form-control area form-control-user" multiple="multiple" id="productImg2" name="productImg2" onchange="setDetailImage(event);" style="display: none;">
+                <input type="file" class="form-control area form-control-user" multiple="multiple" id="productImg2" name="productImg2" style="display: none;">
             </div>
         </div>
 
-
-
-<%--        <div class="form-group">--%>
-<%--            <label for="img3" class="control-label col-xs-2">이미지 3:--%>
-<%--                <img src="<c:url value='/images/camera.png' />" class="cover" alt="이미지 업로드" />--%>
-<%--            </label>--%>
-<%--            <div class="col-xs-10">--%>
-<%--                <input type="file" class="form-control area" id="img3" name="img3" style="display: none;">--%>
-<%--            </div>--%>
-<%--        </div>--%>
-
         <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
-                 <button type="submit" class="btn btn-primary bt" onclick="location.href='/'">등록</button>&nbsp;&nbsp;
+                 <button type="submit" class="btn btn-primary bt" onclick="registerProductConfirm();">등록</button>&nbsp;&nbsp;
                  <button type="reset" class="btn btn-primary bt">다시 작성</button> &nbsp;&nbsp;
                  <a href="/"><button type="button" class="btn btn-primary bt">나가기</button></a>
             </div>

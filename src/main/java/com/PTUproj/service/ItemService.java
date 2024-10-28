@@ -3,30 +3,30 @@ package com.PTUproj.service;
 import com.PTUproj.dto.ItemDTO;
 import com.PTUproj.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional  //추가된 것
+@Transactional
 public class ItemService {
+
     private final ItemRepository itemRepository;
 
+    public int registerProductConfirm(ItemDTO dto) {
+        System.out.println("itemservice registerProductConfirm() called");
 
-    public void registerItem(ItemDTO dto) {
-        itemRepository.insertItem(dto);
+        System.out.println("result : " + itemRepository);
+
+        return itemRepository.insertProduct(dto);
     }
 
-    public List<ItemDTO> getAllItems() {
-        System.out.println("items: " + itemRepository.selectAllItems());
-        return itemRepository.selectAllItems();
-    }
+    public List<ItemDTO> searchProductConfirm(ItemDTO itemDTO) {
+        System.out.println("itemservice searchProductConfirm() called");
 
-    public ItemDTO getItemDetail(int productId) {
-        return itemRepository.getItemDetail(productId);
+        return itemRepository.selectProductBySearch(itemDTO);
     }
-
 }
