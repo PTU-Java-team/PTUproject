@@ -15,14 +15,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Chart.js 3D 플러그인 -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-3d/dist/chartjs-plugin-3d.min.js"></script>
-
 
     <style>
         .box {
@@ -36,17 +31,24 @@
             overflow-y: auto; /* 세로 스크롤 가능 */
         }
 
-        .card {
-            margin-bottom: 20px; /* 카드 간의 간격 */
+        .header {
+            display: flex;
+            justify-content: space-between; /* 양쪽 끝으로 요소 배치 */
+            padding: 10px;
+            background-color: #f8f8f8;
+            align-items: center; /* 수직 중앙 정렬 */
         }
 
+        /* 로그인 상태 */
+        .login-status {
+            list-style-type: none; /* 리스트 스타일 제거 */
+            margin: 0; /* 기본 마진 제거 */
+            padding: 0; /* 기본 패딩 제거 */
+            display: flex; /* 가로 정렬 */
+        }
 
-        .rectangle {
-            width: 30%; /* 직사각형 너비를 조정하여 3개씩 나열 */
-            height: 45%; /* 직사각형 높이 */
-            margin: 10px; /* 여백 */
-            background-color: #4caf50; /* 직사각형 색상 */
-            border-radius: 4px; /* 둥근 모서리 */
+        .login-status li {
+            margin-left: 10px; /* 리스트 아이템 간의 간격 */
         }
 
         .search:focus {
@@ -57,6 +59,7 @@
         .search-box * {
             box-sizing: border-box;
         }
+
         .search-box {
             background: rgba(255, 255, 255, 0.09);
             border-radius: 15px;
@@ -72,19 +75,8 @@
             height: 65px;
             position: relative;
         }
-        .search-for-courses {
-            color: rgba(18, 90, 90, 0.2);
-            text-align: left;
-            font-family: "Inter-Bold", sans-serif;
-            font-size: 26px;
-            font-weight: 700;
-            position: relative;
-        }
-
-
 
         /* Banner */
-
         #banner {
             background: #CCE8F4 url("../../images/pic01.jpg");
             background-position: center center;
@@ -119,7 +111,6 @@
         }
 
         /* Intro */
-
         #intro {
             text-align: center;
             overflow: hidden;
@@ -176,7 +167,6 @@
         }
 
         /* Actions */
-
         ul.actions {
             display: flex;
             justify-content: center; /* 수평 중앙 정렬 */
@@ -196,33 +186,39 @@
         ul.actions li:first-child {
             margin-left: 0; /* 첫 번째 항목의 왼쪽 마진 제거 */
         }
-
-
     </style>
-    <!--hmm-->
-<!--    <style type="text/css">
-        #favWrap {background:url('/images/img_2.png') center center fixed no-repeat #45434c; background-size: auto 87%; padding:0; position:relative; background-position: bottom;}
-        .fav_img {top: 90px; right: -210px; width: 953px; height: 651px; background-image: url('/images/img_4.png');}
-
-
-        @media screen and (max-width:1400px) {
-            .fav_img {top: 50%; transform:translateY(-50%); right: 60px; width: 720px; height: 475px;}
-        }
-
-        @media screen and (max-width:1100px) {
-            .fav_img {top: 50%; transform:translateY(-50%); right: 160px; width: 570px; height: 380px;}
-        }
-/*
-        @media screen and (max-width:960px) {
-            #favWrap {background: url('https://image.istarbucks.co.kr/upload/common/img/main/2024/2024_october_pick_bg_mo.jpg') center -6px no-repeat; background-size: 100% auto; height: 233.75vw; padding: 0; position: relative; width: 100%;}
-            .fav_img {position: static; top: auto; right: auto; width: 100vw; height: 30%; margin: 155px auto 0; transform: translateY(0);}
-            .wrap_inner .fav_prod_txt02 {top: 73% !important; left:50%; width:82.5vw; height: 100%; background-image: url('https://image.istarbucks.co.kr/upload/common/img/main/2024/2024_october_pick_txt02_mo.png'); transform: translateX(-50%); margin-left:0}
-        }
-*/
-    </style>  -->
 </head>
 <body>
-<hr>
+
+<div class="header">
+    <div class="login-container" style="margin-left: auto">
+        <ul class="login-status">
+            <% if (session.getAttribute("loginEmail") != null) { %>
+            <li><span>(<%= session.getAttribute("loginEmail") %>) 님</span></li>
+
+            <!-- 관리자인 경우 회원 목록 관리 링크 추가 -->
+            <c:if test="${sessionScope.isAdmin == '1'}">
+                <li><a href="/list">회원 목록 관리</a></li>
+            </c:if>
+
+            <li><a href="/cart">장바구니 목록</a></li>
+            <% } %>
+
+        </ul>
+    </div>
+</div>
+
+<style>
+    /* 검은색 링크 스타일 */
+    .login-status a {
+        color: black; /* 링크 색상을 검은색으로 설정 */
+        text-decoration: none; /* 기본 밑줄 제거 */
+    }
+
+    .login-status a:hover {
+        text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+    }
+</style>
 
 <br><br>
 <!-- 검색창 --><!--
@@ -264,6 +260,7 @@
                 <a class="nav-link btn btn-lg mx-4" href="/smallGroup" style="padding: 15px 50px;">online community</a>
                 <a class="nav-link btn btn-lg mx-4" href="/website" style="padding: 15px 50px;">website</a>
                 <a class="nav-link btn btn-lg mx-4" href="/sell" style="padding: 15px 50px;" aria-disabled="true">product sell</a>
+                <a class="nav-link btn btn-lg mx-4" href="/index" style="padding: 15px 50px;" aria-disabled="true">게시물</a>
             </div>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: auto; display: flex">
@@ -501,10 +498,11 @@
                 <h5 class="card-title">Doors</h5>
                 <p class="card-text">여러 다른 색들이 문의 세계로 오신 것을 환영합니다.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1">상세정보</a>
-                <a href="#" onclick="addToCart('doors', 1)" class="btn btn-secondary">담기</a>
+                <a href="#" onclick="addToCart(event, 'doors', 1)" class="btn btn-secondary">담기</a>
 
                 <script>
-                    function addToCart(productId, quantity) {
+                    function addToCart(event, productId, quantity) {
+                        event.preventDefault(); // 기본 링크 클릭 동작 방지
                         const xhr = new XMLHttpRequest();
                         xhr.open("POST", "/addToCart");
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -517,6 +515,7 @@
                         xhr.send("productId=" + encodeURIComponent(productId) + "&quantity=" + encodeURIComponent(quantity));
                     }
                 </script>
+
             </div>
         </div>
         <!-- 모달1 -->
@@ -555,7 +554,7 @@
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal2">Go somewhere</a>
                 <!-- 장바구니 추가 버튼 -->
-                <a href="#" onclick="addToCart('test1', 1)" class="btn btn-secondary">담기</a>
+                <a href="#" onclick="addToCart(event,'test1', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달2 -->
@@ -584,7 +583,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal3">Go somewhere</a>
-                <a href="#" onclick="addToCart('test2', 1)" class="btn btn-secondary">담기</a>
+                <a href="#" onclick="addToCart(event,'test2', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달3 -->
@@ -613,7 +612,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal4">Go somewhere</a>
-                <a href="#" onclick="addToCart('test3', 1)" class="btn btn-secondary">담기</a>
+                <a href="#" onclick="addToCart(event,'test3', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달4 -->
@@ -642,7 +641,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal5">Go somewhere</a>
-                <a href="#" onclick="addToCart('test4', 1)" class="btn btn-secondary">담기</a>
+                <a href="#" onclick="addToCart(event,'test4', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달5 -->
@@ -671,7 +670,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal6">Go somewhere</a>
-                <a href="#" onclick="addToCart('test5', 1)" class="btn btn-secondary">담기</a>
+                <a href="#" onclick="addToCart(event,'test5', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달6 -->
@@ -700,7 +699,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal7">Go somewhere</a>
-                <a href="#" onclick="addToCart('test6', 1)" class="btn btn-secondary">담기</a>
+                <a href="#" onclick="addToCart(event,'test6', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달7 -->
@@ -728,7 +727,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal8">Go somewhere</a>
-                <a href="#" onclick="addToCart('test7', 1)" class="btn btn-secondary">담기</a>
+                <a href="#" onclick="addToCart(event,'test7', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달8 -->
@@ -756,7 +755,7 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal9">Go somewhere</a>
-                <a href="#" onclick="addToCart('test8', 1)" class="btn btn-secondary">담기</a>
+                <a href="#" onclick="addToCart(event,'test8', 1)" class="btn btn-secondary">담기</a>
             </div>
         </div>
         <!-- 모달9 -->
@@ -781,7 +780,8 @@
 </div>
 <!--<img src="<c:url value='/images/spring.jpg' />" alt="스프링" />-->
 <div>
-    <a href="/aa">test</a>
+    <!--test 구역-->
+
 </div>
 
 <!-- 푸터 영역 -->

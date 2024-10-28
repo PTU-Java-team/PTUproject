@@ -1,56 +1,56 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Anemo
-  Date: 24. 10. 16.
-  Time: 오전 12:55
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>sellregister</title>
+    <title>상품 등록</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Chart.js 3D 플러그인 -->
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-3d/dist/chartjs-plugin-3d.min.js"></script>
-    <style type="text/css">
-        .bs-example {
-            margin-bottom: 20px;
-            margin-left: 20px;
-            margin-right: 40px;
-            margin-top: 20px;
-        }
-
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <style>
         body {
             background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
         }
 
-        .area {
-            background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+        .form-group label {
+            font-weight: bold;
         }
 
-        .cover {
-            width: 10%;
-            height: 5%;
+        .bs-example {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .bt {
             background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
             border-radius: 10px;
             border: none;
+            color: black; /* 텍스트 색상을 검은색으로 설정 */
+            transition: background-color 0.3s;
         }
 
+        .bt:hover {
+            background-color: #f3c5d0;
+        }
+
+        .cover {
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+        }
+
+        .area {
+            margin-bottom: 15px;
+        }
     </style>
-    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 </head>
 <body>
 <div class="bs-example">
@@ -60,7 +60,7 @@
             <div class="col-xs-10">
                 <input type="text" class="form-control area" id="productName" name="productName" required>
             </div>
-        </div><br>
+        </div>
 
         <div class="form-group">
             <label for="categoryId" class="control-label col-xs-2">카테고리:</label>
@@ -70,45 +70,43 @@
                     <option value="4">웹사이트</option>
                 </select>
             </div>
-        </div><br>
+        </div>
 
         <div class="form-group">
             <label for="productPrice" class="control-label col-xs-2">가격:</label>
             <div class="col-xs-10">
-                <input type="number" step="100" class="form-control area" id="productPrice" name="productPrice">
-            </div>
-        </div><br>
-
-        <div class="form-group">
-            <label for="productDescription" class="control-label col-xs-2">상세설명:</label>
-            <div class="col-xs-10">
-                <textarea class="form-control area" rows="20" id="productDescription" name="productDescription" required></textarea>
-            </div>
-        </div><br>
-
-        <div class="form-group">
-            <label for="productImg1" class="control-label col-xs-2">Main Picture :
-                <img src="<c:url value='/images/camera.png' />" class="cover" alt="이미지 업로드" />
-            </label>
-            <div class="col-xs-10">
-                <input type="file" class="form-control area form-control-user" id="productImg1" name="productImg1" onchange="setThumbnail(event);" style="display: none;">
+                <input type="number" step="100" class="form-control area" id="productPrice" name="productPrice" required>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="productImg2" class="control-label col-xs-2">Detail Picture :
-                <img src="<c:url value='/images/camera.png' />" class="cover" alt="이미지 업로드" />
-            </label>
+            <label for="productDescription" class="control-label col-xs-2">상세설명:</label>
             <div class="col-xs-10">
-                <input type="file" class="form-control area form-control-user" multiple="multiple" id="productImg2" name="productImg2" onchange="setDetailImage(event);" style="display: none;">
+                <textarea class="form-control area" rows="5" id="productDescription" name="productDescription" required></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="productImg1" class="control-label col-xs-2">Main Picture:</label>
+            <div class="col-xs-10">
+                <input type="file" class="form-control area" id="productImg1" name="productImg1" onchange="setThumbnail(event);" required>
+                <img src="<c:url value='/images/camera.png' />" class="cover" alt="이미지 업로드" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="productImg2" class="control-label col-xs-2">Detail Picture:</label>
+            <div class="col-xs-10">
+                <input type="file" class="form-control area" multiple="multiple" id="productImg2" name="productImg2" onchange="setDetailImage(event);">
+                <img src="<c:url value='/images/camera.png' />" class="cover" alt="이미지 업로드" />
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
-                <button type="submit" class="btn btn-primary bt" onclick="location.href='/'">등록</button>&nbsp;&nbsp;
-                <button type="reset" class="btn btn-primary bt">다시 작성</button> &nbsp;&nbsp;
-                <a href="/"><button type="button" class="btn btn-primary bt">나가기</button></a>
+                <button type="submit" class="btn btn-primary bt">등록</button>
+                <button type="reset" class="btn btn-secondary bt">다시 작성</button>
+                <a href="/"><button type="button" class="btn btn-danger bt">나가기</button></a>
             </div>
         </div>
     </form>

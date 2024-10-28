@@ -1,6 +1,10 @@
 package com.PTUproj;
 
+//import com.PTUproj.dto.BoardDTO;
+//import com.PTUproj.dto.CommentDTO;
 import com.PTUproj.dto.MemberDTO;
+//import com.PTUproj.service.BoardService;
+//import com.PTUproj.service.CommentService;
 import com.PTUproj.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,6 +21,8 @@ import java.util.Map;
 public class mainController {
 
     private final MemberService memberService;  //의존성을 주입함
+    //게시판 컨트롤러
+    //private final BoardService boardService;
 
 
     @GetMapping("/")
@@ -146,12 +152,12 @@ public class mainController {
 
     //수정화면 요청   세션 사용함
     @GetMapping("/update")
-    public String updateForm(HttpSession session,Model model) {
+    public String updateForm(HttpSession session, Model model) {
         //세션에 저장된 나의 이메일 가져옴
         String loginEmail = (String) session.getAttribute("loginEmail");
-            //우측에 String으로 감싼 이유는 Object 라서 String 보다 더 상위이기 때문에 강제 형변환함
+        //우측에 String으로 감싼 이유는 Object 라서 String 보다 더 상위이기 때문에 강제 형변환함
         MemberDTO memberDTO = memberService.findByMemberEmail(loginEmail);
-            //회원의 이메일을 이용해 DB에서 조회를 해서 dto로 가져와서 회원의 전체 정보를 가져옴
+        //회원의 이메일을 이용해 DB에서 조회를 해서 dto로 가져와서 회원의 전체 정보를 가져옴
         model.addAttribute("member", memberDTO);
         return "login/update";
     }
@@ -187,7 +193,17 @@ public class mainController {
     }
 
 
-
+    // 장바구니에 상품 추가
+    @PostMapping("/addToCart")
+    public String addToCart(@RequestParam String productId, @RequestParam int quantity, HttpSession session) {
+        Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new HashMap<>();
+        }
+        cart.put(productId, cart.getOrDefault(productId, 0) + quantity);
+        session.setAttribute("cart", cart);
+        return "redirect:/cart"; // 장바구니 페이지로 리다이렉트
+    }
 
     // 장바구니 페이지로 이동
     @GetMapping("/cart")
@@ -200,18 +216,115 @@ public class mainController {
         return "cart"; // cart.jsp 페이지로 이동
     }
 
-    // 장바구니에 상품 추가
-    @PostMapping("/addToCart")
-    public String addToCart(@RequestParam String productId, @RequestParam int quantity, HttpSession session) {
+    // 장바구니에서 상품 삭제
+    @PostMapping("/removeFromCart")
+    public String removeFromCart(@RequestParam String productId, HttpSession session) {
         Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
-        if (cart == null) {
-            cart = new HashMap<>();
+        if (cart != null && cart.containsKey(productId)) {
+            int quantity = cart.get(productId);
+            if (quantity > 1) {
+                cart.put(productId, quantity - 1); // 수량 감소
+            } else {
+                cart.remove(productId); // 삭제
+            }
+            session.setAttribute("cart", cart);
         }
-        cart.put(productId, cart.getOrDefault(productId, 0) + quantity);
-        session.setAttribute("cart", cart);
-        return "redirect:/cart"; // 장바구니 페이지로 이동
+        return "redirect:/cart"; // 장바구니 페이지로 리다이렉트
     }
 }
+/*
+
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+    @GetMapping("/b_save")
+    public String saveFormb() {
+        return "board/b_save";
+    }
+
+    @PostMapping("/b_save")
+    public String saveb(@ModelAttribute BoardDTO boardDTO) {
+        int saveResult = boardService.save(boardDTO);
+        if (saveResult > 0) {
+            return "board/b_paging";
+        } else {
+            return "board/b_save";
+        }
+    }
+
+    @GetMapping("/b_list")
+    public String findAllb(Model model) {
+        List<BoardDTO> boardDTOList = boardService.findAll();
+        model.addAttribute("boardList", boardDTOList);
+        return "board/b_list";
+    }
+
+    @GetMapping
+    public String findByIdb(@RequestParam("id") Long id,
+                            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                            Model model) {
+        boardService.updateHits(id);
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        model.addAttribute("page", page);
+        // List<CommentDTO> commentDTOList = commentService.findAll(id);
+        //   model.addAttribute("commentList", commentDTOList);
+        return "board/b_detail";
+    }
+
+    @GetMapping("/b_delete")
+    public String deleteb(@RequestParam("id") Long id) {
+        boardService.delete(id);
+        return "redirect:/board/";
+    }
+
+    @GetMapping("/b_update")
+    public String updateFormb(@RequestParam("id") Long id, Model model) {
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        return "board/b_update";
+    }
+
+    @PostMapping("/b_update")
+    public String updateb(@ModelAttribute BoardDTO boardDTO, Model model) {
+        boardService.update(boardDTO);
+        BoardDTO dto = boardService.findById(boardDTO.getId());
+        model.addAttribute("board", dto);
+        return "board/b_detail";
+    //        return "redirect:/board?id="+boardDTO.getId();
+    }
+
+    // /board/paging?page=2
+    // 처음 페이지 요청은 1페이지를 보여줌
+    @GetMapping("/b_paging")
+    public String pagingb(Model model,
+                          @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+        System.out.println("page = " + page);
+        // 해당 페이지에서 보여줄 글 목록
+        List<BoardDTO> pagingList = boardService.pagingList(page);
+        System.out.println("pagingList = " + pagingList);
+        //PageDTO pageDTO = boardService.pagingParam(page);
+        model.addAttribute("boardList", pagingList);
+        // model.addAttribute("paging", pageDTO);
+        return "board/b_paging";
+    }
+}
+*/
+
+// private final CommentService commentService;
 
 
-
+//    //comment
+//    private final CommentService commentService;
+//
+//    @PostMapping("/save")
+//    public @ResponseBody List<CommentDTO> savec(@ModelAttribute CommentDTO commentDTO) {
+//        System.out.println("commentDTO = " + commentDTO);
+//        commentService.save(commentDTO);
+//        // 해당 게시글에 작성된 댓글 리스트를 가져옴
+//        List<CommentDTO> commentDTOList = commentService.findAll(commentDTO.getBoardId());
+//        return commentDTOList;
+//    }
+//}
+//
