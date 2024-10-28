@@ -2,9 +2,11 @@ package com.PTUproj;
 
 //import com.PTUproj.dto.BoardDTO;
 //import com.PTUproj.dto.CommentDTO;
+import com.PTUproj.dto.BoardDTO;
 import com.PTUproj.dto.MemberDTO;
 //import com.PTUproj.service.BoardService;
 //import com.PTUproj.service.CommentService;
+import com.PTUproj.service.BoardService;
 import com.PTUproj.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,7 @@ import java.util.Map;
 public class mainController {
 
     private final MemberService memberService;  //의존성을 주입함
+    private final BoardService boardService;
     //게시판 컨트롤러
     //private final BoardService boardService;
 
@@ -231,13 +234,12 @@ public class mainController {
         }
         return "redirect:/cart"; // 장바구니 페이지로 리다이렉트
     }
-}
-/*
 
     @GetMapping("/index")
     public String index() {
         return "index";
     }
+
     @GetMapping("/b_save")
     public String saveFormb() {
         return "board/b_save";
@@ -310,7 +312,7 @@ public class mainController {
         return "board/b_paging";
     }
 }
-*/
+
 
 // private final CommentService commentService;
 

@@ -10,6 +10,7 @@
       <!--  <typeAlias type="com.PTUproj.dto.ItemDTO" alias="item"></typeAlias>
         <typeAlias type="com.PTUproj.dto.BoardDTO" alias="board"></typeAlias>
         <typeAlias type="com.PTUproj.dto.CommentDTO" alias="comment"></typeAlias>-->
+        <typeAlias type="com.PTUproj.dto.BoardDTO" alias="board"></typeAlias>
     </typeAliases>
 
 
