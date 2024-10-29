@@ -24,21 +24,35 @@
         ORDER BY p.product_id DESC
     </select>
 
+    <select id="findAll" resultType="com.PTUproj.dto.ItemDTO">
+        select p.product_id AS productId,
+               p.product_name AS productName,
+               p.product_img1 AS productImg1,
+               p.product_img2 AS productImg2,
+               p.product_description AS productDescription,
+               p.product_price AS productPrice,
+               p.product_date AS productDate,
+               p.category_id AS categoryId,
+               m.member_id AS memberId,
+               m.member_email AS memberEmail,
+               c.CATEGORY_NAME AS categoryName
+        FROM product_table p, member_table m , category_table c
+        WHERE p.member_id = m.member_id and p.category_id = c.category_id
+        order by PRODUCT_ID desc
+    </select>
 
-
-
-    <resultMap id="ItemResultMap" type="com.PTUproj.dto.ItemDTO">
-        <result column = "product_id" property = "productId" />
-        <result column = "product_name" property = "productName" />
-        <result column = "product_img1" property = "productImg1" />
-        <result column = "product_img2" property = "productImg2" />
-        <result column = "product_img3" property = "productImg3" />
-        <result column = "product_description" property = "productDescription" />
-        <result column = "product_price" property = "productPrice" />
-        <result column = "product_date" property = "productDate" />
-        <result column = "category_id" property = "categoryId" />
-        <result column = "member_id" property = "memberId" />
-        <result column = "member_email" property = "memberEmail" />
-    </resultMap>
+<!--    <resultMap id="ItemResultMap" type="com.PTUproj.dto.ItemDTO">-->
+<!--        <result column = "product_id" property = "productId" />-->
+<!--        <result column = "product_name" property = "productName" />-->
+<!--        <result column = "product_img1" property = "productImg1" />-->
+<!--        <result column = "product_img2" property = "productImg2" />-->
+<!--        <result column = "product_img3" property = "productImg3" />-->
+<!--        <result column = "product_description" property = "productDescription" />-->
+<!--        <result column = "product_price" property = "productPrice" />-->
+<!--        <result column = "product_date" property = "productDate" />-->
+<!--        <result column = "category_id" property = "categoryId" />-->
+<!--        <result column = "member_id" property = "memberId" />-->
+<!--        <result column = "member_email" property = "memberEmail" />-->
+<!--    </resultMap>-->
 
 </mapper>

@@ -531,36 +531,36 @@
 <!-- e: Pick Your Favorite(240919) -->
 <section>
 <div class="container">
-    <h2>Board List</h2>
+    <h2>Product List</h2>
 
     <div class="row">
-        <c:forEach var="board" items="${boardList}">
+        <c:forEach var="item" items="${productList}">
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">${board.boardTitle}</h5>
-                        <p class="card-text">작성자: ${board.boardWriter}</p>
-                        <p class="card-text">조회수: ${board.boardHits}</p>
-                        <p class="card-text">작성일: ${board.boardCreatedTime}</p>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${board.id}">
+                        <h5 class="card-title">${item.productName}</h5>
+                        <p class="card-text">작성자: ${item.memberEmail}</p>
+                        <p class="card-text">조회수: ${item.productPrice}</p>
+                        <p class="card-text">작성일: ${item.productDate}</p>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${item.productId}">
                             자세히 보기
                         </button>
                     </div>
                 </div>
             </div>
             <!-- 모달 정의 -->
-            <div class="modal fade" id="Modal${board.id}" tabindex="-1" aria-labelledby="ModalLabel${board.id}" aria-hidden="true">
+            <div class="modal fade" id="Modal${item.productId}" tabindex="-1" aria-labelledby="ModalLabel${item.productId}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel${board.id}">${board.boardTitle}</h5>
+                            <h5 class="modal-title" id="ModalLabel${item.productId}">${item.productName}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>${board.boardContents}</p>
-                            <p>작성자: ${board.boardWriter}</p>
-                            <p>조회수: ${board.boardHits}</p>
-                            <p>작성일: ${board.boardCreatedTime}</p>
+                            <p>${item.productDescription}</p>
+                            <p>작성자: ${item.memberEmail}</p>
+                            <p>조회수: ${item.productPrice}</p>
+                            <p>작성일: ${item.productDate}</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
