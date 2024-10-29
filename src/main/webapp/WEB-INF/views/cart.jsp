@@ -18,7 +18,7 @@
   <table class="table">
     <thead>
     <tr>
-      <th>상품 ID</th>
+      <th>상품명</th>
       <th>수량</th>
       <th>작업</th>
     </tr>

@@ -1,8 +1,10 @@
 package com.PTUproj;
 
 import com.PTUproj.dto.BoardDTO;
+import com.PTUproj.dto.ItemDTO;
 import com.PTUproj.dto.MemberDTO;
 import com.PTUproj.service.BoardService;
+import com.PTUproj.service.ItemService;
 import com.PTUproj.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import java.util.Map;
 public class mainController {
 
     private final MemberService memberService;  //의존성을 주입함
+    private final ItemService itemService; // 의존성 주입
 
 
     //    @GetMapping("/")
@@ -27,8 +30,8 @@ public class mainController {
 //    }
     @GetMapping("/")
     public String showBoardList(Model model) {
-        List<BoardDTO> boardList = boardService.findAll();
-        model.addAttribute("boardList", boardList);
+        List<ItemDTO> productList = itemService.findAllp();
+        model.addAttribute("productList", productList);
         return "main"; // 위에서 작성한 JSP 파일
     }
 

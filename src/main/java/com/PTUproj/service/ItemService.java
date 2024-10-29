@@ -1,5 +1,6 @@
 package com.PTUproj.service;
 
+import com.PTUproj.dto.BoardDTO;
 import com.PTUproj.dto.ItemDTO;
 import com.PTUproj.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,5 +30,8 @@ public class ItemService {
 
         return itemRepository.selectProductBySearch(itemDTO);
     }
-}
 
+    public List<ItemDTO> findAllp() {
+        return itemRepository.findAllp();
+    }
+}
