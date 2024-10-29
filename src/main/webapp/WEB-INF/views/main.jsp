@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>main page</title>
@@ -530,59 +531,135 @@
 </section>
 <!-- e: Pick Your Favorite(240919) -->
 <section>
-<div class="container">
-    <h2>Product List</h2>
+<%--<div class="container">--%>
+<%--    <h2>Product List</h2>--%>
 
-    <div class="row">
-        <c:forEach var="item" items="${productList}">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">${item.productName}</h5>
-                        <p class="card-text">작성자: ${item.memberEmail}</p>
-                        <p class="card-text">조회수: ${item.productPrice}</p>
-                        <p class="card-text">작성일: ${item.productDate}</p>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${item.productId}">
-                            자세히 보기
-                        </button>
-                        <!-- 장바구니에 담기 버튼 추가 -->
-                        <form action="addToCart" method="post" class="d-inline">
-                            <input type="hidden" name="productId" value="${item.productName}"/>
-                            <input type="hidden" name="quantity" value="1"/> <!-- 기본 수량 1로 설정 -->
-                            <button type="submit" class="btn btn-success">장바구니에 담기</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- 모달 정의 -->
-            <div class="modal fade" id="Modal${item.productId}" tabindex="-1" aria-labelledby="ModalLabel${item.productId}" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel${item.productId}">${item.productName}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>${item.productDescription}</p>
-                            <p>작성자: ${item.memberEmail}</p>
-                            <p>조회수: ${item.productPrice}</p>
-                            <p>작성일: ${item.productDate}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <form action="<c:url value='/addToCart' />" method="post" class="d-inline">
-                                <input type="hidden" name="productId" value="${item.productName}"/>
-                                <input type="number" name="quantity" min="1" value="1" required/>
-                                <button type="submit" class="btn btn-success">장바구니에 담기</button>
-                            </form>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                        </div>
+<%--    <div class="row">--%>
+<%--        <c:forEach var="item" items="${productList}">--%>
+<%--            <c:if test="${item.categoryId == 4}">--%>
+<%--            <div class="col-md-4">--%>
+<%--                <div class="card">--%>
+<%--                    <div class="card-body">--%>
+<%--                        <h5 class="card-title">${item.productName}</h5>--%>
+<%--                        <p class="card-text">작성자: ${item.memberEmail}</p>--%>
+<%--                        <p class="card-text">가격: ${item.productPrice}</p>--%>
+<%--                        <p class="card-text">작성일: ${item.productDate}</p>--%>
+<%--                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${item.productId}">--%>
+<%--                            자세히 보기--%>
+<%--                        </button>--%>
+<%--                        <!-- 장바구니에 담기 버튼 추가 -->--%>
+<%--                        <form action="addToCart" method="post" class="d-inline">--%>
+<%--                            <input type="hidden" name="productId" value="${item.productName}"/>--%>
+<%--                            <input type="hidden" name="quantity" value="1"/> <!-- 기본 수량 1로 설정 -->--%>
+<%--                            <button type="submit" class="btn btn-success">장바구니에 담기</button>--%>
+<%--                        </form>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <!-- 모달 정의 -->--%>
+<%--            <div class="modal fade" id="Modal${item.productId}" tabindex="-1" aria-labelledby="ModalLabel${item.productId}" aria-hidden="true">--%>
+<%--                <div class="modal-dialog">--%>
+<%--                    <div class="modal-content">--%>
+<%--                        <div class="modal-header">--%>
+<%--                            <h5 class="modal-title" id="ModalLabel${item.productId}">${item.productName}</h5>--%>
+<%--                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--                        </div>--%>
+<%--                        <div class="modal-body">--%>
+<%--                            <p>${item.productDescription}</p>--%>
+<%--                            <p>작성자: ${item.memberEmail}</p>--%>
+<%--                            <p>가격:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>--%>
+<%--                            <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>--%>
+<%--                        </div>--%>
+<%--                        <div class="modal-footer">--%>
+<%--                            <form action="<c:url value='/addToCart' />" method="post" class="d-inline">--%>
+<%--                                <input type="hidden" name="productId" value="${item.productName}"/>--%>
+<%--                                <input type="number" name="quantity" min="1" value="1" required/>--%>
+<%--                                <button type="submit" class="btn btn-success">장바구니에 담기</button>--%>
+<%--                            </form>--%>
+<%--                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
+<%--                        </div>--%>
 
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </c:if>--%>
+<%--        </c:forEach>--%>
+<%--    </div>--%>
+<%--</div>--%>
+    <div class="container">
+        <h2>Product List</h2>
+
+        <!-- 카테고리 선택창 -->
+        <div class="mb-3">
+            <label for="categorySelect" class="form-label">카테고리 선택</label>
+            <select class="form-select" id="categorySelect" onchange="filterProducts()">
+                <option value="all">전체</option>
+                <option value="3">소모임</option>
+                <option value="4">웹사이트</option>
+            </select>
+        </div>
+
+        <div class="row" id="productList">
+            <c:forEach var="item" items="${productList}">
+                <c:if test="${item.categoryId == 4}">
+                    <div class="col-md-4 product-item" data-category="${item.categoryId}">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.productName}</h5>
+                                <p class="card-text">작성자: ${item.memberEmail}</p>
+                                <p class="card-text">가격: ${item.productPrice}</p>
+                                <p class="card-text">작성일: ${item.productDate}</p>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${item.productId}">
+                                    자세히 보기
+                                </button>
+                                <form action="addToCart" method="post" class="d-inline">
+                                    <input type="hidden" name="productId" value="${item.productId}"/>
+                                    <input type="hidden" name="quantity" value="1"/>
+                                    <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </c:forEach>
+                </c:if>
+                <c:if test="${item.categoryId == 3}">
+                    <div class="col-md-4 product-item" data-category="${item.categoryId}">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.productName}</h5>
+                                <p class="card-text">작성자: ${item.memberEmail}</p>
+                                <p class="card-text">가격: ${item.productPrice}</p>
+                                <p class="card-text">작성일: ${item.productDate}</p>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${item.productId}">
+                                    자세히 보기
+                                </button>
+                                <form action="addToCart" method="post" class="d-inline">
+                                    <input type="hidden" name="productId" value="${item.productId}"/>
+                                    <input type="hidden" name="quantity" value="1"/>
+                                    <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+            </c:forEach>
+        </div>
     </div>
-</div>
+
+    <script>
+        function filterProducts() {
+            const selectedCategory = document.getElementById("categorySelect").value;
+            const productItems = document.querySelectorAll(".product-item");
+
+            productItems.forEach(item => {
+                const itemCategory = item.getAttribute("data-category");
+                if (selectedCategory === "all" || selectedCategory === itemCategory) {
+                    item.style.display = "block"; // 보여주기
+                } else {
+                    item.style.display = "none"; // 숨기기
+                }
+            });
+        }
+    </script>
 
 
 
