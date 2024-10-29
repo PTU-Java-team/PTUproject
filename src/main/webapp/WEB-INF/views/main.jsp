@@ -545,6 +545,12 @@
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${board.id}">
                             자세히 보기
                         </button>
+                        <!-- 장바구니에 담기 버튼 추가 -->
+                        <form action="addToCart" method="post" class="d-inline">
+                            <input type="hidden" name="productId" value="${board.id}"/>
+                            <input type="hidden" name="quantity" value="1"/> <!-- 기본 수량 1로 설정 -->
+                            <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -563,9 +569,14 @@
                             <p>작성일: ${board.boardCreatedTime}</p>
                         </div>
                         <div class="modal-footer">
+                            <form action="<c:url value='/addToCart' />" method="post" class="d-inline">
+                                <input type="hidden" name="productId" value="${board.id}"/>
+                                <input type="number" name="quantity" min="1" value="1" required/>
+                                <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                            </form>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                            <button type="button" class="btn btn-primary">저장 변경사항</button>
                         </div>
+
                     </div>
                 </div>
             </div>

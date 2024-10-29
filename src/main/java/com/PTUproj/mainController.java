@@ -223,6 +223,26 @@ public class mainController {
         return "redirect:/cart"; // 장바구니 페이지로 이동
     }
 
+    @PostMapping("/removeFromCart")
+    public String removeFromCart(@RequestParam String productId, HttpSession session) {
+        Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
+        if (cart != null) {
+            // 현재 상품의 수량 가져오기
+            Integer currentQuantity = cart.get(productId);
+
+            if (currentQuantity != null) {
+                if (currentQuantity > 1) {
+                    // 수량이 1보다 크면 1 줄임
+                    cart.put(productId, currentQuantity - 1);
+                } else {
+                    // 수량이 1이면 해당 상품 삭제
+                    cart.remove(productId);
+                }
+                session.setAttribute("cart", cart); // 수정된 장바구니를 다시 세션에 저장
+            }
+        }
+        return "redirect:/cart"; // 장바구니 페이지로 이동
+    }
 
     //
 
