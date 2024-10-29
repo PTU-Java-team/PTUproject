@@ -1,5 +1,5 @@
 package com.PTUproj.service;
-/*
+
 import com.PTUproj.dto.ItemDTO;
 import com.PTUproj.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,4 +31,3 @@ public class ItemService {
     }
 }
 
- */

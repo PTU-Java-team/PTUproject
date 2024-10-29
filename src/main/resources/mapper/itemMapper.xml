@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace = "ItemMapper"><!--
+<mapper namespace = "ItemMapper">
     <insert id="insertProduct" parameterType="com.PTUproj.dto.ItemDTO">
-        insert into TEST.product_table (product_name, product_img1, product_img2, product_description, product_price, category_id, member_id)
+        insert into product_table (product_name, product_img1, product_img2, product_description, product_price, category_id, member_id)
         values (#{productName}, #{productImg1}, #{productImg2}, #{productDescription}, #{productPrice}, #{categoryId}, (select member_id from member_table where member_email = #{memberEmail}))
     </insert>
 
+    <!--등록된 상품 검색을 위한 select문(product_table, member_table, category_table - inner join)-->
     <select id="selectProductBySearch" resultType="com.PTUproj.dto.ItemDTO" parameterType="com.PTUproj.dto.ItemDTO">
         SELECT p.product_id AS productId,
                p.product_name AS productName,
@@ -16,12 +17,13 @@
                p.product_date AS productDate,
                p.category_id AS categoryId,
                m.member_id AS memberId,
-               m.member_email AS memberEmail
-        FROM product_table p
-                 JOIN member_table m ON p.member_id = m.member_id
-        WHERE p.product_name LIKE '%' || #{productName} || '%'
+               m.member_email AS memberEmail,
+               c.CATEGORY_NAME AS categoryName
+        FROM product_table p, member_table m , category_table c
+        WHERE p.member_id = m.member_id and p.category_id = c.category_id and p.product_name LIKE '%' || #{productName} || '%'
         ORDER BY p.product_id DESC
     </select>
+
 
 
 
@@ -38,5 +40,5 @@
         <result column = "member_id" property = "memberId" />
         <result column = "member_email" property = "memberEmail" />
     </resultMap>
--->
+
 </mapper>

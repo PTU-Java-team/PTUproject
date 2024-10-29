@@ -53,6 +53,58 @@ public class BoardService {
 
         return boardRepository.pagingListb(pagingParams);
     }
+    //지피티
+//    int blockLimit=10;
+//    public PageDTO pagingParam(int page) {
+//        // 오류 발생 가능성 체크
+//        int boardCount = boardRepository.boardCount();
+//        if (boardCount <= 0) {
+//            throw new RuntimeException("게시글의 개수가 0입니다.");
+//        }
+//
+//        int maxPage = (int) (Math.ceil((double) boardCount / pageLimit));
+//
+//        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+//        int endPage = startPage + blockLimit - 1;
+//        if (endPage > maxPage) {
+//            endPage = maxPage;
+//        }
+//
+//        // 디버깅용으로 값들을 출력해보기
+//        System.out.println("pageLimit: " + pageLimit);
+//        System.out.println("blockLimit: " + blockLimit);
+//        System.out.println("boardCount: " + boardCount);
+//        System.out.println("maxPage: " + maxPage);
+//        System.out.println("startPage: " + startPage);
+//        System.out.println("endPage: " + endPage);
+//
+//        PageDTO pageDTO = new PageDTO();
+//        pageDTO.setPage(page);
+//        pageDTO.setMaxPage(maxPage);
+//        pageDTO.setStartPage(startPage);
+//        pageDTO.setEndPage(endPage);
+//        return pageDTO;
+//    }
+    /*
 
+    public PageDTO pagingParam(int page) {
+       //10개씩 마진 남기는 구간
+        int boardCount = boardRepository.boardCount();
+
+        int maxPage = (int) (Math.ceil((double) boardCount / pageLimit));
+
+
+        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+
+        int endPage = startPage + blockLimit - 1;
+        if (endPage > maxPage) {
+            endPage = maxPage;
+        }
+        PageDTO pageDTO = new PageDTO();
+        pageDTO.setPage(page);
+        pageDTO.setMaxPage(maxPage);
+        pageDTO.setStartPage(startPage);
+        pageDTO.setEndPage(endPage);
+        return pageDTO;
+    }*/
 }
-

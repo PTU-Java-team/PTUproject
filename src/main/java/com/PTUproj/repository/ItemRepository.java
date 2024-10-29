@@ -1,5 +1,5 @@
 package com.PTUproj.repository;
-/*
+
 import com.PTUproj.dto.ItemDTO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -83,4 +83,3 @@ public class ItemRepository {
 
 
 }
- */

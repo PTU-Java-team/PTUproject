@@ -1,11 +1,7 @@
 package com.PTUproj;
 
-//import com.PTUproj.dto.BoardDTO;
-//import com.PTUproj.dto.CommentDTO;
 import com.PTUproj.dto.BoardDTO;
 import com.PTUproj.dto.MemberDTO;
-//import com.PTUproj.service.BoardService;
-//import com.PTUproj.service.CommentService;
 import com.PTUproj.service.BoardService;
 import com.PTUproj.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -23,14 +19,22 @@ import java.util.Map;
 public class mainController {
 
     private final MemberService memberService;  //의존성을 주입함
-    private final BoardService boardService;
-    //게시판 컨트롤러
-    //private final BoardService boardService;
 
 
+    //    @GetMapping("/")
+//    public String main() {      //시작 화면
+//        return "main";
+//    }
     @GetMapping("/")
-    public String main() {      //시작 화면
-        return "main";
+    public String showBoardList(Model model) {
+        List<BoardDTO> boardList = boardService.findAll();
+        model.addAttribute("boardList", boardList);
+        return "main"; // 위에서 작성한 JSP 파일
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        return "index";
     }
 
     //밑에 3개가 상단 메뉴
@@ -43,12 +47,12 @@ public class mainController {
     public String website() {
         return "website";
     }
-
+/*
     @GetMapping("/sell")    //판매
     public String sell() {
         return "sell";
     }
-
+*/
     //하단 메뉴 컨트롤러
     @GetMapping("/ECRole")  //이용약관
     public String ECRole() {
@@ -196,18 +200,6 @@ public class mainController {
     }
 
 
-    // 장바구니에 상품 추가
-    @PostMapping("/addToCart")
-    public String addToCart(@RequestParam String productId, @RequestParam int quantity, HttpSession session) {
-        Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
-        if (cart == null) {
-            cart = new HashMap<>();
-        }
-        cart.put(productId, cart.getOrDefault(productId, 0) + quantity);
-        session.setAttribute("cart", cart);
-        return "redirect:/cart"; // 장바구니 페이지로 리다이렉트
-    }
-
     // 장바구니 페이지로 이동
     @GetMapping("/cart")
     public String viewCart(Model model, HttpSession session) {
@@ -219,26 +211,28 @@ public class mainController {
         return "cart"; // cart.jsp 페이지로 이동
     }
 
-    // 장바구니에서 상품 삭제
-    @PostMapping("/removeFromCart")
-    public String removeFromCart(@RequestParam String productId, HttpSession session) {
+    // 장바구니에 상품 추가
+    @PostMapping("/addToCart")
+    public String addToCart(@RequestParam String productId, @RequestParam int quantity, HttpSession session) {
         Map<String, Integer> cart = (Map<String, Integer>) session.getAttribute("cart");
-        if (cart != null && cart.containsKey(productId)) {
-            int quantity = cart.get(productId);
-            if (quantity > 1) {
-                cart.put(productId, quantity - 1); // 수량 감소
-            } else {
-                cart.remove(productId); // 삭제
-            }
-            session.setAttribute("cart", cart);
+        if (cart == null) {
+            cart = new HashMap<>();
         }
-        return "redirect:/cart"; // 장바구니 페이지로 리다이렉트
+        cart.put(productId, cart.getOrDefault(productId, 0) + quantity);
+        session.setAttribute("cart", cart);
+        return "redirect:/cart"; // 장바구니 페이지로 이동
     }
 
-    @GetMapping("/index")
-    public String index() {
-        return "index";
-    }
+
+    //
+
+    //
+
+
+    //
+    //게시판 컨트롤러
+    private final BoardService boardService;
+    // private final CommentService commentService;
 
     @GetMapping("/b_save")
     public String saveFormb() {
@@ -262,7 +256,7 @@ public class mainController {
         return "board/b_list";
     }
 
-    @GetMapping
+    @GetMapping("/b_detail")
     public String findByIdb(@RequestParam("id") Long id,
                             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                             Model model) {
@@ -294,7 +288,7 @@ public class mainController {
         BoardDTO dto = boardService.findById(boardDTO.getId());
         model.addAttribute("board", dto);
         return "board/b_detail";
-    //        return "redirect:/board?id="+boardDTO.getId();
+//        return "redirect:/board?id="+boardDTO.getId();
     }
 
     // /board/paging?page=2
@@ -311,10 +305,12 @@ public class mainController {
         // model.addAttribute("paging", pageDTO);
         return "board/b_paging";
     }
+
+
+
 }
 
 
-// private final CommentService commentService;
 
 
 //    //comment
@@ -330,3 +326,12 @@ public class mainController {
 //    }
 //}
 //
+
+
+
+
+
+
+
+
+

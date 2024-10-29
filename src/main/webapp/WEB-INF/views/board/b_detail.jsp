@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Anemo
-  Date: 24. 10. 28.
-  Time: 오전 10:17
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -61,7 +54,7 @@
       <tr>
         <td>${comment.id}</td>
         <td>${comment.commentWriter}</td>
-        <td>${comment.commentContent}</td>
+        <td>${comment.commentContents}</td>
         <td>${comment.commentCreatedTime}</td>
       </tr>
     </c:forEach>
@@ -114,7 +107,7 @@
         output += "</table>";
         document.getElementById('comment-list').innerHTML = output;
         document.getElementById('commentWriter').value='';
-        document.getElementById('commentContent').value='';
+        document.getElementById('commentContents').value='';
       },
       error: function() {
         console.log("실패");
