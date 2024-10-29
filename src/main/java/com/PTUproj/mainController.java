@@ -1,10 +1,8 @@
 package com.PTUproj;
 
 import com.PTUproj.dto.BoardDTO;
-import com.PTUproj.dto.CommentDTO;
 import com.PTUproj.dto.MemberDTO;
 import com.PTUproj.service.BoardService;
-import com.PTUproj.service.CommentService;
 import com.PTUproj.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,10 +21,16 @@ public class mainController {
     private final MemberService memberService;  //의존성을 주입함
 
 
-    @GetMapping("/")
-    public String main() {      //시작 화면
-        return "main";
-    }
+//    @GetMapping("/")
+//    public String main() {      //시작 화면
+//        return "main";
+//    }
+@GetMapping("/")
+public String showBoardList(Model model) {
+    List<BoardDTO> boardList = boardService.findAll();
+    model.addAttribute("boardList", boardList);
+    return "main"; // 위에서 작성한 JSP 파일
+}
 
     @GetMapping("/index")
     public String index() {
@@ -252,7 +256,7 @@ public class mainController {
         return "board/b_list";
     }
 
-    @GetMapping
+    @GetMapping("/b_detail")
     public String findByIdb(@RequestParam("id") Long id,
                             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                             Model model) {
@@ -301,7 +305,12 @@ public class mainController {
         // model.addAttribute("paging", pageDTO);
         return "board/b_paging";
     }
+
+
+
 }
+
+
 
 
 //    //comment
@@ -317,6 +326,10 @@ public class mainController {
 //    }
 //}
 //
+
+
+
+
 
 
 

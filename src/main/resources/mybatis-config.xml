@@ -8,5 +8,7 @@
         <typeAlias type="com.PTUproj.dto.CommentDTO" alias="comment"></typeAlias>
 
     </typeAliases>
-
+<!--    <settings>-->
+<!--        <setting name="jdbcTypeForNull" value="VARCHAR"/>-->
+<!--    </settings>-->
 </configuration>
