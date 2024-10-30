@@ -202,13 +202,13 @@
 
             <!-- 관리자인 경우 회원 목록 관리 링크 추가 -->
             <c:if test="${sessionScope.isAdmin == '1'}">
-                <li><a href="/list">회원 목록 관리</a></li>
+                <li><a href="/list">  회원 목록 관리  </a></li>
             </c:if>
 
-            <li><a href="/cart">장바구니 목록</a></li>
-            <li><a href="/logout" style="color: black;">Logout</a></li>
+            <li><a href="/cart">  장바구니  </a></li>
+            <li><a href="/logout" style="color: black;">  Logout  </a></li>
             <% } else { %>
-            <li><a href="/logins" style="color: black;">Get Started</a></li>
+            <li><a href="/logins" style="color: black;">  Get Started  </a></li>
             <% } %>
         </ul>
     </div>
