@@ -259,10 +259,10 @@
         <div class="collapse navbar-collapse" id="navbarNav"> <!-- 메뉴 항목 -->
             <div class="navbar-nav mx-auto"> <!-- 중앙 배치 -->
                 <a class="nav-link active btn btn-danger btn-lg mx-4" aria-current="page" href="#" style="padding: 15px 27px; color: white;">Home</a>
-                <a class="nav-link btn btn-lg mx-4" href="/smallGroup" style="padding: 15px 50px;">online community</a>
-                <a class="nav-link btn btn-lg mx-4" href="/website" style="padding: 15px 50px;">website</a>
+            <!--    <a class="nav-link btn btn-lg mx-4" href="/smallGroup" style="padding: 15px 50px;">online community</a>
+                <a class="nav-link btn btn-lg mx-4" href="/website" style="padding: 15px 50px;">website</a>-->
                 <a class="nav-link btn btn-lg mx-4" href="/sell" style="padding: 15px 50px;" aria-disabled="true">product sell</a>
-                <a class="nav-link btn btn-lg mx-4" href="/index" style="padding: 15px 50px;" aria-disabled="true">게시물</a>
+                <!--<a class="nav-link btn btn-lg mx-4" href="/index" style="padding: 15px 50px;" aria-disabled="true">게시물</a>-->
             </div>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: auto; display: flex">
@@ -296,46 +296,6 @@
         background-color: #f0f0f0; /* 회색 비슷한 색상 */
     }
 </style>
-
-
-
-
-<!-- product search 상품검색 창-->
-<br><br><br>
-<div class="search inner-div">
-    <form action="<c:url value='/searchProductConfirm' />" name="search_product_form" method="get">
-        <input type="text" name="productName" placeholder="Search for products">
-        <input type="button" value="search" onclick="searchProductForm();">
-    </form>
-</div><br><br>
-
-<%--상품 검색 결과 form include--%>
-<div>
-    <jsp:include page="./search_product.jsp" />
-</div><br><br>
-
-
-<script type="text/javascript">
-
-    function searchProductForm() {
-        console.log('searchBookForm() CALLED!!');
-
-        let form = document.search_product_form;
-
-        if (form.productName.value == '') {
-            alert('Enter the name of the book you are looking for.');
-            form.productName.focus();
-
-        } else {
-            form.submit();
-
-        }
-
-    }
-
-</script>
-
-
 
 
 <!-- Banner -->
@@ -531,61 +491,47 @@
 </section>
 <!-- e: Pick Your Favorite(240919) -->
 <section>
-<%--<div class="container">--%>
-<%--    <h2>Product List</h2>--%>
 
-<%--    <div class="row">--%>
-<%--        <c:forEach var="item" items="${productList}">--%>
-<%--            <c:if test="${item.categoryId == 4}">--%>
-<%--            <div class="col-md-4">--%>
-<%--                <div class="card">--%>
-<%--                    <div class="card-body">--%>
-<%--                        <h5 class="card-title">${item.productName}</h5>--%>
-<%--                        <p class="card-text">작성자: ${item.memberEmail}</p>--%>
-<%--                        <p class="card-text">가격: ${item.productPrice}</p>--%>
-<%--                        <p class="card-text">작성일: ${item.productDate}</p>--%>
-<%--                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${item.productId}">--%>
-<%--                            자세히 보기--%>
-<%--                        </button>--%>
-<%--                        <!-- 장바구니에 담기 버튼 추가 -->--%>
-<%--                        <form action="addToCart" method="post" class="d-inline">--%>
-<%--                            <input type="hidden" name="productId" value="${item.productName}"/>--%>
-<%--                            <input type="hidden" name="quantity" value="1"/> <!-- 기본 수량 1로 설정 -->--%>
-<%--                            <button type="submit" class="btn btn-success">장바구니에 담기</button>--%>
-<%--                        </form>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <!-- 모달 정의 -->--%>
-<%--            <div class="modal fade" id="Modal${item.productId}" tabindex="-1" aria-labelledby="ModalLabel${item.productId}" aria-hidden="true">--%>
-<%--                <div class="modal-dialog">--%>
-<%--                    <div class="modal-content">--%>
-<%--                        <div class="modal-header">--%>
-<%--                            <h5 class="modal-title" id="ModalLabel${item.productId}">${item.productName}</h5>--%>
-<%--                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                        </div>--%>
-<%--                        <div class="modal-body">--%>
-<%--                            <p>${item.productDescription}</p>--%>
-<%--                            <p>작성자: ${item.memberEmail}</p>--%>
-<%--                            <p>가격:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>--%>
-<%--                            <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>--%>
-<%--                        </div>--%>
-<%--                        <div class="modal-footer">--%>
-<%--                            <form action="<c:url value='/addToCart' />" method="post" class="d-inline">--%>
-<%--                                <input type="hidden" name="productId" value="${item.productName}"/>--%>
-<%--                                <input type="number" name="quantity" min="1" value="1" required/>--%>
-<%--                                <button type="submit" class="btn btn-success">장바구니에 담기</button>--%>
-<%--                            </form>--%>
-<%--                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
-<%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </c:if>--%>
-<%--        </c:forEach>--%>
-<%--    </div>--%>
-<%--</div>--%>
+
+    <!-- product search 상품검색 창-->
+    <br><br><br>
+<!--    <div class="search inner-div">
+        <form action="<c:url value='/searchProductConfirm' />" name="search_product_form" method="get">
+            <input type="text" name="productName" placeholder="Search for products">
+            <input type="button" value="search" onclick="searchProductForm();">
+        </form>
+    </div><br><br>
+
+    <%--상품 검색 결과 form include--%>
+    <c:if test="${not empty param.productName}">
+        <div>
+            <jsp:include page="./search_product.jsp" />
+        </div><br><br>
+    </c:if>
+
+    <script type="text/javascript">
+
+        function searchProductForm() {
+            console.log('searchBookForm() CALLED!!');
+
+            let form = document.search_product_form;
+
+            if (form.productName.value == '') {
+                alert('Enter the name of the book you are looking for.');
+                form.productName.focus();
+
+            } else {
+                form.submit();
+
+            }
+
+        }
+
+    </script>-->
+
+
+<%--    <c:if test="${empty param.productName}">--%>
     <div class="container">
         <h2>Product List</h2>
 
@@ -620,6 +566,32 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 모달 정의 -->
+                    <div class="modal fade" id="Modal${item.productId}" tabindex="-1" aria-labelledby="ModalLabel${item.productId}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalLabel${item.productId}">${item.productName}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>${item.productDescription}</p>
+                                    <p>작성자: ${item.memberEmail}</p>
+                                    <p>가격:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
+                                    <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="<c:url value='/addToCart' />" method="post" class="d-inline">
+                                        <input type="hidden" name="productId" value="${item.productName}"/>
+                                        <input type="number" name="quantity" min="1" value="1" required/>
+                                        <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </c:if>
                 <c:if test="${item.categoryId == 3}">
                     <div class="col-md-4 product-item" data-category="${item.categoryId}">
@@ -637,6 +609,31 @@
                                     <input type="hidden" name="quantity" value="1"/>
                                     <button type="submit" class="btn btn-success">장바구니에 담기</button>
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 모달 정의 -->
+                    <div class="modal fade" id="Modal${item.productId}" tabindex="-1" aria-labelledby="ModalLabel${item.productId}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalLabel${item.productId}">${item.productName}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>${item.productDescription}</p>
+                                    <p>작성자: ${item.memberEmail}</p>
+                                    <p>가격:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
+                                    <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="<c:url value='/addToCart' />" method="post" class="d-inline">
+                                        <input type="hidden" name="productId" value="${item.productName}"/>
+                                        <input type="number" name="quantity" min="1" value="1" required/>
+                                        <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                </div>
                             </div>
                         </div>
                     </div>
