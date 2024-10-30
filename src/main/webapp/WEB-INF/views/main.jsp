@@ -263,8 +263,10 @@
         <div class="collapse navbar-collapse" id="navbarNav"> <!-- 메뉴 항목 -->
             <div class="navbar-nav mx-auto"> <!-- 중앙 배치 -->
                 <a class="nav-link active btn btn-danger btn-lg mx-4" aria-current="page" href="#" style="padding: 15px 27px; color: white;">Home</a>
-            <!--    <a class="nav-link btn btn-lg mx-4" href="/smallGroup" style="padding: 15px 50px;">online community</a>
-                <a class="nav-link btn btn-lg mx-4" href="/website" style="padding: 15px 50px;">website</a>-->
+                <a class="nav-link btn btn-lg mx-4" href="#modal0" data-bs-toggle="modal" data-bs-target="#modal0" style="padding: 15px 50px;">About us</a>
+
+                <!--    <a class="nav-link btn btn-lg mx-4" href="/smallGroup" style="padding: 15px 50px;">online community</a>
+                    <a class="nav-link btn btn-lg mx-4" href="/website" style="padding: 15px 50px;">website</a>-->
                 <a class="nav-link btn btn-lg mx-4" href="/sell" style="padding: 15px 50px;" aria-disabled="true">product sell</a>
                 <!--<a class="nav-link btn btn-lg mx-4" href="/index" style="padding: 15px 50px;" aria-disabled="true">게시물</a>-->
             </div>
