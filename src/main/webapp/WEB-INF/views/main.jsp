@@ -90,12 +90,12 @@
             margin: 4em 0 0 0;
         }
 
-        #banner header {
-            background-color: rgba(34, 30, 31, 0.98);
-            display: inline-block;
-            padding: 2.5em 5em;
-            border-radius: 5px;
-        }
+        /*#banner header {*/
+        /*    background-color: rgba(34, 30, 31, 0.98);*/
+        /*    display: inline-block;*/
+        /*    padding: 2.5em 5em;*/
+        /*    border-radius: 5px;*/
+        /*}*/
 
         #banner header h2 {
             color: #fff;
@@ -121,14 +121,19 @@
         #intro section {
             margin: 3em 0;
             padding: 2.5em 0;
+            background: rgba(255, 255, 255, 0.8); /* 배경을 약간 투명하게 */
+            border-radius: 10px; /* 둥근 모서리 */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
         }
 
         #intro h2 {
             font-size: 1.75em;
+            color: #333; /* 제목 색상 */
         }
 
         #intro p {
             margin: 0;
+            color: #666; /* 본문 색상 */
         }
 
         #intro .middle {
@@ -136,28 +141,25 @@
             z-index: 1;
         }
 
+        #intro .middle:before,
+        #intro .middle:after {
+            /* 이 부분을 주석 처리하거나 삭제 */
+            /* content: ''; */
+            /* width: 32px; */
+            /* height: 100%; */
+            /* position: absolute; */
+            /* top: 0; */
+            /* display: block; */
+            /* z-index: -1; */
+            /* box-shadow: 32px 0 0 0 #fff, 0 -32px 0 0 #fff, 0 32px 0 0 #fff, 32px 32px 0 0 #fff, 32px -32px 0 0 #fff, 0 0 32px 0 rgba(0, 0, 0, 0.15); */
+        }
+
         #intro .middle:before {
-            content: '';
-            width: 32px;
-            height: 100%;
-            position: absolute;
-            left: -24px;
-            top: 0;
-            display: block;
-            z-index: -1;
-            box-shadow: 32px 0 0 0 #fff, 0 -32px 0 0 #fff, 0 32px 0 0 #fff, 32px 32px 0 0 #fff, 32px -32px 0 0 #fff, 0 0 32px 0 rgba(0, 0, 0, 0.15);
+            /* left: -24px; */
         }
 
         #intro .middle:after {
-            content: '';
-            width: 32px;
-            height: 100%;
-            position: absolute;
-            right: -24px;
-            top: 0;
-            display: block;
-            z-index: -1;
-            box-shadow: -32px 0 0 0 #fff, 0 -32px 0 0 #fff, 0 32px 0 0 #fff, -32px 32px 0 0 #fff, -32px -32px 0 0 #fff, 0 0 32px 0 rgba(0, 0, 0, 0.15);
+            /* right: -24px; */
         }
 
         #intro .button {
@@ -204,8 +206,10 @@
             </c:if>
 
             <li><a href="/cart">장바구니 목록</a></li>
+            <li><a href="/logout" style="color: black;">Logout</a></li>
+            <% } else { %>
+            <li><a href="/logins" style="color: black;">Get Started</a></li>
             <% } %>
-
         </ul>
     </div>
 </div>
@@ -299,61 +303,57 @@
 
 
 <!-- Banner -->
+<!-- Banner -->
 <section id="banner">
-    <header>
-        <h2>The new generation of commerce</h2>
-        <p>Now you can trade anytime, comfortably and securely.</p>
-    </header>
-</section>
-
-<!-- Intro -->
-<section id="intro" class="container">
-    <div class="row">
-        <div class="col-4 col-12-medium">
-            <section class="first">
-                <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-window-sidebar" viewBox="0 0 16 16">
-                    <path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/>
-                    <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v2H1V3a1 1 0 0 1 1-1zM1 13V6h4v8H2a1 1 0 0 1-1-1m5 1V6h9v7a1 1 0 0 1-1 1z"/>
-                </svg><br><br><br>
-                <header>
-                    <h2>User Experience (UX)</h2>
-                </header>
-                <p>A seamless, intuitive interface enhances customer satisfaction and encourages repeat visits.</p>
-            </section>
-        </div>
-        <div class="col-4 col-12-medium">
-            <section class="middle">    <!--16-->
-                <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-hdd-rack-fill" viewBox="0 0 16 16">
-                    <path d="M2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1v2H2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1V7h1a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm.5 3a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m-2 7a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1M12 7v2H4V7z"/>
-                </svg><br><br><br>
-                <header>
-                    <h2>Trustworthiness</h2>
-                </header>
-                <p> It's all about safeguarding customer data and ensuring secure transactions.</p>
-            </section>
-        </div>
-        <div class="col-4 col-12-medium">
-            <section class="last">
-                <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-globe2" viewBox="0 0 16 16">
-                    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855q-.215.403-.395.872c.705.157 1.472.257 2.282.287zM4.249 3.539q.214-.577.481-1.078a7 7 0 0 1 .597-.933A7 7 0 0 0 3.051 3.05q.544.277 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9 9 0 0 1-1.565-.667A6.96 6.96 0 0 0 1.018 7.5zm1.4-2.741a12.3 12.3 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332M8.5 5.09V7.5h2.99a12.3 12.3 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.6 13.6 0 0 1 7.5 10.91V8.5zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741zm-3.282 3.696q.18.469.395.872c.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a7 7 0 0 1-.598-.933 9 9 0 0 1-.481-1.079 8.4 8.4 0 0 0-1.198.49 7 7 0 0 0 2.276 1.522zm-1.383-2.964A13.4 13.4 0 0 1 3.508 8.5h-2.49a6.96 6.96 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667m6.728 2.964a7 7 0 0 0 2.275-1.521 8.4 8.4 0 0 0-1.197-.49 9 9 0 0 1-.481 1.078 7 7 0 0 1-.597.933M8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855q.216-.403.395-.872A12.6 12.6 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.96 6.96 0 0 0 14.982 8.5h-2.49a13.4 13.4 0 0 1-.437 3.008M14.982 7.5a6.96 6.96 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008zM11.27 2.461q.266.502.482 1.078a8.4 8.4 0 0 0 1.196-.49 7 7 0 0 0-2.275-1.52c.218.283.418.597.597.932m-.488 1.343a8 8 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"/>
-                </svg><br><br><br>
-                <header>
-                    <h2>Sustainability</h2>
-                </header>
-                <p>Adopting sustainable business practices <br>and eco-friendly policies plays a crucial role in <br>long-term success.</p>
-            </section>
-        </div>
-    </div><div><p><br><br></p></div>
-    <footer>
-        <ul class="actions">
-            <% if (session.getAttribute("loginEmail") == null) { %>
-            <li><a href="/logins" class="btn btn-primary btn-lg">Get Started</a></li>
-            <% } else { %>
-            <li><a href="/logout" class="btn btn-primary btn-lg">Logout</a></li>
-            <% } %>
-            <li><a href="#modal0" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#modal0">Learn More</a></li>
-        </ul>
-    </footer>
+    <!-- Intro -->
+    <section id="intro" class="container">
+        <div class="row">
+            <div class="col-4 col-12-medium">
+                <section class="first">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-window-sidebar" viewBox="0 0 16 16">
+                        <path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/>
+                        <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v2H1V3a1 1 0 0 1 1-1zM1 13V6h4v8H2a1 1 0 0 1-1-1m5 1V6h9v7a1 1 0 0 1-1 1z"/>
+                    </svg><br><br><br>
+                    <header>
+                        <h2 style="color: black">User Experience (UX)</h2>
+                    </header>
+                    <p>A seamless, intuitive interface enhances customer satisfaction and encourages repeat visits.</p>
+                </section>
+            </div>
+            <div class="col-4 col-12-medium">
+                <section class="middle">    <!--16-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-hdd-rack-fill" viewBox="0 0 16 16">
+                        <path d="M2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1v2H2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1V7h1a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm.5 3a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m-2 7a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1M12 7v2H4V7z"/>
+                    </svg><br><br><br>
+                    <header>
+                        <h2 style="color: black">Trustworthiness</h2>
+                    </header>
+                    <p> It's all about safeguarding customer data and ensuring secure transactions.</p>
+                </section>
+            </div>
+            <div class="col-4 col-12-medium">
+                <section class="last">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-globe2" viewBox="0 0 16 16">
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855q-.215.403-.395.872c.705.157 1.472.257 2.282.287zM4.249 3.539q.214-.577.481-1.078a7 7 0 0 1 .597-.933A7 7 0 0 0 3.051 3.05q.544.277 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9 9 0 0 1-1.565-.667A6.96 6.96 0 0 0 1.018 7.5zm1.4-2.741a12.3 12.3 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332M8.5 5.09V7.5h2.99a12.3 12.3 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.6 13.6 0 0 1 7.5 10.91V8.5zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741zm-3.282 3.696q.18.469.395.872c.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a7 7 0 0 1-.598-.933 9 9 0 0 1-.481-1.079 8.4 8.4 0 0 0-1.198.49 7 7 0 0 0 2.276 1.522zm-1.383-2.964A13.4 13.4 0 0 1 3.508 8.5h-2.49a6.96 6.96 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667m6.728 2.964a7 7 0 0 0 2.275-1.521 8.4 8.4 0 0 0-1.197-.49 9 9 0 0 1-.481 1.078 7 7 0 0 1-.597.933M8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855q.216-.403.395-.872A12.6 12.6 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.96 6.96 0 0 0 14.982 8.5h-2.49a13.4 13.4 0 0 1-.437 3.008M14.982 7.5a6.96 6.96 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008zM11.27 2.461q.266.502.482 1.078a8.4 8.4 0 0 0 1.196-.49 7 7 0 0 0-2.275-1.52c.218.283.418.597.597.932m-.488 1.343a8 8 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"/>
+                    </svg><br><br><br>
+                    <header>
+                        <h2 style="color: black">Sustainability</h2>
+                    </header>
+                    <p>Meet more people faster. We help you with sustainable transactions.</p>
+                </section>
+            </div>
+        </div><div><p><br><br></p></div>
+    </section>
+<%--    <footer>--%>
+<%--        <ul class="actions">--%>
+<%--            <% if (session.getAttribute("loginEmail") == null) { %>--%>
+<%--            <li><a href="/logins" class="btn btn-primary btn-lg">Get Started</a></li>--%>
+<%--            <% } else { %>--%>
+<%--            <li><a href="/logout" class="btn btn-primary btn-lg">Logout</a></li>--%>
+<%--            <% } %>--%>
+<%--            <li><a href="#modal0" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#modal0">Learn More</a></li>--%>
+<%--        </ul>--%>
+<%--    </footer>--%>
     <div class="modal fade" id="modal0" tabindex="-1" aria-labelledby="ModalLabel0" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
