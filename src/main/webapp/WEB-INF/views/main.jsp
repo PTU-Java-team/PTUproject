@@ -561,7 +561,7 @@
                                     자세히 보기
                                 </button>
                                 <form action="addToCart" method="post" class="d-inline">
-                                    <input type="hidden" name="productId" value="${item.productId}"/>
+                                    <input type="hidden" name="productId" value="${item.productName}"/>
                                     <input type="hidden" name="quantity" value="1"/>
                                     <button type="submit" class="btn btn-success">장바구니에 담기</button>
                                 </form>
@@ -607,7 +607,7 @@
                                     자세히 보기
                                 </button>
                                 <form action="addToCart" method="post" class="d-inline">
-                                    <input type="hidden" name="productId" value="${item.productId}"/>
+                                    <input type="hidden" name="productId" value="${item.productName}"/>
                                     <input type="hidden" name="quantity" value="1"/>
                                     <button type="submit" class="btn btn-success">장바구니에 담기</button>
                                 </form>

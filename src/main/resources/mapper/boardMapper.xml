@@ -21,6 +21,7 @@
         update board_table set boardTitle=#{boardTitle}, boardContents=#{boardContents}
         where id=#{id}
     </update>
+
     <select id="pagingList" parameterType="java.util.HashMap" resultType="board">
         SELECT *
         FROM BOARD_TABLE
