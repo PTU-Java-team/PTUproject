@@ -5,7 +5,7 @@
   Time: 오후 6:59
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
@@ -20,8 +20,27 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-3d/dist/chartjs-plugin-3d.min.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/3.0.2/toastui-editor.min.css">
+    <script src="https://uicdn.toast.com/editor/3.0.2/toastui-editor-all.min.js"></script>
 
     <style>
+        .product-title {
+            text-align:center;
+            display:table;
+            border:1px solid #cecece;
+            width:280px;
+            height:250px;
+        }
+
+        .product-img-div {
+            display:table-cell;
+            vertical-align:middle;
+        }
+
+        .product-img {
+            max-width:180px;
+            max-height:180px;
+        }
         .box {
             width: 80%;
             height: 900px; /* 세로 높이 조정 */
@@ -531,61 +550,8 @@
 </section>
 <!-- e: Pick Your Favorite(240919) -->
 <section>
-<%--<div class="container">--%>
-<%--    <h2>Product List</h2>--%>
 
-<%--    <div class="row">--%>
-<%--        <c:forEach var="item" items="${productList}">--%>
-<%--            <c:if test="${item.categoryId == 4}">--%>
-<%--            <div class="col-md-4">--%>
-<%--                <div class="card">--%>
-<%--                    <div class="card-body">--%>
-<%--                        <h5 class="card-title">${item.productName}</h5>--%>
-<%--                        <p class="card-text">작성자: ${item.memberEmail}</p>--%>
-<%--                        <p class="card-text">가격: ${item.productPrice}</p>--%>
-<%--                        <p class="card-text">작성일: ${item.productDate}</p>--%>
-<%--                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${item.productId}">--%>
-<%--                            자세히 보기--%>
-<%--                        </button>--%>
-<%--                        <!-- 장바구니에 담기 버튼 추가 -->--%>
-<%--                        <form action="addToCart" method="post" class="d-inline">--%>
-<%--                            <input type="hidden" name="productId" value="${item.productName}"/>--%>
-<%--                            <input type="hidden" name="quantity" value="1"/> <!-- 기본 수량 1로 설정 -->--%>
-<%--                            <button type="submit" class="btn btn-success">장바구니에 담기</button>--%>
-<%--                        </form>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <!-- 모달 정의 -->--%>
-<%--            <div class="modal fade" id="Modal${item.productId}" tabindex="-1" aria-labelledby="ModalLabel${item.productId}" aria-hidden="true">--%>
-<%--                <div class="modal-dialog">--%>
-<%--                    <div class="modal-content">--%>
-<%--                        <div class="modal-header">--%>
-<%--                            <h5 class="modal-title" id="ModalLabel${item.productId}">${item.productName}</h5>--%>
-<%--                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--                        </div>--%>
-<%--                        <div class="modal-body">--%>
-<%--                            <p>${item.productDescription}</p>--%>
-<%--                            <p>작성자: ${item.memberEmail}</p>--%>
-<%--                            <p>가격:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>--%>
-<%--                            <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>--%>
-<%--                        </div>--%>
-<%--                        <div class="modal-footer">--%>
-<%--                            <form action="<c:url value='/addToCart' />" method="post" class="d-inline">--%>
-<%--                                <input type="hidden" name="productId" value="${item.productName}"/>--%>
-<%--                                <input type="number" name="quantity" min="1" value="1" required/>--%>
-<%--                                <button type="submit" class="btn btn-success">장바구니에 담기</button>--%>
-<%--                            </form>--%>
-<%--                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>--%>
-<%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </c:if>--%>
-<%--        </c:forEach>--%>
-<%--    </div>--%>
-<%--</div>--%>
     <div class="container">
         <h2>Product List</h2>
 
@@ -620,6 +586,46 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 모달 정의 -->
+                    <div class="modal fade" id="Modal${item.productId}" tabindex="-1" aria-labelledby="ModalLabel${item.productId}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalLabel${item.productId}">${item.productName}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- 대표 이미지 표시 -->
+                                    <c:choose>
+                                        <c:when test="${not empty item.productImg3}">
+                                            <div class="product-title">
+                                                <div class="product-img-div">
+                                                    <img src="/product/image/${item.productId}" class="product-img" alt="대표 이미지" />
+                                                </div>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p>이미지가 없습니다</p>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <p>작성자: ${item.memberEmail}</p>
+                                    <p>가격:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
+                                    <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
+                                    <div class="viewer" id="editor-${item.productId}">설명서: ${item.productDescription}</div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="<c:url value='/addToCart' />" method="post" class="d-inline">
+                                        <input type="hidden" name="productId" value="${item.productName}"/>
+                                        <input type="number" name="quantity" min="1" value="1" required/>
+                                        <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </c:if>
                 <c:if test="${item.categoryId == 3}">
                     <div class="col-md-4 product-item" data-category="${item.categoryId}">
@@ -640,10 +646,64 @@
                             </div>
                         </div>
                     </div>
+                    <!-- 모달 정의 -->
+                    <div class="modal fade" id="Modal${item.productId}" tabindex="-1" aria-labelledby="ModalLabel${item.productId}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalLabel${item.productId}">${item.productName}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- 대표 이미지 표시 -->
+                                    <c:choose>
+                                        <c:when test="${not empty item.productImg3}">
+                                            <div class="product-title">
+                                                <div class="product-img-div">
+                                                    <img src="/product/image/${item.productId}" class="product-img" alt="대표 이미지" />
+                                                </div>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p>이미지가 없습니다</p>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <p>작성자: ${item.memberEmail}</p>
+                                    <p>가격:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
+                                    <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
+                                    <div class="viewer" id="editor-${item.productId}">설명서: ${item.productDescription}</div><%--markdown 형식의 설명문--%>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="<c:url value='/addToCart' />" method="post" class="d-inline">
+                                        <input type="hidden" name="productId" value="${item.productName}"/>
+                                        <input type="number" name="quantity" min="1" value="1" required/>
+                                        <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </c:if>
             </c:forEach>
         </div>
     </div>
+
+    <%--toast ui editor 상품 내용을 마크다운 형식으로 화면에 viewer로 나타내는 동작 구문--%>
+    <script>
+        $(document).ready(function () {
+            // 각 item에 대해 TOAST UI Viewer를 생성
+            <c:forEach var="item" items="${productList}">
+            const viewer${item.productId} = new toastui.Editor.factory({
+                el: document.querySelector("#editor-${item.productId}"),
+                viewer: true,
+                initialValue: `${item.productDescription}`
+            });
+            </c:forEach>
+        });
+    </script>
+
 
     <script>
         function filterProducts() {
