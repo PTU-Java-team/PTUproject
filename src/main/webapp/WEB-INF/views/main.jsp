@@ -562,7 +562,8 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <p>작성자: ${item.memberEmail}</p>
-                                    <p>참가인원:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
+<%--                                    <p>참가인원:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>--%>
+                                    <p>참가인원:  ${item.productPrice}</p>
                                     <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
                                     <div class="viewer" id="editor-${item.productId}">설명서: ${item.productDescription}</div>
 
@@ -622,7 +623,8 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <p>작성자: ${item.memberEmail}</p>
-                                    <p>참가인원:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
+<%--                                    <p>참가인원:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>--%>
+                                    <p>참가인원:  ${item.productPrice}</p>
                                     <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
                                     <div class="viewer" id="editor-${item.productId}">설명서: ${item.productDescription}</div>
 
@@ -682,7 +684,8 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <p>작성자: ${item.memberEmail}</p>
-                                    <p>참가인원:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
+<%--                                    <p>참가인원:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>--%>
+                                    <p>참가인원:  ${item.productPrice}</p>
                                     <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
                                     <div class="viewer" id="editor-${item.productId}">설명서: ${item.productDescription}</div><%--markdown 형식의 설명문--%>
 
