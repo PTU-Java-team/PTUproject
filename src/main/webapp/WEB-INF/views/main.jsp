@@ -21,6 +21,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-3d/dist/chartjs-plugin-3d.min.js"></script>
 
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/3.0.2/toastui-editor.min.css">
+    <script src="https://uicdn.toast.com/editor/3.0.2/toastui-editor-all.min.js"></script>
+
     <style>
         .product-title {
             text-align:center;
@@ -511,18 +514,19 @@
                 <option value="all">전체</option>
                 <option value="3">일반행사</option>
                 <option value="4">개인행사</option>
+                <option value="15">시설 대관</option>
             </select>
         </div>
 
         <div class="row" id="productList">
             <c:forEach var="item" items="${productList}">
-                <c:if test="${item.categoryId == 4}">
+                <c:if test="${item.categoryId == 15}">
                     <div class="col-md-4 product-item" data-category="${item.categoryId}">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">${item.productName}</h5>
                                 <p class="card-text">작성자: ${item.memberEmail}</p>
-                                <p class="card-text">가격: ${item.productPrice}</p>
+                                <p class="card-text">참가인원: ${item.productPrice}</p>
                                 <p class="card-text">작성일: ${item.productDate}</p>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${item.productId}">
                                     자세히 보기
@@ -558,7 +562,67 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <p>작성자: ${item.memberEmail}</p>
-                                    <p>가격:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
+                                    <p>참가인원:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
+                                    <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
+                                    <div class="viewer" id="editor-${item.productId}">설명서: ${item.productDescription}</div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="<c:url value='/addToCart' />" method="post" class="d-inline">
+                                        <input type="hidden" name="productId" value="${item.productName}"/>
+                                        <input type="number" name="quantity" min="1" value="1" required/>
+                                        <button type="submit" class="btn btn-success">찜목록에 담기</button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+                <c:if test="${item.categoryId == 4}">
+                    <div class="col-md-4 product-item" data-category="${item.categoryId}">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.productName}</h5>
+                                <p class="card-text">작성자: ${item.memberEmail}</p>
+                                <p class="card-text">참가인원: ${item.productPrice}</p>
+                                <p class="card-text">작성일: ${item.productDate}</p>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${item.productId}">
+                                    자세히 보기
+                                </button>
+                                <form action="addToCart" method="post" class="d-inline">
+                                    <input type="hidden" name="productId" value="${item.productName}"/>
+                                    <input type="hidden" name="quantity" value="1"/>
+                                    <button type="submit" class="btn btn-success">찜목록에 담기</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 모달 정의 -->
+                    <div class="modal fade" id="Modal${item.productId}" tabindex="-1" aria-labelledby="ModalLabel${item.productId}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalLabel${item.productId}">${item.productName}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- 대표 이미지 표시 -->
+                                    <c:choose>
+                                        <c:when test="${not empty item.productImg3}">
+                                            <div class="product-title">
+                                                <div class="product-img-div">
+                                                    <img src="/product/image/${item.productId}" class="product-img" alt="대표 이미지" />
+                                                </div>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p>이미지가 없습니다</p>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <p>작성자: ${item.memberEmail}</p>
+                                    <p>참가인원:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
                                     <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
                                     <div class="viewer" id="editor-${item.productId}">설명서: ${item.productDescription}</div>
 
@@ -582,7 +646,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">${item.productName}</h5>
                                 <p class="card-text">작성자: ${item.memberEmail}</p>
-                                <p class="card-text">가격: ${item.productPrice}</p>
+                                <p class="card-text">참가인원: ${item.productPrice}</p>
                                 <p class="card-text">작성일: ${item.productDate}</p>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal${item.productId}">
                                     자세히 보기
@@ -618,7 +682,7 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <p>작성자: ${item.memberEmail}</p>
-                                    <p>가격:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
+                                    <p>참가인원:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
                                     <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
                                     <div class="viewer" id="editor-${item.productId}">설명서: ${item.productDescription}</div><%--markdown 형식의 설명문--%>
 

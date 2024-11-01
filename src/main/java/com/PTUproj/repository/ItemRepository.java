@@ -47,4 +47,9 @@ public class ItemRepository {
         return ssTemplate.selectList(nameSpace + "findAll");
     }
 
+    // 특정 상품 조회 (productId로 조회)
+    public ItemDTO findProductById(int productId) {
+        return ssTemplate.selectOne(nameSpace + "findProductById", productId);
+    }
+
 }

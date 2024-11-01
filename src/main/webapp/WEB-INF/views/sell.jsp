@@ -71,6 +71,7 @@
                 <select id="categoryId" class="form-control area" name="categoryId" required>
                     <option value="3">일반 행사</option> <!--구 소모임-->
                     <option value="4">개인 행사</option> <!--구 웹사이트-->
+                    <option value="15">시설 대관</option>
                 </select>
             </div>
         </div><br>
@@ -78,7 +79,7 @@
         <div class="form-group">
             <label for="productPrice" class="control-label col-xs-2">참가 인원:</label> <!--구 가격-->
             <div class="col-xs-10">
-                <input type="number" step="100" class="form-control area" id="productPrice" name="productPrice" />
+                <input type="number" class="form-control area" id="productPrice" name="productPrice" />
             </div>
         </div><br>
 

@@ -7,10 +7,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -40,8 +44,7 @@ public class ItemController {
                                          @RequestParam("categoryId") int categoryId,
                                          @RequestParam("productPrice") int prductPrice,
                                          @RequestParam("productDescription") String productDescription,
-                                         @RequestParam("productImg1") MultipartFile productImg1,
-                                         @RequestParam("productImg2") MultipartFile productImg2
+                                         @RequestParam("productImg3") MultipartFile productImg3
     ) {
         System.out.println("sellController registerProductConfirm() called");
 
@@ -62,15 +65,40 @@ public class ItemController {
         itemDTO.setProductDescription(productDescription);
         itemDTO.setMemberEmail(loginEmail);
 
-        //썸네일이미지 및 추가이미지 파일 저장
-        itemDTO.setProductImg1(productImg1.getOriginalFilename());
-        itemDTO.setProductImg2(productImg2.getOriginalFilename());
+
+        // img3 blob 대표이미지 처리 및 저장
+        if (!productImg3.isEmpty()) {
+            try {
+                itemDTO.setProductImg3(productImg3.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         // 상품 등록 서비스 메서드 호출
         itemService.registerProductConfirm(itemDTO);
 
         return "redirect:/";
     }
+
+    @GetMapping("/product/image/{id}")
+    public void getProductImage(@PathVariable("id") int productId, HttpServletResponse response) {
+        ItemDTO item = itemService.findById(productId);
+
+        if (item != null && item.getProductImg3() != null) {
+            try {
+                response.setContentType("image/png");
+                response.getOutputStream().write(item.getProductImg3());
+                response.getOutputStream().flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+    }
+
+
 
     @GetMapping("/searchProductConfirm")
     public String searchProductConfirm(ItemDTO itemDTO, Model model) {

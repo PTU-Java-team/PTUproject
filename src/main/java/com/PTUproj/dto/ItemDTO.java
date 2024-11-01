@@ -25,4 +25,3 @@ public class ItemDTO { // 판매자 관련 DTO입니다.
     private String categoryName; // 카테고리명
 
 }
-

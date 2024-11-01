@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "ItemMapper">
     <insert id="insertProduct" parameterType="com.PTUproj.dto.ItemDTO">
-        insert into product_table (product_name, product_img1, product_img2, product_description, product_price, category_id, member_id)
-        values (#{productName}, #{productImg1}, #{productImg2}, #{productDescription}, #{productPrice}, #{categoryId}, (select member_id from member_table where member_email = #{memberEmail}))
+        insert into product_table (product_name, product_img3,product_description, product_price, category_id, member_id)
+        values (#{productName}, #{productImg3},#{productDescription}, #{productPrice}, #{categoryId}, (select member_id from member_table where member_email = #{memberEmail}))
     </insert>
 
     <!--등록된 상품 검색을 위한 select문(product_table, member_table, category_table - inner join)-->
@@ -12,6 +12,7 @@
                p.product_name AS productName,
                p.product_img1 AS productImg1,
                p.product_img2 AS productImg2,
+               p.product_img3 AS productImg3,
                p.product_description AS productDescription,
                p.product_price AS productPrice,
                p.product_date AS productDate,
@@ -29,6 +30,7 @@
                p.product_name AS productName,
                p.product_img1 AS productImg1,
                p.product_img2 AS productImg2,
+               p.product_img3 AS productImg3,
                p.product_description AS productDescription,
                p.product_price AS productPrice,
                p.product_date AS productDate,
@@ -41,18 +43,34 @@
         order by PRODUCT_ID desc
     </select>
 
-    <!--    <resultMap id="ItemResultMap" type="com.PTUproj.dto.ItemDTO">-->
-    <!--        <result column = "product_id" property = "productId" />-->
-    <!--        <result column = "product_name" property = "productName" />-->
-    <!--        <result column = "product_img1" property = "productImg1" />-->
-    <!--        <result column = "product_img2" property = "productImg2" />-->
-    <!--        <result column = "product_img3" property = "productImg3" />-->
-    <!--        <result column = "product_description" property = "productDescription" />-->
-    <!--        <result column = "product_price" property = "productPrice" />-->
-    <!--        <result column = "product_date" property = "productDate" />-->
-    <!--        <result column = "category_id" property = "categoryId" />-->
-    <!--        <result column = "member_id" property = "memberId" />-->
-    <!--        <result column = "member_email" property = "memberEmail" />-->
-    <!--    </resultMap>-->
+    <select id="findProductById" parameterType="int" resultType="com.PTUproj.dto.ItemDTO">
+        select
+            product_id AS productId,
+            product_name AS productName,
+            product_img1 AS productImg1,
+            product_img2 AS productImg2,
+            product_img3 AS productImg3,
+            product_description AS productDescription,
+            product_price AS productPrice,
+            category_id AS categoryId,
+            member_id AS memberId
+        from product_table
+        where product_id = #{productId}
+    </select>
+
+
+    <resultMap id="ItemResultMap" type="com.PTUproj.dto.ItemDTO">
+        <result column = "product_id" property = "productId" />
+        <result column = "product_name" property = "productName" />
+        <result column = "product_img1" property = "productImg1" />
+        <result column = "product_img2" property = "productImg2" />
+        <result column = "product_img3" property = "productImg3" />
+        <result column = "product_description" property = "productDescription" />
+        <result column = "product_price" property = "productPrice" />
+        <result column = "product_date" property = "productDate" />
+        <result column = "category_id" property = "categoryId" />
+        <result column = "member_id" property = "memberId" />
+        <result column = "member_email" property = "memberEmail" />
+    </resultMap>
 
 </mapper>
