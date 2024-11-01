@@ -14,12 +14,12 @@
 </head>
 <body>
 <div class="container">
-  <h1>장바구니</h1>
+  <h1>찜목록</h1>
   <table class="table">
     <thead>
     <tr>
-      <th>상품명</th>
-      <th>수량</th>
+      <th>행사명</th>
+      <th>참가인원</th>
       <th>작업</th>
     </tr>
     </thead>
@@ -41,15 +41,15 @@
       </c:when>
       <c:otherwise>
         <tr>
-          <td colspan="3">장바구니가 비어 있습니다.</td>
+          <td colspan="3">찜목록이 비어 있습니다.</td>
         </tr>
       </c:otherwise>
     </c:choose>
     </tbody>
   </table>
   <div class="d-flex justify-content-between">
-    <a href="/" class="btn btn-primary">쇼핑 계속하기</a>
-    <a href="#" class="btn btn-success">결제하기</a>
+    <a href="/" class="btn btn-primary">계속 둘러보기</a>
+    <a href="#" class="btn btn-success">참여하러 가기</a>
   </div>
 </div>
 </body>

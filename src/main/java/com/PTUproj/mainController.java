@@ -329,7 +329,10 @@ public class mainController {
         return "board/b_paging";
     }
 
-
+    @GetMapping("/cal")
+    public String cal(){
+        return "cal";
+    }
 
 }
 

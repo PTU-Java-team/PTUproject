@@ -39,9 +39,9 @@
           <tr>
             <td>${item.productName}</td>
             <td>${item.categoryName}</td>
-            <td>${item.productPrice}</td>
+            <td><fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></td>
             <td>${item.memberEmail}</td>
-            <td><fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd- HH:mm:ss" /></td>
+            <td><fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></td>
           </tr>
         </c:forEach>
 

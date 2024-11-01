@@ -148,19 +148,17 @@
 <h1>자주 묻는 질문</h1>
 <div class="faq-container">
   <div class="faq">
-    <h3 class="faq-title">상품 받아서 보고 난 후에는 환불이 안되나요?</h3>
-    <p class="faq-text">네 고객님, 상품의 특성상 상품 내용을 보신 이후에는 환불 진행이 어렵습니다.<br>구매 전에 한번 더 고려해 보신 이후에 구매해주시면 감사하겠습니다.</p>
+    <h3 class="faq-title">티켓 결제한 다음에는 환불이 안되나요?</h3>
+    <p class="faq-text">행사일로부터 7일 전까지 환불이 100% 환불이 가능합니다. <br>6일전부터 행사일까지는 50% 환불이 가능하고 행사 당일에는 환불이 불가능 한 점을 양해바랍니다.</p>
     <button class="faq-toggle">
       <i class="fas fa-chevron-down"></i>
       <i class="fas fa-times"></i>
     </button>
   </div>
   <div class="faq">
-    <h3 class="faq-title">진행과정이 어떻게 되나요?</h3>
+    <h3 class="faq-title">학생도 참여할 수 있는 행사가 있나요?</h3>
     <p class="faq-text">
-      회원가입 및 로그인을 진행하신 이후에<br>사이트에 있는 상품들을 천천히 보시고 마음에 드는 상품을 고르신 이후 결제 하시면<br>
-      결제하신 금액은 우선 저희가 받고 구매하신 고객님께 상품을 전달합니다.<br>이 후 과정이 정상적으로 진행되었다면 금액을 저희가 판매자에게 전달합니다.<br><br>
-      저희는 이 과정으로 거래간 사기를 막습니다.
+      네 고객님, 저희가 홍보하고 있는 많은 행사들이 학생도 참여할 수 있는 행사들로 구성되어있습니다.<br> 또한 학생들을 위한 행사들도 어느정도 마련이 되어있습니다.<br> 부담없이 즐기셔도 됩니다.
     </p>
     <button class="faq-toggle">
       <i class="fas fa-chevron-down"></i>
@@ -168,9 +166,9 @@
     </button>
   </div>
   <div class="faq">
-    <h3 class="faq-title">결제를 해지하고 싶어요</h3>
+    <h3 class="faq-title">탈퇴하고 싶어요</h3>
     <p class="faq-text">
-      결제 해지 및 탈퇴에 관해서는 <br>아래의 연락처로 문의 주시기를 바랍니다.<br><strong>이메일: abc@ptu.ac.kr<br> 전화: 010 - 1234 - 5678</strong>
+      탈퇴에 관해서는 <br>아래의 연락처로 문의 주시기를 바랍니다.<br><strong>이메일: abc@ptu.ac.kr<br> 전화: 010 - 1234 - 5678</strong>
     </p>
     <button class="faq-toggle">
       <i class="fas fa-chevron-down"></i>
@@ -178,8 +176,8 @@
     </button>
   </div>
   <div class="faq">
-    <h3 class="faq-title">상품은 언제 받을 수 있을까요?</h3>
-    <p class="faq-text">상품을 구매한 일로부터 평균 1~2일 정도 소요되고 있습니다.</p>
+    <h3 class="faq-title">개인 행사는 어떻게 등록되는 건가요</h3>
+    <p class="faq-text">개인 행사는 기본적으로 행사를 주최하는 사람이 행사 홍보에 관한 글을 올립니다.<br> 만약 홍보글에 목적과 맞지 않은 내용이 있을 경우 관리자에 의해 삭제를 할 수 있습니다.</p>
     <button class="faq-toggle">
       <i class="fas fa-chevron-down"></i>
       <i class="fas fa-times"></i>
@@ -187,7 +185,7 @@
   </div>
   <div class="faq">
     <h3 class="faq-title">주말에도 하나요?</h3>
-    <p class="faq-text">네, 저희는 24시간 운영하고 있습니다.</p>
+    <p class="faq-text">네, 저희는 24시간 운영하고 있습니다. 환불, 문의, 등록 등 언제든지 가능합니다.</p>
     <button class="faq-toggle">
       <i class="fas fa-chevron-down"></i>
       <i class="fas fa-times"></i>
@@ -202,16 +200,16 @@
     </button>
   </div>
   <div class="faq">
-    <h3 class="faq-title">제품 구매 후 기존의 체계는 어떻게 하나요?</h3>
-    <p class="faq-text">상품을 구매할 때 판매자와 협의 후 구매하시는 것을 권합니다.<br>여러가지의 방법이 있으며 모두 선택사항입니다.</p>
+    <h3 class="faq-title">개인 행사가 취소될 경우 어떻게 하나요?</h3>
+    <p class="faq-text">저희는 입장권 결제 시 바로 돈이 행사 주최자에게 입금되는 방식이 아닌<br>행사가 안전하게 끝났을 경우 저희가 주최측에 전달하는 방식입니다.<br>그러므로 만약 천재지변에 의해 행사가 취소되었을 경우 전액 환불해 드립니다.</p>
     <button class="faq-toggle">
       <i class="fas fa-chevron-down"></i>
       <i class="fas fa-times"></i>
     </button>
   </div>
   <div class="faq">
-    <h3 class="faq-title">판매 할 때 다른 걸 팔아도 되나요?</h3>
-    <p class="faq-text">저희 홈페이지는 홈페이지 및 카페 등과 같은 제품을 제외하고 판매를 일체 금하고 있습니다. 만약 이 이외의 상품을 게시하여 판매할 경우 게시글이 삭제될 수 있으며 또한 계정을 정지할 수도 있습니다.</p>
+    <h3 class="faq-title">행사 홍보할 때 다른 걸 팔아도 되나요?</h3>
+    <p class="faq-text">저희 홈페이지는 기타 다른 호객 행위를 일체 금지하고 있습니다.<br> 행사에 참여하거나 우승했을 때 주는 경품이나 상금 등과 같은 것을 제외하고는 내용을 소개하실 수 없습니다.</p>
     <button class="faq-toggle">
       <i class="fas fa-chevron-down"></i>
       <i class="fas fa-times"></i>
@@ -220,8 +218,8 @@
 </div>
 
 <div class="button-container">
-  <a href="/b_list" class="button">게시글 보러가기</a>
-  <a href="/b_save" class="button">게시글 작성하기</a>
+  <a href="/b_list" class="button">문의글 보러가기</a>
+  <a href="/b_save" class="button">문의글 작성하기</a>
 </div>
 
 <script>

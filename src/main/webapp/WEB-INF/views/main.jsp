@@ -5,7 +5,7 @@
   Time: 오후 6:59
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
@@ -22,6 +22,23 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-3d/dist/chartjs-plugin-3d.min.js"></script>
 
     <style>
+        .product-title {
+            text-align:center;
+            display:table;
+            border:1px solid #cecece;
+            width:280px;
+            height:250px;
+        }
+
+        .product-img-div {
+            display:table-cell;
+            vertical-align:middle;
+        }
+
+        .product-img {
+            max-width:180px;
+            max-height:180px;
+        }
         .box {
             width: 80%;
             height: 900px; /* 세로 높이 조정 */
@@ -195,7 +212,7 @@
 <body>
 
 <div class="header">
-    <div class="login-container" style="margin-left: auto">
+    <div class="login-container" style="margin-left: auto; background-color: rgba(255, 255, 255, 0); /* 완전히 투명 */transition: background-color 0.3s;">
         <ul class="login-status">
             <% if (session.getAttribute("loginEmail") != null) { %>
             <li><span>(<%= session.getAttribute("loginEmail") %>) 님</span></li>
@@ -205,7 +222,7 @@
                 <li><a href="/list">  회원 목록 관리  </a></li>
             </c:if>
 
-            <li><a href="/cart">  장바구니  </a></li>
+            <li><a href="/cart">  찜목록  </a></li>
             <li><a href="/logout" style="color: black;">  Logout  </a></li>
             <% } else { %>
             <li><a href="/logins" style="color: black;">  Get Started  </a></li>
@@ -255,7 +272,7 @@
     }
 </style>-->  <!--반응형 웹 디자인 적용하려던 흔적-->      <!--버튼 뭉개지는게 container 위에 덮어져서 그럴 가능성 있음-->
 <div class="container-fluid">
-    <h1 class="mx-auto display-1 text-center" style="font-weight: bold">Lo-Neon</h1> <!-- 제목 크기 키우기 -->
+    <h1 class="mx-auto display-1 text-center" style="font-weight: bold">제목 뭐하지?</h1> <!-- 제목 크기 키우기 -->
 </div>
 <br>
 <nav class="navbar navbar-expand-lg bg-white"> <!-- 배경색을 흰색으로 변경 -->
@@ -267,7 +284,7 @@
 
                 <!--    <a class="nav-link btn btn-lg mx-4" href="/smallGroup" style="padding: 15px 50px;">online community</a>
                     <a class="nav-link btn btn-lg mx-4" href="/website" style="padding: 15px 50px;">website</a>-->
-                <a class="nav-link btn btn-lg mx-4" href="/sell" style="padding: 15px 50px;" aria-disabled="true">product sell</a>
+                <a class="nav-link btn btn-lg mx-4" href="/sell" style="padding: 15px 50px;" aria-disabled="true">행사 등록하기</a>
                 <!--<a class="nav-link btn btn-lg mx-4" href="/index" style="padding: 15px 50px;" aria-disabled="true">게시물</a>-->
             </div>
         </div>
@@ -312,36 +329,35 @@
         <div class="row">
             <div class="col-4 col-12-medium">
                 <section class="first">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-window-sidebar" viewBox="0 0 16 16">
-                        <path d="M2.5 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m1 .5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/>
-                        <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v2H1V3a1 1 0 0 1 1-1zM1 13V6h4v8H2a1 1 0 0 1-1-1m5 1V6h9v7a1 1 0 0 1-1 1z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
+                        <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5z"/>
                     </svg><br><br><br>
                     <header>
-                        <h2 style="color: black">User Experience (UX)</h2>
+                        <h2 style="color: black">다양한 행사</h2>
                     </header>
-                    <p>A seamless, intuitive interface enhances customer satisfaction and encourages repeat visits.</p>
+                    <p>많은 행사를 더 쉽게 찾아보세요</p>
                 </section>
             </div>
             <div class="col-4 col-12-medium">
-                <section class="middle">    <!--16-->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-hdd-rack-fill" viewBox="0 0 16 16">
-                        <path d="M2 2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1v2H2a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2h-1V7h1a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm.5 3a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m-2 7a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1M12 7v2H4V7z"/>
+                <section class="middle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0m0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
                     </svg><br><br><br>
                     <header>
-                        <h2 style="color: black">Trustworthiness</h2>
+                        <h2 style="color: black">쉬운 일정관리</h2>
                     </header>
-                    <p> It's all about safeguarding customer data and ensuring secure transactions.</p>
+                    <p>행사 일정을 쉽게 관리해보세요</p>
                 </section>
             </div>
             <div class="col-4 col-12-medium">
                 <section class="last">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-globe2" viewBox="0 0 16 16">
-                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855q-.215.403-.395.872c.705.157 1.472.257 2.282.287zM4.249 3.539q.214-.577.481-1.078a7 7 0 0 1 .597-.933A7 7 0 0 0 3.051 3.05q.544.277 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9 9 0 0 1-1.565-.667A6.96 6.96 0 0 0 1.018 7.5zm1.4-2.741a12.3 12.3 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332M8.5 5.09V7.5h2.99a12.3 12.3 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.6 13.6 0 0 1 7.5 10.91V8.5zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741zm-3.282 3.696q.18.469.395.872c.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a7 7 0 0 1-.598-.933 9 9 0 0 1-.481-1.079 8.4 8.4 0 0 0-1.198.49 7 7 0 0 0 2.276 1.522zm-1.383-2.964A13.4 13.4 0 0 1 3.508 8.5h-2.49a6.96 6.96 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667m6.728 2.964a7 7 0 0 0 2.275-1.521 8.4 8.4 0 0 0-1.197-.49 9 9 0 0 1-.481 1.078 7 7 0 0 1-.597.933M8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855q.216-.403.395-.872A12.6 12.6 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.96 6.96 0 0 0 14.982 8.5h-2.49a13.4 13.4 0 0 1-.437 3.008M14.982 7.5a6.96 6.96 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008zM11.27 2.461q.266.502.482 1.078a8.4 8.4 0 0 0 1.196-.49 7 7 0 0 0-2.275-1.52c.218.283.418.597.597.932m-.488 1.343a8 8 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45%" height="45%" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
                     </svg><br><br><br>
                     <header>
-                        <h2 style="color: black">Sustainability</h2>
+                        <h2 style="color: black">빠른 결제</h2>
                     </header>
-                    <p>Meet more people faster. We help you with sustainable transactions.</p>
+                    <p>티켓 구매도 쉽게 해보세요</p>
                 </section>
             </div>
         </div><div><p><br><br></p></div>
@@ -387,98 +403,50 @@
                 </style>
                 <section id="two" class="container my-5">
                     <h1><strong>Thank you for visiting us.</strong></h1><br>
-                    <p>We started with the aim of drastically bridging the gap between consumers and sellers. <br>Our service saves you time and guarantees financial transactions for your purchases, thereby preventing fraud.</p>
+                    <p>저희는 기존에 평택시에서 하던 행사들에 관한 흩어져있던 정보를 모두 모아서 알려주고 있습니다.<br> 평택시에서 주최하는 행사나 캠프험프리스, 민간 기업 등에서 주최하는 행사를 알려드리고 있습니다.<br> 또한 저희는 개인이 주최하는 행사도 등록 후 홍보할 수 있습니다.</p>
                     <br>
                     <ul class="feature-icons row">
                         <li class="col-6">
                             <div class="icon">
                                 <i class="fas fa-code"></i>
                             </div>
-                            Prewritten and verified code
+                            더 이상 어려운 과정은 없습니다.
                         </li>
                         <li class="col-6">
                             <div class="icon">
-                                <i class="fas fa-cubes"></i>
+                                <i class="bi bi-joystick"></i>
                             </div>
-                            Stack your skil box easily
+                            다양한 즐길거리를 제공해드립니다
                         </li>
                         <li class="col-6">
                             <div class="icon">
-                                <i class="fas fa-book"></i>
+                                <i class="bi bi-file-earmark-text-fill"></i>
                             </div>
-                            Provide a guide and stuff
+                            각종 문서로 고통받지 않으셔도 됩니다
                         </li>
                         <li class="col-6">
                             <div class="icon">
                                 <i class="fas fa-coffee"></i>
                             </div>
-                            Transaction completed while you enjoy coffee.
+                            남은 시간으로 커피 한 잔의 여유를 즐겨보세요
                         </li>
                         <li class="col-6">
                             <div class="icon">
                                 <i class="fas fa-bolt"></i>
                             </div>
-                            Quickly and without fraud.
+                            빠르게 여러 행사를 즐겨보세요
                         </li>
                         <li class="col-6">
                             <div class="icon">
                                 <i class="fas fa-users"></i>
                             </div>
-                            Effortless meeting.
+                            많은 사람들과 함께 즐겨보세요
                         </li>
                     </ul>
                 </section>
-                <style>
-                    .chart-container {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: 100vh; /* 필요에 따라 조정 */
-                    }
-
-                    #line-chart {
-                        width: 900px !important; /* 너비 조정 */
-                        height: 580px !important; /* 높이 조정 */
-                    }
-                </style>
-                <section id="twos" class="container my-5 chart-container">
-                    <canvas id="line-chart" width="600" height="500"></canvas>
-
-                    <script>
-                        $(document).ready(function() {
-                            var data = {
-                                labels: ["First quarter", "Second quarter", "Third quarter", "Fourth quarter"],
-                                datasets: [{
-                                    label: " (Sales: won)",
-                                    borderColor: "#3e95cd",
-                                    data: [1200, 1900, 3000, 2500],
-                                    fill: false, // 채우지 않음
-                                    borderWidth: 2, // 선 두께
-                                    tension: 0.1 // 곡선 정도 (0이면 직선)
-                                }]
-                            };
-
-                            var options = {
-                                responsive: true,
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            };
-
-                            var ctx = document.getElementById("line-chart").getContext("2d");
-                            var myLineChart = new Chart(ctx, {
-                                type: 'line',
-                                data: data,
-                                options: options
-                            });
-                        });
-                    </script>
-                </section>
-                <div style="text-align: center; font-size: 18px">
-                    <strong>We are continuously growing and recording high sales.</strong>
-                    <br><br><br><br><br><br><br><br>
+                <div style="text-align: center; font-size: 20px">
+                    <strong>Do not wast time, just enjoy!</strong>
+                    <br><br><br><br><br><br><br>
                 </div>
         </div>
     </div>
@@ -532,7 +500,6 @@
 
     </script>-->
 
-
 <%--    <c:if test="${empty param.productName}">--%>
     <div class="container">
         <h2>Product List</h2>
@@ -542,8 +509,8 @@
             <label for="categorySelect" class="form-label">카테고리 선택</label>
             <select class="form-select" id="categorySelect" onchange="filterProducts()">
                 <option value="all">전체</option>
-                <option value="3">소모임</option>
-                <option value="4">웹사이트</option>
+                <option value="3">일반행사</option>
+                <option value="4">개인행사</option>
             </select>
         </div>
 
@@ -563,7 +530,7 @@
                                 <form action="addToCart" method="post" class="d-inline">
                                     <input type="hidden" name="productId" value="${item.productName}"/>
                                     <input type="hidden" name="quantity" value="1"/>
-                                    <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                                    <button type="submit" class="btn btn-success">찜목록에 담기</button>
                                 </form>
                             </div>
                         </div>
@@ -577,16 +544,30 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>${item.productDescription}</p>
+                                    <!-- 대표 이미지 표시 -->
+                                    <c:choose>
+                                        <c:when test="${not empty item.productImg3}">
+                                            <div class="product-title">
+                                                <div class="product-img-div">
+                                                    <img src="/product/image/${item.productId}" class="product-img" alt="대표 이미지" />
+                                                </div>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p>이미지가 없습니다</p>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <p>작성자: ${item.memberEmail}</p>
                                     <p>가격:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
                                     <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
+                                    <div class="viewer" id="editor-${item.productId}">설명서: ${item.productDescription}</div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <form action="<c:url value='/addToCart' />" method="post" class="d-inline">
                                         <input type="hidden" name="productId" value="${item.productName}"/>
                                         <input type="number" name="quantity" min="1" value="1" required/>
-                                        <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                                        <button type="submit" class="btn btn-success">찜목록에 담기</button>
                                     </form>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                                 </div>
@@ -609,7 +590,7 @@
                                 <form action="addToCart" method="post" class="d-inline">
                                     <input type="hidden" name="productId" value="${item.productName}"/>
                                     <input type="hidden" name="quantity" value="1"/>
-                                    <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                                    <button type="submit" class="btn btn-success">찜목록에 담기</button>
                                 </form>
                             </div>
                         </div>
@@ -623,16 +604,30 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>${item.productDescription}</p>
+                                    <!-- 대표 이미지 표시 -->
+                                    <c:choose>
+                                        <c:when test="${not empty item.productImg3}">
+                                            <div class="product-title">
+                                                <div class="product-img-div">
+                                                    <img src="/product/image/${item.productId}" class="product-img" alt="대표 이미지" />
+                                                </div>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p>이미지가 없습니다</p>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <p>작성자: ${item.memberEmail}</p>
                                     <p>가격:  <fmt:formatNumber value="${item.productPrice}" type="currency" currencySymbol="₩" /></p>
                                     <p>작성일: <fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></p>
+                                    <div class="viewer" id="editor-${item.productId}">설명서: ${item.productDescription}</div><%--markdown 형식의 설명문--%>
+
                                 </div>
                                 <div class="modal-footer">
                                     <form action="<c:url value='/addToCart' />" method="post" class="d-inline">
                                         <input type="hidden" name="productId" value="${item.productName}"/>
                                         <input type="number" name="quantity" min="1" value="1" required/>
-                                        <button type="submit" class="btn btn-success">장바구니에 담기</button>
+                                        <button type="submit" class="btn btn-success">찜목록에 담기</button>
                                     </form>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
                                 </div>
@@ -644,6 +639,19 @@
         </div>
     </div>
 
+    <%--toast ui editor 상품 내용을 마크다운 형식으로 화면에 viewer로 나타내는 동작 구문--%>
+    <script>
+        $(document).ready(function () {
+            // 각 item에 대해 TOAST UI Viewer를 생성
+            <c:forEach var="item" items="${productList}">
+            const viewer${item.productId} = new toastui.Editor.factory({
+                el: document.querySelector("#editor-${item.productId}"),
+                viewer: true,
+                initialValue: `${item.productDescription}`
+            });
+            </c:forEach>
+        });
+    </script>
     <script>
         function filterProducts() {
             const selectedCategory = document.getElementById("categorySelect").value;
@@ -675,6 +683,8 @@
     <h3>team3 / Team Project</h3>
     <br>
 </footer>
+
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
