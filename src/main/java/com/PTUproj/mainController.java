@@ -298,6 +298,7 @@ public class mainController {
         return "redirect:/board/";
     }
 
+
     @GetMapping("/b_update")
     public String updateFormb(@RequestParam("id") Long id, Model model) {
         BoardDTO boardDTO = boardService.findById(id);

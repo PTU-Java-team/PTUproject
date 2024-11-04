@@ -275,7 +275,7 @@
     }
 </style>-->  <!--반응형 웹 디자인 적용하려던 흔적-->      <!--버튼 뭉개지는게 container 위에 덮어져서 그럴 가능성 있음-->
 <div class="container-fluid">
-    <h1 class="mx-auto display-1 text-center" style="font-weight: bold">제목 뭐하지?</h1> <!-- 제목 크기 키우기 -->
+    <h1 class="mx-auto display-1 text-center" style="font-weight: bold">FestMeet </h1> <!-- 제목 크기 키우기 -->
 </div>
 <br>
 <nav class="navbar navbar-expand-lg bg-white"> <!-- 배경색을 흰색으로 변경 -->
@@ -448,6 +448,7 @@
                     </ul>
                 </section>
                 <div style="text-align: center; font-size: 20px">
+                    <strong>festval + Meet = FestMeet</strong><br>&nbsp;
                     <strong>Do not wast time, just enjoy!</strong>
                     <br><br><br><br><br><br><br>
                 </div>
@@ -505,7 +506,7 @@
 
 <%--    <c:if test="${empty param.productName}">--%>
     <div class="container">
-        <h2>Product List</h2>
+        <h2>List</h2>
 
         <!-- 카테고리 선택창 -->
         <div class="mb-3">
@@ -524,6 +525,17 @@
                     <div class="col-md-4 product-item" data-category="${item.categoryId}">
                         <div class="card">
                             <div class="card-body">
+                                <!-- 대표 이미지 표시 -->
+                                <c:choose>
+                                    <c:when test="${not empty item.productImg3}">
+                                        <div class="product-img-div">
+                                            <img src="/product/image/${item.productId}" class="product-img" alt="대표 이미지" style="width: 100%; height: auto;" />
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p>이미지가 없습니다</p>
+                                    </c:otherwise>
+                                </c:choose>
                                 <h5 class="card-title">${item.productName}</h5>
                                 <p class="card-text">작성자: ${item.memberEmail}</p>
                                 <p class="card-text">참가인원: ${item.productPrice}</p>
@@ -585,6 +597,17 @@
                     <div class="col-md-4 product-item" data-category="${item.categoryId}">
                         <div class="card">
                             <div class="card-body">
+                                <!-- 대표 이미지 표시 -->
+                                <c:choose>
+                                    <c:when test="${not empty item.productImg3}">
+                                        <div class="product-img-div">
+                                            <img src="/product/image/${item.productId}" class="product-img" alt="대표 이미지" style="width: 100%; height: auto;" />
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p>이미지가 없습니다</p>
+                                    </c:otherwise>
+                                </c:choose>
                                 <h5 class="card-title">${item.productName}</h5>
                                 <p class="card-text">작성자: ${item.memberEmail}</p>
                                 <p class="card-text">참가인원: ${item.productPrice}</p>
@@ -646,6 +669,17 @@
                     <div class="col-md-4 product-item" data-category="${item.categoryId}">
                         <div class="card">
                             <div class="card-body">
+                                <!-- 대표 이미지 표시 -->
+                                <c:choose>
+                                    <c:when test="${not empty item.productImg3}">
+                                        <div class="product-img-div">
+                                            <img src="/product/image/${item.productId}" class="product-img" alt="대표 이미지" style="width: 100%; height: auto;" />
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p>이미지가 없습니다</p>
+                                    </c:otherwise>
+                                </c:choose>
                                 <h5 class="card-title">${item.productName}</h5>
                                 <p class="card-text">작성자: ${item.memberEmail}</p>
                                 <p class="card-text">참가인원: ${item.productPrice}</p>
