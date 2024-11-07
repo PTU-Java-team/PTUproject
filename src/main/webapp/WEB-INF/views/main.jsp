@@ -288,6 +288,7 @@
                 <!--    <a class="nav-link btn btn-lg mx-4" href="/smallGroup" style="padding: 15px 50px;">online community</a>
                     <a class="nav-link btn btn-lg mx-4" href="/website" style="padding: 15px 50px;">website</a>-->
                 <a class="nav-link btn btn-lg mx-4" href="/sell" style="padding: 15px 50px;" aria-disabled="true">행사 등록하기</a>
+                <a class="nav-link btn btn-lg mx-4" href="/searchProductConfirm" style="padding: 15px 50px;" aria-disabled="true">행사 검색하기</a>
                 <!--<a class="nav-link btn btn-lg mx-4" href="/index" style="padding: 15px 50px;" aria-disabled="true">게시물</a>-->
             </div>
         </div>
@@ -480,7 +481,7 @@
     <%--상품 검색 결과 form include--%>
     <c:if test="${not empty param.productName}">
         <div>
-            <jsp:include page="./search_product.jsp" />
+            <%--<jsp:include page="./search_product.jsp" />--%>
         </div><br><br>
     </c:if>
 

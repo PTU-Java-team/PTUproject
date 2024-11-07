@@ -31,8 +31,13 @@ public class ItemController {
     public String registerProductForm() {
         System.out.println("sellController registerProductForm() called");
 
-        if(session.getAttribute("loginEmail") == null) {
-            return "redirect:/logins"; // 로그인 하지 않은 경우 로그인 페이지로 redirect
+        Integer isAdminValue = (Integer) session.getAttribute("isAdmin"); // 관리자 권한이 0,1 이기 때문에 Integer 객체로 변환 후
+        Boolean isAdmin = (isAdminValue != null && isAdminValue == 1); // null값이 아니면서 1인 true 값으로 변수 선언
+
+        if(session.getAttribute("loginEmail") == null ) {
+            return "redirect:/logins"; // 세션에 로그인 정보 없는 경우(로그인 하지 않은 경우) 로그인 페이지로 redirect
+        }else if(Boolean.FALSE.equals(isAdmin)){
+            return "redirect:/"; // isAdmin == true == 1 ,즉 FALSE == isAdmin == 0 일 경우만 메인 페이지로 redirect
         }
 
         return "sell";
@@ -49,8 +54,12 @@ public class ItemController {
         System.out.println("sellController registerProductConfirm() called");
 
         String loginEmail = (String) session.getAttribute("loginEmail");
+        Integer isAdminValue = (Integer) session.getAttribute("isAdmin");
+        Boolean isAdmin = (isAdminValue != null && isAdminValue == 1);
         if(loginEmail == null) {
             return "redirect:/logins"; // 로그인 하지 않은 경우 로그인 페이지로 redirect
+        }else if(Boolean.FALSE.equals(isAdmin)){
+            return "redirect:/";
         }
 
 
@@ -81,6 +90,7 @@ public class ItemController {
         return "redirect:/";
     }
 
+    // productImg3 대표이미지를 내보내는 처리
     @GetMapping("/product/image/{id}")
     public void getProductImage(@PathVariable("id") int productId, HttpServletResponse response) {
         ItemDTO item = itemService.findById(productId);
@@ -99,7 +109,7 @@ public class ItemController {
     }
 
 
-
+    // 행사 검색 기능 처리
     @GetMapping("/searchProductConfirm")
     public String searchProductConfirm(ItemDTO itemDTO, Model model) {
 
@@ -110,7 +120,7 @@ public class ItemController {
 
         model.addAttribute("productDetail", itemDTOS);
 
-        return "main";
+        return "search_product";
     }
 
 }

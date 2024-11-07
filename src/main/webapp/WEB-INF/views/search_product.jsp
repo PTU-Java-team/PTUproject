@@ -8,7 +8,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<html>
+<head>
+  <link href="<c:url value='/resources/css/search_product.css' />" rel="stylesheet" type="text/css">
+</head>
+<body>
 
+
+<!-- product search 상품검색 창-->
+
+<div class="search inner-div">
+<form action="<c:url value='/searchProductConfirm' />" name="search_product_form" method="get">
+<input type="text" name="productName" placeholder="Search for products">
+<input type="button" value="search" onclick="searchProductForm();">
+<button type="reset" class="btn btn-secondary" onclick="location.href='/searchProductConfirm'">reset</button>
+<%--<a href="/" class="btn btn-danger" type="button">back</a>--%>
+<button type="button"  class="btn btn-danger" onclick="location.href='/'">back</button>
+</form>
+</div><br><br>
 
 <section>
 
@@ -35,6 +52,7 @@
 
         <tbody>
         <%--상품 검색 정보 ItemController의 productDetail id를 item 변수에 저장해서 사용--%>
+        <c:if test="${not empty param.productName}">
         <c:forEach var="item" items="${productDetail}">
           <tr>
             <td>${item.productName}</td>
@@ -44,7 +62,7 @@
             <td><fmt:formatDate value="${item.productDate}" pattern="yyyy-MM-dd HH:mm" /></td>
           </tr>
         </c:forEach>
-
+        </c:if>
         </tbody>
 
       </table>
@@ -55,3 +73,25 @@
   </div>
 
 </section>
+
+<script type="text/javascript">
+
+  function searchProductForm() {
+    console.log('searchBookForm() CALLED!!');
+
+    let form = document.search_product_form;
+
+    if (form.productName.value == '') {
+      alert('Enter the name of the book you are looking for.');
+      form.productName.focus();
+
+    } else {
+      form.submit();
+
+    }
+
+  }
+
+</script>
+</body>
+</html>
